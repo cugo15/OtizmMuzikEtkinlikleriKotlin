@@ -1,2316 +1,2229 @@
-package com.aecg.oyunvemuzikae.ResimdenBul;
+package com.aecg.oyunvemuzikae.ResimdenBul
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent
+import android.media.MediaPlayer
+import android.media.MediaPlayer.OnCompletionListener
+import android.os.Bundle
+import android.os.Handler
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
+import com.aecg.oyunvemuzikae.MainActivity
+import com.aecg.oyunvemuzikae.OyunlarMenu
+import com.aecg.oyunvemuzikae.R
+import com.aecg.oyunvemuzikae.databinding.ActivityResimdenBulBaglamaBinding
+import java.util.Random
 
-import android.content.Intent;
-import android.media.MediaPlayer;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+class ResimdenBulBaglama : AppCompatActivity() {
+    private var binding: ActivityResimdenBulBaglamaBinding? = null
+    var soru: MediaPlayer? = null
+    var animation: Animation? = null
+    var hand: Handler? = null
+    var runab: Runnable? = null
+    var animationzoom: Animation? = null
+    var animationfadein: Animation? = null
+    var animationmovefromleft: Animation? = null
+    var animationmovefromright: Animation? = null
+    private var decorView: View? = null
+    var dogruses: MediaPlayer? = null
+    var mediaPlayeryanliscevap: MediaPlayer? = null
+    var mediaPlayerdogrucevap: MediaPlayer? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityResimdenBulBaglamaBinding.inflate(
+            layoutInflater
+        )
+        val view: View = binding!!.root
+        setContentView(view)
+        decorView = window.decorView
+        decorView!!.setOnSystemUiVisibilityChangeListener { i ->
+            if (i == 0) {
+                decorView!!.systemUiVisibility = hideSystemBars()
+            }
+        }
 
-import com.aecg.oyunvemuzikae.MainActivity;
-import com.aecg.oyunvemuzikae.OyunlarMenu;
-import com.aecg.oyunvemuzikae.R;
-import com.aecg.oyunvemuzikae.databinding.ActivityResimdenBulBaglamaBinding;
+        animation = AnimationUtils.loadAnimation(applicationContext, R.anim.blink_ani)
+        animationzoom = AnimationUtils.loadAnimation(applicationContext, R.anim.zoom_in)
+        animationfadein = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in)
+        animationmovefromleft = AnimationUtils.loadAnimation(
+            applicationContext, R.anim.movefrom_left
+        )
+        animationmovefromright = AnimationUtils.loadAnimation(
+            applicationContext, R.anim.movefrom_right
+        )
+        binding!!.bag1card.startAnimation(animationmovefromleft)
+        binding!!.bag2card.startAnimation(animationfadein)
+        binding!!.bag3card.startAnimation(animationmovefromright)
+        binding!!.baglamaimg1.isEnabled = false
+        binding!!.baglamaimg2.isEnabled = false
+        binding!!.baglamaimg3.isEnabled = false
+        soru = MediaPlayer.create(this, R.raw.acababaglama)
+        dogruses = MediaPlayer.create(this, R.raw.baglama)
+        mediaPlayeryanliscevap = MediaPlayer.create(this, R.raw.yanliscevap)
+        mediaPlayerdogrucevap = MediaPlayer.create(this, R.raw.tebriklerdogrucevap)
+        val sorusure = soru!!.getDuration()
+        val yanliscevapsure = mediaPlayeryanliscevap!!.getDuration()
+        val dogrusessure = dogruses!!.getDuration()
+        val handlerhizlihizli = Handler()
+        val runablehizlihizli = Runnable {
+            soru!!.start()
+            Handler().postDelayed({
+                binding!!.Anasayfayadonresimdenbaglama.isEnabled = true
+                binding!!.Geritusuacababaglama.isEnabled = true
+                binding!!.baglamaimg1.isEnabled = true
+                binding!!.baglamaimg2.isEnabled = true
+                binding!!.baglamaimg3.isEnabled = true
+            }, sorusure.toLong())
+        }
+        handlerhizlihizli.postDelayed(runablehizlihizli, 700)
 
-import java.util.ArrayList;
-import java.util.Random;
-
-public class ResimdenBulBaglama extends AppCompatActivity {
-    private ActivityResimdenBulBaglamaBinding binding;
-    MediaPlayer soru ;
-    Animation animation;
-    Handler hand;
-    Runnable runab;
-    Animation animationzoom;
-    Animation animationfadein;
-    Animation animationmovefromleft;
-    Animation animationmovefromright;
-    private  View decorView;
-    MediaPlayer dogruses;
-    MediaPlayer mediaPlayeryanliscevap;
-    MediaPlayer mediaPlayerdogrucevap;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityResimdenBulBaglamaBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
-        decorView=getWindow().getDecorView();
-        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-            @Override
-            public void onSystemUiVisibilityChange(int i) {
-                if(i==0){
-                    decorView.setSystemUiVisibility(hideSystemBars());
+        val random = Random()
+        val r = random.nextInt(3)
+        val r2 = random.nextInt(13)
+        val r3 = random.nextInt(12)
+        if (r == 0) {
+            binding!!.baglamaimg1.setBackgroundResource(R.drawable.baglama)
+            if (r2 == 0) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.zil)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-        });
-
-        animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.blink_ani);
-        animationzoom = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.zoom_in);
-        animationfadein = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
-        animationmovefromleft = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.movefrom_left);
-        animationmovefromright = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.movefrom_right);
-        binding.bag1card.startAnimation(animationmovefromleft);
-        binding.bag2card.startAnimation(animationfadein);
-        binding.bag3card.startAnimation(animationmovefromright);
-        binding.baglamaimg1.setEnabled(false);
-        binding.baglamaimg2.setEnabled(false);
-        binding.baglamaimg3.setEnabled(false);
-        soru = MediaPlayer.create(this, R.raw.acababaglama);
-        dogruses = MediaPlayer.create(this, R.raw.baglama);
-        mediaPlayeryanliscevap = MediaPlayer.create(this,R.raw.yanliscevap);
-        mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.tebriklerdogrucevap);
-        int sorusure = soru.getDuration();
-        int yanliscevapsure = mediaPlayeryanliscevap.getDuration();
-        int dogrusessure = dogruses.getDuration();
-        Handler handlerhizlihizli = new Handler();
-        Runnable runablehizlihizli = new Runnable() {
-            @Override
-            public void run() {
-                soru.start();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        binding.Anasayfayadonresimdenbaglama.setEnabled(true);
-                        binding.Geritusuacababaglama.setEnabled(true);
-                        binding.baglamaimg1.setEnabled(true);
-                        binding.baglamaimg2.setEnabled(true);
-                        binding.baglamaimg3.setEnabled(true);
-                    }
-                },sorusure);
-            }
-        };handlerhizlihizli.postDelayed(runablehizlihizli,700);
-
-        Random random = new Random();
-        int r = random.nextInt(3);
-        int r2 = random.nextInt(13);
-        int r3 = random.nextInt(12);
-        if(r==0){
-           binding.baglamaimg1.setBackgroundResource(R.drawable.baglama);
-           if(r2==0){
-               binding.baglamaimg2.setBackgroundResource(R.drawable.zil);
-               if(r3==0){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
-               }
-               if(r3==1){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
-               }
-               if(r3==2){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-               }
-               if(r3==3){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
-               }
-               if(r3==4){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-               }
-               if(r3==5){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-               }
-               if(r3==6){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-               }
-               if(r3==7){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
-               }
-               if(r3==8){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-               }
-               if(r3==9){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
-               }
-               if(r3==10){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-               }
-               if(r3==11){
-                   binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-               }
-           }
-            if(r2==1){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.zurna);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 1) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.zurna)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==2){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.trompetimg);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 2) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.trompetimg)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==3){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.trombon);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==4){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.tef);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 3) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.trombon)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==5){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.bateri);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==6){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.piyano);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 4) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.tef)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==7){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.obua);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==8){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.mentronom);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 5) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.bateri)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==9){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.ksilofon);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==10){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.gitar);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 6) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.piyano)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==11){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.flut);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==12){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.keman);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 7) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.obua)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 8) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.mentronom)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 9) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.ksilofon)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 10) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.gitar)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 11) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.flut)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+            }
+            if (r2 == 12) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.keman)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
         }
-        if(r==1){
-            binding.baglamaimg2.setBackgroundResource(R.drawable.baglama);
-            if(r2==0){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+        if (r == 1) {
+            binding!!.baglamaimg2.setBackgroundResource(R.drawable.baglama)
+            if (r2 == 0) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==1){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==2){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 1) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==3){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==4){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 2) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==5){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==6){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 3) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==7){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==8){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 4) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==9){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==10){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 5) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==11){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==12){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
-                if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 6) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 7) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 8) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 9) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 10) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 11) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+            }
+            if (r2 == 12) {
+                binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
+                if (r3 == 0) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg3.setBackgroundResource(R.drawable.flut)
                 }
             }
         }
-        if(r==2){
-            binding.baglamaimg3.setBackgroundResource(R.drawable.baglama);
-            if(r2==0){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.zil);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+        if (r == 2) {
+            binding!!.baglamaimg3.setBackgroundResource(R.drawable.baglama)
+            if (r2 == 0) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.zil)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==1){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.zurna);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==2){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.trompetimg);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 1) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.zurna)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==3){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.trombon);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==4){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.tef);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 2) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.trompetimg)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==5){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.bateri);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==6){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.piyano);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 3) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.trombon)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==7){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.obua);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==8){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.mentronom);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 4) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.tef)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==9){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.ksilofon);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
-                }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==10){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.gitar);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 5) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.bateri)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
                 }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
-                }
-            }
-            if(r2==11){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.flut);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
-                }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
-                }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
-                }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
-                }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
-                }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
-                }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
-                }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
-                }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
-                }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
-                }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
-                }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
                 }
             }
-            if(r2==12){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.keman);
-                if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+            if (r2 == 6) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.piyano)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
                 }
-                if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
                 }
-                if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
                 }
-                if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
                 }
-                if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
                 }
-                if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
                 }
-                if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
                 }
-                if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
                 }
-                if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
                 }
-                if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
                 }
-                if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
                 }
-                if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 7) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.obua)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 8) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.mentronom)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 9) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.ksilofon)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 10) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.gitar)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
+                }
+            }
+            if (r2 == 11) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.flut)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.keman)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
+                }
+            }
+            if (r2 == 12) {
+                binding!!.baglamaimg2.setBackgroundResource(R.drawable.keman)
+                if (r3 == 0) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.bateri)
+                }
+                if (r3 == 1) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zil)
+                }
+                if (r3 == 2) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trompetimg)
+                }
+                if (r3 == 3) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.trombon)
+                }
+                if (r3 == 4) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.tef)
+                }
+                if (r3 == 5) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.zurna)
+                }
+                if (r3 == 6) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.piyano)
+                }
+                if (r3 == 7) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.obua)
+                }
+                if (r3 == 8) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.mentronom)
+                }
+                if (r3 == 9) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.ksilofon)
+                }
+                if (r3 == 10) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.gitar)
+                }
+                if (r3 == 11) {
+                    binding!!.baglamaimg1.setBackgroundResource(R.drawable.flut)
                 }
             }
         }
 
-        binding.Anasayfayadonresimdenbaglama.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(hand!=null){
-                    hand.removeCallbacks(runab);
-                }
-                seskes();
-                Intent intent = new Intent(ResimdenBulBaglama.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-                finish();
+        binding!!.Anasayfayadonresimdenbaglama.setOnClickListener {
+            if (hand != null) {
+                hand!!.removeCallbacks(runab!!)
             }
-        });
-        binding.Geritusuacababaglama.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(hand!=null){
-                    hand.removeCallbacks(runab);
-                }
-                seskes();
-                Intent intent = new Intent(ResimdenBulBaglama.this, OyunlarMenu.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-                finish();
-            }
-        });
-        binding.baglamaimg1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(r==0){
-                    binding.bag1card.setBackgroundResource(R.drawable.border);
-                    binding.bag1card.startAnimation(animationzoom);
-                    binding.baglamaimg1.setClickable(false);
-                    binding.baglamaimg2.setClickable(false);
-                    binding.baglamaimg3.setClickable(false);
-                    mediaPlayerdogrucevap.start();
-                    mediaPlayerdogrucevap.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mediaPlayer) {
-                            dogruses.start();
-                            binding.imageView.setVisibility(View.VISIBLE);
-                            binding.imageView.startAnimation(animation);
-                            dogruses.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                @Override
-                                public void onCompletion(MediaPlayer mediaPlayer) {
-                                    randomact();
-                                }
-                            });
-                        }
-                    });
-                    binding.imageView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            randomact();
-                        }
-                    });
-
-                }
-                if(r==1){
-                    binding.bag1card.setBackgroundResource(R.drawable.border_red);
-
-                }
-                if(r==2){
-                    binding.bag1card.setBackgroundResource(R.drawable.border_red);
-
-                }
-            }
-        });
-        binding.baglamaimg2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(r==0){
-                    binding.bag2card.setBackgroundResource(R.drawable.border_red);
-
-                }
-                if(r==1){
-                    binding.bag2card.setBackgroundResource(R.drawable.border);
-                    binding.bag2card.startAnimation(animationzoom);
-
-                    binding.baglamaimg1.setClickable(false);
-                    binding.baglamaimg2.setClickable(false);
-                    binding.baglamaimg3.setClickable(false);
-                    mediaPlayerdogrucevap.start();
-                    mediaPlayerdogrucevap.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mediaPlayer) {
-                            dogruses.start();
-                            binding.imageView.setVisibility(View.VISIBLE);
-                            binding.imageView.startAnimation(animation);
-                            dogruses.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                @Override
-                                public void onCompletion(MediaPlayer mediaPlayer) {
-                                    randomact();
-                                }
-                            });
-                        }
-                    });
-
-                    binding.imageView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            randomact();
-                        }
-                    });
-                }
-                if(r==2){
-                    binding.bag2card.setBackgroundResource(R.drawable.border_red);
-
-                }
-            }
-        });
-        binding.baglamaimg3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(r==0){
-                    binding.bag3card.setBackgroundResource(R.drawable.border_red);
-
-                }
-                if(r==1){
-                    binding.bag3card.setBackgroundResource(R.drawable.border_red);
-
-                }
-                if(r==2){
-                    binding.bag3card.setBackgroundResource(R.drawable.border);
-                    binding.bag3card.startAnimation(animationzoom);
-
-                    binding.baglamaimg1.setClickable(false);
-                    binding.baglamaimg2.setClickable(false);
-                    binding.baglamaimg3.setClickable(false);
-                    mediaPlayerdogrucevap.start();
-                    mediaPlayerdogrucevap.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mediaPlayer) {
-                            dogruses.start();
-                            binding.imageView.setVisibility(View.VISIBLE);
-                            binding.imageView.startAnimation(animation);
-                            dogruses.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                @Override
-                                public void onCompletion(MediaPlayer mediaPlayer) {
-                                    randomact();
-                                }
-                            });
-                        }
-                    });
-
-                    binding.imageView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            randomact();
-                        }
-                    });
-                }
-            }
-        });
-
-
-    }
-    public void seskes() {
-        if(soru!=null){
-            soru.stop();
-            soru.release();
-            soru = null;
+            seskes()
+            val intent = Intent(this@ResimdenBulBaglama, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
         }
-        if(dogruses!=null){
-            dogruses.stop();
-            dogruses.release();
-            dogruses = null;
+        binding!!.Geritusuacababaglama.setOnClickListener {
+            if (hand != null) {
+                hand!!.removeCallbacks(runab!!)
+            }
+            seskes()
+            val intent = Intent(this@ResimdenBulBaglama, OyunlarMenu::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
         }
-        if(mediaPlayeryanliscevap!=null){
-            mediaPlayeryanliscevap.stop();
-            mediaPlayeryanliscevap.release();
-            mediaPlayeryanliscevap = null;
+        binding!!.baglamaimg1.setOnClickListener {
+            if (r == 0) {
+                binding!!.bag1card.setBackgroundResource(R.drawable.border)
+                binding!!.bag1card.startAnimation(animationzoom)
+                binding!!.baglamaimg1.isClickable = false
+                binding!!.baglamaimg2.isClickable = false
+                binding!!.baglamaimg3.isClickable = false
+                mediaPlayerdogrucevap!!.start()
+                mediaPlayerdogrucevap!!.setOnCompletionListener(OnCompletionListener {
+                    dogruses!!.start()
+                    binding!!.imageView.visibility = View.VISIBLE
+                    binding!!.imageView.startAnimation(animation)
+                    dogruses!!.setOnCompletionListener(OnCompletionListener { randomact() })
+                })
+                binding!!.imageView.setOnClickListener { randomact() }
+            }
+            if (r == 1) {
+                binding!!.bag1card.setBackgroundResource(R.drawable.border_red)
+            }
+            if (r == 2) {
+                binding!!.bag1card.setBackgroundResource(R.drawable.border_red)
+            }
         }
-        if(mediaPlayerdogrucevap!=null){
-            mediaPlayerdogrucevap.stop();
-            mediaPlayerdogrucevap.release();
-            mediaPlayerdogrucevap = null;
+        binding!!.baglamaimg2.setOnClickListener {
+            if (r == 0) {
+                binding!!.bag2card.setBackgroundResource(R.drawable.border_red)
+            }
+            if (r == 1) {
+                binding!!.bag2card.setBackgroundResource(R.drawable.border)
+                binding!!.bag2card.startAnimation(animationzoom)
+
+                binding!!.baglamaimg1.isClickable = false
+                binding!!.baglamaimg2.isClickable = false
+                binding!!.baglamaimg3.isClickable = false
+                mediaPlayerdogrucevap!!.start()
+                mediaPlayerdogrucevap!!.setOnCompletionListener(OnCompletionListener {
+                    dogruses!!.start()
+                    binding!!.imageView.visibility = View.VISIBLE
+                    binding!!.imageView.startAnimation(animation)
+                    dogruses!!.setOnCompletionListener(OnCompletionListener { randomact() })
+                })
+
+                binding!!.imageView.setOnClickListener { randomact() }
+            }
+            if (r == 2) {
+                binding!!.bag2card.setBackgroundResource(R.drawable.border_red)
+            }
+        }
+        binding!!.baglamaimg3.setOnClickListener {
+            if (r == 0) {
+                binding!!.bag3card.setBackgroundResource(R.drawable.border_red)
+            }
+            if (r == 1) {
+                binding!!.bag3card.setBackgroundResource(R.drawable.border_red)
+            }
+            if (r == 2) {
+                binding!!.bag3card.setBackgroundResource(R.drawable.border)
+                binding!!.bag3card.startAnimation(animationzoom)
+
+                binding!!.baglamaimg1.isClickable = false
+                binding!!.baglamaimg2.isClickable = false
+                binding!!.baglamaimg3.isClickable = false
+                mediaPlayerdogrucevap!!.start()
+                mediaPlayerdogrucevap!!.setOnCompletionListener(OnCompletionListener {
+                    dogruses!!.start()
+                    binding!!.imageView.visibility = View.VISIBLE
+                    binding!!.imageView.startAnimation(animation)
+                    dogruses!!.setOnCompletionListener(OnCompletionListener { randomact() })
+                })
+
+                binding!!.imageView.setOnClickListener { randomact() }
+            }
         }
     }
 
-    public void randomact(){
-        seskes();
-        ArrayList<Class> activitylist = new ArrayList<>();
-        Bundle extras = getIntent().getExtras();
-        activitylist = (ArrayList<Class>) extras.get("ACTIVITY_LIST");
-
-        Random generator = new Random();
-        int number = generator.nextInt(activitylist.size());
-        if(number ==0){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(0));
-            activitylist.remove(0);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
+    fun seskes() {
+        if (soru != null) {
+            soru!!.stop()
+            soru!!.release()
+            soru = null
         }
-        if(number ==1){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(1));
-            activitylist.remove(1);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
+        if (dogruses != null) {
+            dogruses!!.stop()
+            dogruses!!.release()
+            dogruses = null
         }
-        if(number ==2){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(2));
-            activitylist.remove(2);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
+        if (mediaPlayeryanliscevap != null) {
+            mediaPlayeryanliscevap!!.stop()
+            mediaPlayeryanliscevap!!.release()
+            mediaPlayeryanliscevap = null
         }
-        if(number ==3){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(3));
-            activitylist.remove(3);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==4){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(4));
-            activitylist.remove(4);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==5){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(5));
-            activitylist.remove(5);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==6){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(6));
-            activitylist.remove(6);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==7){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(7));
-            activitylist.remove(7);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==8){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(8));
-            activitylist.remove(8);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==9){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(9));
-            activitylist.remove(9);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==10){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(10));
-            activitylist.remove(10);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==11){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(11));
-            activitylist.remove(11);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==12){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(12));
-            activitylist.remove(12);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==13){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(13));
-            activitylist.remove(13);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==14){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(14));
-            activitylist.remove(14);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==15){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(15));
-            activitylist.remove(15);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-        if(number ==16){
-            Intent intent = new Intent(getApplicationContext(), activitylist.get(16));
-            activitylist.remove(16);
-            if(activitylist.size()==0){
-                activitylist.add(ResimdenBulBaglama.class);
-                activitylist.add(ResimdenBulBateri.class);
-                activitylist.add(ResimdenBulDavul.class);
-                activitylist.add(ResimdenBulGitar.class);
-                activitylist.add(ResimdenBulDef.class);
-                activitylist.add(ResimdenBulFlut.class);
-                activitylist.add(ResimdenBulKeman.class);
-                activitylist.add(ResimdenBulKsilafon.class);
-                activitylist.add(ResimdenBulMetronom.class);
-                activitylist.add(ResimdenBulObua.class);
-                activitylist.add(ResimdenBulPiyano.class);
-                activitylist.add(ResimdenBulTrombon.class);
-                activitylist.add(ResimdenBulTrompet.class);
-                activitylist.add(ResimdenBulZil.class);
-                activitylist.add(ResimdenBulZurna.class);
-                activitylist.add(ResimdenBulUd.class);
-                activitylist.add(ResimdenBulKanun.class);
-
-            }
-            intent.putExtra("ACTIVITY_LIST", activitylist);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
-        }
-
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if(hasFocus){
-            decorView.setSystemUiVisibility(hideSystemBars());
+        if (mediaPlayerdogrucevap != null) {
+            mediaPlayerdogrucevap!!.stop()
+            mediaPlayerdogrucevap!!.release()
+            mediaPlayerdogrucevap = null
         }
     }
 
-    private int hideSystemBars(){
-        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-                View.SYSTEM_UI_FLAG_FULLSCREEN |
-                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-    }
-    @Override
-    protected void onPause() {
-        seskes();
+    fun randomact() {
+        seskes()
+        var activitylist: ArrayList<Class<*>?>? = ArrayList()
+        val extras = intent.extras
+        activitylist = extras!!["ACTIVITY_LIST"] as ArrayList<Class<*>?>?
 
-        super.onPause();
+        val generator = Random()
+        val number = generator.nextInt(activitylist!!.size)
+        if (number == 0) {
+            val intent = Intent(applicationContext, activitylist[0])
+            activitylist.removeAt(0)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 1) {
+            val intent = Intent(applicationContext, activitylist[1])
+            activitylist.removeAt(1)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 2) {
+            val intent = Intent(applicationContext, activitylist[2])
+            activitylist.removeAt(2)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 3) {
+            val intent = Intent(applicationContext, activitylist[3])
+            activitylist.removeAt(3)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 4) {
+            val intent = Intent(applicationContext, activitylist[4])
+            activitylist.removeAt(4)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 5) {
+            val intent = Intent(applicationContext, activitylist[5])
+            activitylist.removeAt(5)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 6) {
+            val intent = Intent(applicationContext, activitylist[6])
+            activitylist.removeAt(6)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 7) {
+            val intent = Intent(applicationContext, activitylist[7])
+            activitylist.removeAt(7)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 8) {
+            val intent = Intent(applicationContext, activitylist[8])
+            activitylist.removeAt(8)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 9) {
+            val intent = Intent(applicationContext, activitylist[9])
+            activitylist.removeAt(9)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 10) {
+            val intent = Intent(applicationContext, activitylist[10])
+            activitylist.removeAt(10)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 11) {
+            val intent = Intent(applicationContext, activitylist[11])
+            activitylist.removeAt(11)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 12) {
+            val intent = Intent(applicationContext, activitylist[12])
+            activitylist.removeAt(12)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 13) {
+            val intent = Intent(applicationContext, activitylist[13])
+            activitylist.removeAt(13)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 14) {
+            val intent = Intent(applicationContext, activitylist[14])
+            activitylist.removeAt(14)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 15) {
+            val intent = Intent(applicationContext, activitylist[15])
+            activitylist.removeAt(15)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
+        if (number == 16) {
+            val intent = Intent(applicationContext, activitylist[16])
+            activitylist.removeAt(16)
+            if (activitylist.size == 0) {
+                activitylist.add(ResimdenBulBaglama::class.java)
+                activitylist.add(ResimdenBulBateri::class.java)
+                activitylist.add(ResimdenBulDavul::class.java)
+                activitylist.add(ResimdenBulGitar::class.java)
+                activitylist.add(ResimdenBulDef::class.java)
+                activitylist.add(ResimdenBulFlut::class.java)
+                activitylist.add(ResimdenBulKeman::class.java)
+                activitylist.add(ResimdenBulKsilafon::class.java)
+                activitylist.add(ResimdenBulMetronom::class.java)
+                activitylist.add(ResimdenBulObua::class.java)
+                activitylist.add(ResimdenBulPiyano::class.java)
+                activitylist.add(ResimdenBulTrombon::class.java)
+                activitylist.add(ResimdenBulTrompet::class.java)
+                activitylist.add(ResimdenBulZil::class.java)
+                activitylist.add(ResimdenBulZurna::class.java)
+                activitylist.add(ResimdenBulUd::class.java)
+                activitylist.add(ResimdenBulKanun::class.java)
+            }
+            intent.putExtra("ACTIVITY_LIST", activitylist)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+            finish()
+        }
     }
 
-    @Override
-    protected void onStop() {
-        seskes();
-        super.onStop();
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            decorView!!.systemUiVisibility = hideSystemBars()
+        }
+    }
+
+    private fun hideSystemBars(): Int {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+    }
+
+    override fun onPause() {
+        seskes()
+
+        super.onPause()
+    }
+
+    override fun onStop() {
+        seskes()
+        super.onStop()
     }
 }

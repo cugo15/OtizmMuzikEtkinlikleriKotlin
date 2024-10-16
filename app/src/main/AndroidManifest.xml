@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,11 +15,8 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.OyunVeMüzik"
-        tools:targetApi="33">
-        <activity
-            android:name=".AlkisVeTahta"
-            android:screenOrientation="landscape"
-            android:exported="false" />
+        tools:targetApi="34">
+
         <activity
             android:name=".Muzikler"
             android:exported="false"
@@ -134,10 +130,7 @@
             android:name=".MrbKareoke"
             android:exported="false"
             android:screenOrientation="landscape" />
-        <activity
-            android:name=".GeriSaymaVid"
-            android:exported="false"
-            android:screenOrientation="landscape" />
+
         <activity
             android:name=".ResimdenBul.ResimdenBulKanun"
             android:exported="false"

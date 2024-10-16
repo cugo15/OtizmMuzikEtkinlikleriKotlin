@@ -734,7 +734,7 @@
             android:paddingEnd="0dp"
             android:progress="14"
             android:progressDrawable="@null"
-            android:thumb="@drawable/baseline_pan_tool_alt_24" />
+            android:thumb="@drawable/baseline_music_note_24" />
 
     </androidx.cardview.widget.CardView>
 

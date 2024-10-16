@@ -34,7 +34,7 @@ public class InsanSesler extends AppCompatActivity {
            mediaPlayererkek = MediaPlayer.create(this, R.raw.erkekses);
            mediaPlayererkekcocuk = MediaPlayer.create(this,R.raw.cocukses);
            mediaPlayerkadin = MediaPlayer.create(this,R.raw.kadin);
-           mediaPlayerkizcocuk = MediaPlayer.create(this,R.raw.kizcocuk);
+           mediaPlayerkizcocuk = MediaPlayer.create(this,R.raw.kizcocukses);
            mediaPlayerkalabalikortam = MediaPlayer.create(this,R.raw.sehir);
            mediaPlayerbebek = MediaPlayer.create(this,R.raw.bebek);
         animationzoom = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.zoom_inshort);

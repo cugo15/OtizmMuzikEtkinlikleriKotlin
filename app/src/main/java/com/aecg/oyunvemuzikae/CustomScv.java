@@ -20,10 +20,6 @@ public class CustomScv extends HorizontalScrollView {
     public CustomScv(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CustomScv(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
