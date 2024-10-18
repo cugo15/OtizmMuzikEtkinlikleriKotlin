@@ -9,13 +9,11 @@ import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
-import androidx.appcompat.app.AppCompatActivity
 import com.aecg.oyunvemuzikae.databinding.ActivityPlayPiyanoBinding
 
-class PlayPiyano : AppCompatActivity() {
+class PlayPiyano : BaseActivity() {
     private lateinit var binding: ActivityPlayPiyanoBinding
     private var c: Int = 0
-    private lateinit var decorView: View
     private var widthp = 0
     private var widthb = 0
 
@@ -27,12 +25,7 @@ class PlayPiyano : AppCompatActivity() {
         )
         val view: View = binding.root
         setContentView(view)
-        decorView = window.decorView
-        decorView!!.setOnSystemUiVisibilityChangeListener { i ->
-            if (i == 0) {
-                decorView!!.systemUiVisibility = hideSystemBars()
-            }
-        }
+
 
         binding.pianoscro.setScrolling(false)
         tumdiez()
@@ -416,22 +409,4 @@ class PlayPiyano : AppCompatActivity() {
             button.setBackgroundDrawable(getDrawable(R.drawable.pressed_and_normal_selector))
         }
     }
-
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        if (hasFocus) {
-            decorView!!.systemUiVisibility = hideSystemBars()
-        }
-    }
-
-    private fun hideSystemBars(): Int {
-        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                View.SYSTEM_UI_FLAG_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-    }
-
-
 }
