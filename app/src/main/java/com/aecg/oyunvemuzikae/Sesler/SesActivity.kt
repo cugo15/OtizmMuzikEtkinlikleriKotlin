@@ -37,7 +37,7 @@ class SesActivity : BaseActivity() {
         sesList = intent.getParcelableArrayListExtra<SesModel>("sesListesi") ?: arrayListOf()
 
         val category = sesList[1].category
-        binding.textView2.text = category.displayName
+        binding.textViewSesHeader.text = category.displayName
 
         val backgroundResourceMap = mapOf(
             SesCategory.HAYVAN to R.drawable.bg_hayvanlar,
@@ -70,16 +70,16 @@ class SesActivity : BaseActivity() {
 
         setupRecyclerView(sesList)
 
-        binding.dogascrollgeri.setOnClickListener {
+        binding.btnScrollLeftSes.setOnClickListener {
             binding.rvSes.scrollInDirection(-1)
         }
 
-        binding.dogascrollileri.setOnClickListener {
+        binding.BtnScrollRightSes.setOnClickListener {
             binding.rvSes.scrollInDirection(1)
         }
 
-        binding.Anasayfayadondoga.setOnClickListener { navigateToActivity(MainActivity::class.java) }
-        binding.Geritusudoga.setOnClickListener { navigateToActivity(SesMenu::class.java) }
+        binding.btnHomeSes.setOnClickListener { navigateToActivity(MainActivity::class.java) }
+        binding.btnBackSes.setOnClickListener { navigateToActivity(SesMenu::class.java) }
 
     }
     private fun setupRecyclerView(sesList: ArrayList<SesModel>) {

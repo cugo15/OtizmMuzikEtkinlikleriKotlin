@@ -14,13 +14,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/card_bkg"
-        app:layout_constraintBottom_toTopOf="@+id/dogascrollgeri"
+        app:layout_constraintBottom_toTopOf="@+id/btnScrollLeftSes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSesHeader" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewSesHeader"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:fontFamily="@font/mogra"
@@ -32,13 +32,13 @@
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/Geritusudoga"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBackSes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/Anasayfayadondoga"
+        android:id="@+id/btnHomeSes"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
@@ -48,7 +48,7 @@
         app:srcCompat="@drawable/evicon3" />
 
     <ImageView
-        android:id="@+id/Geritusudoga"
+        android:id="@+id/btnBackSes"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="15dp"
@@ -58,20 +58,20 @@
         app:srcCompat="@drawable/geriyuruyencocuk" />
 
     <ImageView
-        android:id="@+id/dogascrollgeri"
+        android:id="@+id/btnScrollLeftSes"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/dogascrollileri"
+        app:layout_constraintEnd_toStartOf="@+id/BtnScrollRightSes"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/sol" />
 
     <ImageView
-        android:id="@+id/dogascrollileri"
+        android:id="@+id/BtnScrollRightSes"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="16dp"
@@ -79,7 +79,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/dogascrollgeri"
+        app:layout_constraintStart_toEndOf="@+id/btnScrollLeftSes"
         app:srcCompat="@drawable/sag" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
