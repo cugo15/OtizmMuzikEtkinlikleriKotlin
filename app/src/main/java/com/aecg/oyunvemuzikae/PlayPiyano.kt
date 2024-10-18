@@ -27,7 +27,7 @@ class PlayPiyano : BaseActivity() {
         setContentView(view)
 
 
-        binding.pianoscro.setScrolling(false)
+        binding.scrollViewKeyboard.setScrolling(false)
         tumdiez()
 
         val mediaPlayerk1 = MediaPlayer.create(this, R.raw.kirmizi3_1)
@@ -97,15 +97,14 @@ class PlayPiyano : BaseActivity() {
 
         val mediaPlayerp1 = MediaPlayer.create(this, R.raw.c7)
 
-        binding.oyunmenudon.setOnClickListener {
+        binding.btnHome.setOnClickListener {
             val intent = Intent(this@PlayPiyano, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             startActivity(intent)
             finish()
         }
 
-        binding.pianoscro.post { seekpiyanobagla(binding.p15) }
-        binding.pianoseek.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+        binding.scrollViewKeyboard.post { seekpiyanobagla(binding.p15) }
+        binding.seekBarOctave.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 seekbag2(i)
             }
@@ -116,22 +115,22 @@ class PlayPiyano : BaseActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar) {
             }
         })
-        binding.incsize.setOnClickListener {
-            binding.pianoseek.post {
-                val i = binding.pianoseek.progress
+        binding.btnIncreaseKeySize.setOnClickListener {
+            binding.seekBarOctave.post {
+                val i = binding.seekBarOctave.progress
                 incsize()
                 seekbag2(i)
             }
         }
-        binding.decsize.setOnClickListener {
-            binding.pianoseek.post {
-                val i = binding.pianoseek.progress
+        binding.btnDecreaseKeySize.setOnClickListener {
+            binding.seekBarOctave.post {
+                val i = binding.seekBarOctave.progress
                 decsize()
                 seekbag2(i - 1)
             }
         }
 
-        binding.doremi.setOnClickListener {
+        binding.btnDo.setOnClickListener {
             when (binding.p1.text) {
                 "" -> notatodoremi() // Eğer metin boşsa
                 "Do2" -> notabos()   // Eğer metin "Do2" ise
@@ -141,7 +140,7 @@ class PlayPiyano : BaseActivity() {
                 }
             }
         }
-        binding.cdef.setOnClickListener {
+        binding.btnC.setOnClickListener {
             when (binding.p1.text) {
                 "" -> notacdef()   // Eğer metin boşsa
                 "C2" -> notabos()  // Eğer metin "C2" ise
@@ -151,7 +150,7 @@ class PlayPiyano : BaseActivity() {
                 }
             }
         }
-        binding.rainbow.setOnClickListener {
+        binding.btnColor.setOnClickListener {
             c++
             when {
                 c % 2 == 0 -> { // Eğer c çift ise
@@ -220,10 +219,10 @@ class PlayPiyano : BaseActivity() {
     }
 
     private fun seekpiyanobagla(a: Button) {
-        binding.pianolayout.post {
+        binding.layoutKeyboard.post {
             val x = a.left
             val y = a.top
-            binding.pianoscro.smoothScrollTo(x, y)
+            binding.scrollViewKeyboard.smoothScrollTo(x, y)
         }
     }
 
