@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import com.aecg.oyunvemuzikae.MainActivity;
 import com.aecg.oyunvemuzikae.R;
 import com.aecg.oyunvemuzikae.databinding.ActivityMemoryLevelFiveBinding;
-import com.aecg.oyunvemuzikae.databinding.ActivityMemoryLevelFourBinding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -812,23 +811,23 @@ public class MemoryLevelFive extends AppCompatActivity {
     }
     private void randomimg(){
         ArrayList<Integer> pics= new ArrayList<>();
-        img1 = R.drawable.baglama;
-        img2 =R.drawable.bateri;
-        img3 =R.drawable.davul;
-        img4 =R.drawable.tef;
-        img5 =R.drawable.flut;
-        img6 =R.drawable.gitar;
-        img7 =R.drawable.kanun;
-        img8 =R.drawable.keman;
-        img9 =R.drawable.ksilofon;
-        img10 =R.drawable.metronom;
-        img11 =R.drawable.obua;
-        img12 =R.drawable.piyano;
-        img13 =R.drawable.trombon;
-        img14 =R.drawable.trompetimg;
-        img15 =R.drawable.ud;
-        img16 =R.drawable.zil;
-        img17 =R.drawable.zurna;
+        img1 = R.drawable.ic_enstruman_baglama;
+        img2 =R.drawable.ic_enstruman_bateri;
+        img3 =R.drawable.ic_enstruman_davul;
+        img4 =R.drawable.ic_enstruman_def;
+        img5 =R.drawable.ic_enstruman_flut;
+        img6 =R.drawable.ic_enstruman_gitar;
+        img7 =R.drawable.ic_enstruman_kanun;
+        img8 =R.drawable.ic_enstruman_keman;
+        img9 =R.drawable.ic_enstruman_ksilofon;
+        img10 =R.drawable.ic_enstruman_metronom;
+        img11 =R.drawable.ic_enstruman_obua;
+        img12 =R.drawable.ic_enstruman_piyano;
+        img13 =R.drawable.ic_enstruman_trombon;
+        img14 =R.drawable.ic_enstruman_trompet;
+        img15 =R.drawable.ic_enstruman_ud;
+        img16 =R.drawable.ic_enstruman_zil;
+        img17 =R.drawable.ic_enstruman_zurna;
         pics.add(img1);pics.add(img2);pics.add(img3);pics.add(img4);pics.add(img5);pics.add(img6);pics.add(img7);pics.add(img8);
         pics.add(img9);pics.add(img10);pics.add(img11);pics.add(img12);pics.add(img13);pics.add(img14);pics.add(img15);pics.add(img16);
         pics.add(img17);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bk1"
+    android:background="@drawable/bg_home"
 
     tools:context=".MainActivity">
 
@@ -33,10 +33,10 @@
                     android:layout_width="170dp"
                     android:layout_height="170dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
                     android:layout_marginTop="-4dp"
+                    android:layout_marginEnd="10dp"
                     android:rotationY="10"
-                    app:srcCompat="@drawable/piyanoicon1" />
+                    app:srcCompat="@drawable/ic_home_piyano" />
 
                 <TextView
                     android:id="@+id/piytxt"
@@ -71,7 +71,7 @@
                     android:layout_marginEnd="10dp"
 
                     android:rotationY="10"
-                    app:srcCompat="@drawable/oyunlaricon" />
+                    app:srcCompat="@drawable/ic_home_oyunlar" />
 
                 <TextView
                     android:id="@+id/oyunlartxt"
@@ -105,7 +105,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:rotationY="-10"
-                    app:srcCompat="@drawable/seslericon1" />
+                    app:srcCompat="@drawable/ic_home_sesler" />
 
                 <TextView
                     android:id="@+id/seslertxt"
@@ -138,7 +138,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:rotationY="-10"
-                    app:srcCompat="@drawable/muzikicon" />
+                    app:srcCompat="@drawable/ic_home_muzik" />
 
                 <TextView
                     android:id="@+id/muziktxt"

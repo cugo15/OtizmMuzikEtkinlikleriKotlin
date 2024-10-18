@@ -22,7 +22,7 @@
             android:id="@+id/hizliolanibultrompetimg"
             android:layout_width="300dp"
             android:layout_height="210dp"
-            app:srcCompat="@drawable/trrompet" />
+            app:srcCompat="@drawable/ic_enstruman_trompet" />
     </androidx.cardview.widget.CardView>
 
     <TextView

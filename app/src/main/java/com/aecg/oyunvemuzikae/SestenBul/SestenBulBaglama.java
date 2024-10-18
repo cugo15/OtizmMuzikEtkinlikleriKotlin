@@ -13,24 +13,6 @@ import android.view.animation.AnimationUtils;
 import com.aecg.oyunvemuzikae.MainActivity;
 import com.aecg.oyunvemuzikae.OyunlarMenu;
 import com.aecg.oyunvemuzikae.R;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulBaglama;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulBateri;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulDavul;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulDef;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulFlut;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulGitar;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulKanun;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulKeman;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulKsilafon;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulMetronom;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulObua;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulPiyano;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulTrombon;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulTrompet;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulUd;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulZil;
-import com.aecg.oyunvemuzikae.SestenBul.SestenBulZurna;
-import com.aecg.oyunvemuzikae.databinding.ActivitySestenBulBaglamaBinding;
 import com.aecg.oyunvemuzikae.databinding.ActivitySestenBulBaglamaBinding;
 
 import java.util.ArrayList;
@@ -77,7 +59,7 @@ public class SestenBulBaglama extends AppCompatActivity {
         binding.baglamaimg2.setEnabled(false);
         binding.baglamaimg3.setEnabled(false);
         soru = MediaPlayer.create(this, R.raw.acababuseshangiens);
-        dogruses = MediaPlayer.create(this, R.raw.baglama);
+        dogruses = MediaPlayer.create(this, R.raw.sound_enstruman_baglama);
         mediaPlayeryanliscevap = MediaPlayer.create(this,R.raw.yanliscevap);
         mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.tebriklerdogrucevap);
 
@@ -104,1532 +86,1532 @@ public class SestenBulBaglama extends AppCompatActivity {
         int r2 = random.nextInt(13);
         int r3 = random.nextInt(12);
         if(r==0){
-            binding.baglamaimg1.setBackgroundResource(R.drawable.baglama);
+            binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_baglama);
             if(r2==0){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.zil);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==1){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.zurna);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==2){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.trompetimg);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==3){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.trombon);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==4){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.tef);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_def);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==5){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.bateri);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==6){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.piyano);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==7){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.obua);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==8){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.mentronom);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==9){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.ksilofon);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==10){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.gitar);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==11){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.flut);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
             }
             if(r2==12){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.keman);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
         }
         if(r==1){
-            binding.baglamaimg2.setBackgroundResource(R.drawable.baglama);
+            binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_baglama);
             if(r2==0){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==1){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==2){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==3){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==4){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==5){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==6){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==7){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==8){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==9){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==10){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==11){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
             }
             if(r2==12){
-                binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 if(r3==0){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==6){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg3.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
         }
         if(r==2){
-            binding.baglamaimg3.setBackgroundResource(R.drawable.baglama);
+            binding.baglamaimg3.setBackgroundResource(R.drawable.ic_enstruman_baglama);
             if(r2==0){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.zil);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==1){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.zurna);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==2){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.trompetimg);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==3){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.trombon);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==4){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.tef);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_def);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==5){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.bateri);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==6){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.piyano);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==7){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.obua);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==8){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.mentronom);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==9){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.ksilofon);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==10){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.gitar);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
             if(r2==11){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.flut);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.keman);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
             }
             if(r2==12){
-                binding.baglamaimg2.setBackgroundResource(R.drawable.keman);
+                binding.baglamaimg2.setBackgroundResource(R.drawable.ic_enstruman_keman);
                 if(r3==0){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.bateri);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_bateri);
                 }
                 if(r3==1){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zil);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zil);
                 }
                 if(r3==2){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trompetimg);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trompet);
                 }
                 if(r3==3){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.trombon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_trombon);
                 }
                 if(r3==4){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.tef);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_def);
                 }
                 if(r3==5){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.zurna);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_zurna);
                 }
                 if(r3==6){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.piyano);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_piyano);
                 }
                 if(r3==7){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.obua);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_obua);
                 }
                 if(r3==8){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.mentronom);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_metronom);
                 }
                 if(r3==9){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.ksilofon);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_ksilofon);
                 }
                 if(r3==10){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.gitar);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_gitar);
                 }
                 if(r3==11){
-                    binding.baglamaimg1.setBackgroundResource(R.drawable.flut);
+                    binding.baglamaimg1.setBackgroundResource(R.drawable.ic_enstruman_flut);
                 }
             }
         }

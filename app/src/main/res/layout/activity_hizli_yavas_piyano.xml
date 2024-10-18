@@ -82,7 +82,7 @@
             android:layout_width="300dp"
             android:layout_height="210dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/pianoo" />
+            app:srcCompat="@drawable/ic_enstruman_piyano" />
     </androidx.cardview.widget.CardView>
 
     <LinearLayout

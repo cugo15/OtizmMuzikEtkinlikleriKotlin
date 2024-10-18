@@ -54,7 +54,7 @@
                             android:id="@+id/enstrumanmenuimg"
                             android:layout_width="140dp"
                             android:layout_height="140dp"
-                            app:srcCompat="@drawable/enstrumanicon" />
+                            app:srcCompat="@drawable/ic_sesmenu_enstruman" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -86,7 +86,7 @@
                         android:id="@+id/insanmenuimg"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        app:srcCompat="@drawable/insansesicon" />
+                        app:srcCompat="@drawable/ic_sesmenu_insan" />
 
                     <TextView
                         android:id="@+id/insanmenutext"
@@ -116,7 +116,7 @@
                         android:id="@+id/hayvanmenuimg"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        app:srcCompat="@drawable/hayvanicon" />
+                        app:srcCompat="@drawable/ic_sesmenu_hayvan" />
 
                     <TextView
                         android:id="@+id/hayvanmenutext"
@@ -147,7 +147,7 @@
                         android:id="@+id/cansizmenuimage"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        app:srcCompat="@drawable/aracicon" />
+                        app:srcCompat="@drawable/ic_sesmenu_araclar" />
 
                     <TextView
                         android:id="@+id/cansizmenutext"
@@ -178,7 +178,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
 
-                        app:srcCompat="@drawable/dogaicon" />
+                        app:srcCompat="@drawable/ic_sesmenu_doga" />
 
                     <TextView
                         android:id="@+id/dogaseslerimenutext"
@@ -218,7 +218,7 @@
                             android:layout_height="140dp"
                             android:layout_gravity="center"
 
-                            app:srcCompat="@drawable/geometrikicon" />
+                            app:srcCompat="@drawable/ic_sesmenu_sekiller" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
@@ -251,7 +251,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
 
-                        app:srcCompat="@drawable/sayilaricon" />
+                        app:srcCompat="@drawable/ic_sesmenu_sayilar" />
 
                     <TextView
                         android:id="@+id/rakammenutext"
