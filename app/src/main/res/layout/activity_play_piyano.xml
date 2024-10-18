@@ -2,108 +2,100 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutPiyano"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
     android:gravity="center|top"
-    android:paddingBottom="16dp"
-    android:paddingEnd="16dp"
-    android:paddingTop="16dp"
-    android:paddingStart="16dp"
+    android:paddingStart="8dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="8dp"
     tools:context=".PlayPiyano">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDo"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/pianodo"
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/doremi"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/pianodo"
-            android:fontFamily="@font/mogra"
+        android:fontFamily="@font/mogra"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/cardViewSeekBarOctave"
+        app:layout_constraintTop_toTopOf="@+id/cardViewSeekBarOctave" />
 
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnC"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/pianoc"
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/cdef"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/pianoc"
-            android:fontFamily="@font/mogra"
+        android:fontFamily="@font/mogra"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnDo"
+        app:layout_constraintStart_toEndOf="@+id/btnDo"
+        app:layout_constraintTop_toTopOf="@+id/btnDo" />
 
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnColor"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/rainbow"
+        app:layout_constraintBottom_toBottomOf="@+id/btnC"
+        app:layout_constraintStart_toEndOf="@+id/btnC"
+        app:layout_constraintTop_toTopOf="@+id/btnC" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/rainbow"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/rainbow" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+    <ImageView
+        android:id="@+id/btnHome"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_weight="1"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/evicon3" />
+
+    <ImageView
+        android:id="@+id/btnDecreaseKeySize"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardViewKeySize"
+        app:layout_constraintEnd_toStartOf="@+id/cardViewKeySize"
+        app:layout_constraintTop_toTopOf="@+id/cardViewKeySize"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/minus" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewKeySize"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="90dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardViewSeekBarOctave"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/oyunmenudon"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/evicon3" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/cardView"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/decsize"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            app:srcCompat="@drawable/minus" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="45dp"
-            app:cardCornerRadius="90dp"
-            android:layout_height="45dp" >
-
-            <ImageView
-                android:id="@+id/incsize"
-                android:layout_width="51dp"
-                android:layout_marginEnd=".1dp"
-                android:layout_gravity="center"
-                android:layout_height="50dp"
-                app:srcCompat="@drawable/plus" />
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+            android:id="@+id/btnIncreaseKeySize"
+            android:layout_width="51dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd=".1dp"
+            app:srcCompat="@drawable/plus" />
+    </androidx.cardview.widget.CardView>
 
     <com.aecg.oyunvemuzikae.CustomScv
-        android:id="@+id/pianoscro"
+        android:id="@+id/scrollViewKeyboard"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/cardViewSeekBarOctave">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,7 +103,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:id="@+id/pianolayout"
+                android:id="@+id/layoutKeyboard"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
 
@@ -712,7 +704,7 @@
     </com.aecg.oyunvemuzikae.CustomScv>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardViewSeekBarOctave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="7dp"
@@ -721,7 +713,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <SeekBar
-            android:id="@+id/pianoseek"
+            android:id="@+id/seekBarOctave"
             style="@style/Widget.AppCompat.SeekBar"
             android:layout_width="400dp"
             android:layout_height="45dp"
