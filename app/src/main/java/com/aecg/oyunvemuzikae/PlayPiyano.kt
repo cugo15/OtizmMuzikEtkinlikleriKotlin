@@ -171,8 +171,6 @@ class PlayPiyano : AppCompatActivity() {
             }
         }
 
-
-
         // Tüm p ve b butonlarıyla ilişkili MediaPlayer'ları bir dizide topluyoruz
         val pianoButtons = listOf(
             Pair(binding.p1, mediaPlayers1), Pair(binding.b1, mediaPlayers2),
