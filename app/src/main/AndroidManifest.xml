@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,243 +20,223 @@
 
         <activity
             android:name=".Muzikler"
-            android:exported="false"
-            android:screenOrientation="landscape" />
+            android:exported="false" />
         <activity
             android:name=".HizliYavasOyunu.HizliYavasOff"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".HizliYavasOyunu.HizliYavasTchai"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".HizliYavasOyunu.HizliYavasWill"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".HafizaOyunu.MemoryLevelFive"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".HafizaOyunu.MemoryLevelFour"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".HafizaOyunu.MemoryLevelThree"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".HafizaOyunu.MemoryLevelTwo"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".HafizaOyunu.MemoryLevelOne"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
 
         <activity
             android:name=".HafizaOyunu.MemoryMap"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulZurna"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulZil"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulUd"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulTrompet"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulTrombon"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulPiyano"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulObua"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulMetronom"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulKsilafon"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulKeman"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulKanun"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulGitar"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulFlut"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulDef"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulDavul"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulBaglama"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".SestenBul.SestenBulBateri"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".MrbKareoke"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
 
         <activity
             android:name=".ResimdenBul.ResimdenBulKanun"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulUd"
             android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Sesler.GsekillerSesler"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Sesler.RakamSesler"
-            android:exported="false"
-            android:screenOrientation="landscape" />
+             />
+
         <activity
             android:name=".ResimdenBul.ResimdenBulGitar"
             android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Sesler.EnstrumanSesler"
-            android:exported="false"
-            android:screenOrientation="landscape" />
+             />
+
         <activity
             android:name=".OyunlarMenu"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulMetronom"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulDavul"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulZurna"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulZil"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulTrombon"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulDef"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulObua"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulKsilafon"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulBateri"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulFlut"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulPiyano"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulTrompet"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulKeman"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".ResimdenBul.ResimdenBulBaglama"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".PlayPiyano"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".HizliYavasOyunu.HizliYavasMozart"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".HizliYavasOyunu.HizliYavasTrompet"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
             android:name=".HizliYavasOyunu.HizliYavasPiyano"
             android:exported="false"
-            android:screenOrientation="landscape" />
+             />
         <activity
-            android:name=".Sesler.DogaSesler"
+            android:name=".Sesler.SesActivity"
             android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Sesler.AracSesler"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Sesler.InsanSesler"
-            android:exported="false"
-            android:screenOrientation="landscape" />
+             />
+
+
         <activity
             android:name=".Sesler.SesMenu"
             android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Sesler.HayvanSesler"
-            android:exported="false"
-            android:screenOrientation="landscape" />
+             />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="landscape">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
