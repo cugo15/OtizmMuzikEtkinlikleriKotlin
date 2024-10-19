@@ -30,72 +30,7 @@ class PlayPiyano : BaseActivity() {
         binding.scrollViewKeyboard.setScrolling(false)
         tumdiez()
 
-        val mediaPlayerk1 = MediaPlayer.create(this, R.raw.sound_piano_c3)
-        val mediaPlayerk2 = MediaPlayer.create(this, R.raw.sound_piano_c3diyez)
-        val mediaPlayerk3 = MediaPlayer.create(this, R.raw.sound_piano_d3)
-        val mediaPlayerk4 = MediaPlayer.create(this, R.raw.sound_piano_d3diyez)
-        val mediaPlayerk5 = MediaPlayer.create(this, R.raw.sound_piano_e3)
-        val mediaPlayerk6 = MediaPlayer.create(this, R.raw.sound_piano_f3)
-        val mediaPlayerk7 = MediaPlayer.create(this, R.raw.sound_piano_f3diyez)
-        val mediaPlayerk8 = MediaPlayer.create(this, R.raw.sound_piano_g3)
-        val mediaPlayerk9 = MediaPlayer.create(this, R.raw.sound_piano_g3diyez)
-        val mediaPlayerk10 = MediaPlayer.create(this, R.raw.sound_piano_a3)
-        val mediaPlayerk11 = MediaPlayer.create(this, R.raw.sound_piano_a3diyez)
-        val mediaPlayerk12 = MediaPlayer.create(this, R.raw.sound_piano_b3)
 
-        val mediaPlayers1 = MediaPlayer.create(this, R.raw.sound_piano_c2)
-        val mediaPlayers2 = MediaPlayer.create(this, R.raw.sound_piano_c2diyez)
-        val mediaPlayers3 = MediaPlayer.create(this, R.raw.sound_piano_d2)
-        val mediaPlayers4 = MediaPlayer.create(this, R.raw.sound_piano_d2diyez)
-        val mediaPlayers5 = MediaPlayer.create(this, R.raw.sound_piano_e2)
-        val mediaPlayers6 = MediaPlayer.create(this, R.raw.sound_piano_f2)
-        val mediaPlayers7 = MediaPlayer.create(this, R.raw.sound_piano_f2diyez)
-        val mediaPlayers8 = MediaPlayer.create(this, R.raw.sound_piano_g2)
-        val mediaPlayers9 = MediaPlayer.create(this, R.raw.sound_piano_g2diyez)
-        val mediaPlayers10 = MediaPlayer.create(this, R.raw.sound_piano_a2)
-        val mediaPlayers11 = MediaPlayer.create(this, R.raw.sound_piano_a2diyez)
-        val mediaPlayers12 = MediaPlayer.create(this, R.raw.sound_piano_b2)
-
-        val mediaPlayerm1 = MediaPlayer.create(this, R.raw.sound_piano_c4)
-        val mediaPlayerm2 = MediaPlayer.create(this, R.raw.sound_piano_c4diyez)
-        val mediaPlayerm3 = MediaPlayer.create(this, R.raw.sound_piano_d4)
-        val mediaPlayerm4 = MediaPlayer.create(this, R.raw.sound_piano_d4diyez)
-        val mediaPlayerm5 = MediaPlayer.create(this, R.raw.sound_piano_e4)
-        val mediaPlayerm6 = MediaPlayer.create(this, R.raw.sound_piano_f4)
-        val mediaPlayerm7 = MediaPlayer.create(this, R.raw.sound_piano_f4diyez)
-        val mediaPlayerm8 = MediaPlayer.create(this, R.raw.sound_piano_g4)
-        val mediaPlayerm9 = MediaPlayer.create(this, R.raw.sound_piano_g4diyez)
-        val mediaPlayerm10 = MediaPlayer.create(this, R.raw.sound_piano_a4)
-        val mediaPlayerm11 = MediaPlayer.create(this, R.raw.sound_piano_a4diyez)
-        val mediaPlayerm12 = MediaPlayer.create(this, R.raw.sound_piano_b4)
-
-        val mediaPlayermor1 = MediaPlayer.create(this, R.raw.sound_piano_c5)
-        val mediaPlayermor2 = MediaPlayer.create(this, R.raw.sound_piano_c5diyez)
-        val mediaPlayermor3 = MediaPlayer.create(this, R.raw.sound_piano_d5)
-        val mediaPlayermor4 = MediaPlayer.create(this, R.raw.sound_piano_d5diyez)
-        val mediaPlayermor5 = MediaPlayer.create(this, R.raw.sound_piano_e5)
-        val mediaPlayermor6 = MediaPlayer.create(this, R.raw.sound_piano_f5)
-        val mediaPlayermor7 = MediaPlayer.create(this, R.raw.sound_piano_f5diyez)
-        val mediaPlayermor8 = MediaPlayer.create(this, R.raw.sound_piano_g5)
-        val mediaPlayermor9 = MediaPlayer.create(this, R.raw.sound_piano_g5diyez)
-        val mediaPlayermor10 = MediaPlayer.create(this, R.raw.sound_piano_a5)
-        val mediaPlayermor11 = MediaPlayer.create(this, R.raw.sound_piano_a5diyez)
-        val mediaPlayermor12 = MediaPlayer.create(this, R.raw.sound_piano_b5)
-
-        val mediaPlayery1 = MediaPlayer.create(this, R.raw.sound_piano_c6)
-        val mediaPlayery2 = MediaPlayer.create(this, R.raw.sound_piano_c6diyez)
-        val mediaPlayery3 = MediaPlayer.create(this, R.raw.sound_piano_d6)
-        val mediaPlayery4 = MediaPlayer.create(this, R.raw.sound_piano_d6diyez)
-        val mediaPlayery5 = MediaPlayer.create(this, R.raw.sound_piano_e6)
-        val mediaPlayery6 = MediaPlayer.create(this, R.raw.sound_piano_f6)
-        val mediaPlayery7 = MediaPlayer.create(this, R.raw.sound_piano_f6diyez)
-        val mediaPlayery8 = MediaPlayer.create(this, R.raw.sound_piano_g6)
-        val mediaPlayery9 = MediaPlayer.create(this, R.raw.sound_piano_g6diyez)
-        val mediaPlayery10 = MediaPlayer.create(this, R.raw.sound_piano_a6)
-        val mediaPlayery11 = MediaPlayer.create(this, R.raw.sound_piano_a6diyez)
-        val mediaPlayery12 = MediaPlayer.create(this, R.raw.sound_piano_b6)
-
-        val mediaPlayerp1 = MediaPlayer.create(this, R.raw.sound_piano_c7)
 
         binding.btnHome.setOnClickListener {
             val intent = Intent(this@PlayPiyano, MainActivity::class.java)
@@ -103,7 +38,7 @@ class PlayPiyano : BaseActivity() {
             finish()
         }
 
-        binding.scrollViewKeyboard.post { seekpiyanobagla(binding.p15) }
+        binding.scrollViewKeyboard.post { seekpiyanobagla(binding.btnC4) }
         binding.seekBarOctave.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 seekbag2(i)
@@ -131,7 +66,7 @@ class PlayPiyano : BaseActivity() {
         }
 
         binding.btnDo.setOnClickListener {
-            when (binding.p1.text) {
+            when (binding.btnC2.text) {
                 "" -> notatodoremi() // Eğer metin boşsa
                 "Do2" -> notabos()   // Eğer metin "Do2" ise
                 "C2" -> notatodoremi() // Eğer metin "C2" ise
@@ -141,7 +76,7 @@ class PlayPiyano : BaseActivity() {
             }
         }
         binding.btnC.setOnClickListener {
-            when (binding.p1.text) {
+            when (binding.btnC2.text) {
                 "" -> notacdef()   // Eğer metin boşsa
                 "C2" -> notabos()  // Eğer metin "C2" ise
                 "Do2" -> notacdef() // Eğer metin "Do2" ise
@@ -163,39 +98,54 @@ class PlayPiyano : BaseActivity() {
             }
         }
 
-        // Tüm p ve b butonlarıyla ilişkili MediaPlayer'ları bir dizide topluyoruz
         val pianoButtons = listOf(
-            Pair(binding.p1, mediaPlayers1), Pair(binding.b1, mediaPlayers2),
-            Pair(binding.p2, mediaPlayers3), Pair(binding.b2, mediaPlayers4),
-            Pair(binding.p3, mediaPlayers5), Pair(binding.p4, mediaPlayers6),
-            Pair(binding.b3, mediaPlayers7), Pair(binding.p5, mediaPlayers8),
-            Pair(binding.b4, mediaPlayers9), Pair(binding.p6, mediaPlayers10),
-            Pair(binding.b5, mediaPlayers11), Pair(binding.p7, mediaPlayers12),
-            Pair(binding.p8, mediaPlayerk1), Pair(binding.b6, mediaPlayerk2),
-            Pair(binding.p9, mediaPlayerk3), Pair(binding.b7, mediaPlayerk4),
-            Pair(binding.p10, mediaPlayerk5), Pair(binding.p11, mediaPlayerk6),
-            Pair(binding.b8, mediaPlayerk7), Pair(binding.p12, mediaPlayerk8),
-            Pair(binding.b9, mediaPlayerk9), Pair(binding.p13, mediaPlayerk10),
-            Pair(binding.b10, mediaPlayerk11), Pair(binding.p14, mediaPlayerk12),
-            Pair(binding.p15, mediaPlayerm1), Pair(binding.b11, mediaPlayerm2),
-            Pair(binding.p16, mediaPlayerm3), Pair(binding.b12, mediaPlayerm4),
-            Pair(binding.p17, mediaPlayerm5), Pair(binding.p18, mediaPlayerm6),
-            Pair(binding.b13, mediaPlayerm7), Pair(binding.p19, mediaPlayerm8),
-            Pair(binding.b14, mediaPlayerm9), Pair(binding.p20, mediaPlayerm10),
-            Pair(binding.b15, mediaPlayerm11), Pair(binding.p21, mediaPlayerm12),
-            Pair(binding.p22, mediaPlayermor1), Pair(binding.b16, mediaPlayermor2),
-            Pair(binding.p23, mediaPlayermor3), Pair(binding.b17, mediaPlayermor4),
-            Pair(binding.p24, mediaPlayermor5), Pair(binding.p25, mediaPlayermor6),
-            Pair(binding.b18, mediaPlayermor7), Pair(binding.p26, mediaPlayermor8),
-            Pair(binding.b19, mediaPlayermor9), Pair(binding.p27, mediaPlayermor10),
-            Pair(binding.b20, mediaPlayermor11), Pair(binding.p28, mediaPlayermor12),
-            Pair(binding.p29, mediaPlayery1), Pair(binding.b21, mediaPlayery2),
-            Pair(binding.p30, mediaPlayery3), Pair(binding.b22, mediaPlayery4),
-            Pair(binding.p31, mediaPlayery5), Pair(binding.p32, mediaPlayery6),
-            Pair(binding.b23, mediaPlayery7), Pair(binding.p33, mediaPlayery8),
-            Pair(binding.b24, mediaPlayery9), Pair(binding.p34, mediaPlayery10),
-            Pair(binding.b25, mediaPlayery11), Pair(binding.p35, mediaPlayery12),
-            Pair(binding.p36, mediaPlayerp1)
+            // 2. Oktav
+            Pair(binding.btnC2, R.raw.sound_piano_c2), Pair(binding.btnDiyezC2, R.raw.sound_piano_c2diyez),
+            Pair(binding.btnD2, R.raw.sound_piano_d2), Pair(binding.btnDiyezD2, R.raw.sound_piano_d2diyez),
+            Pair(binding.btnE2, R.raw.sound_piano_e2),
+            Pair(binding.btnF2, R.raw.sound_piano_f2), Pair(binding.btnDiyezF2, R.raw.sound_piano_f2diyez),
+            Pair(binding.btnG2, R.raw.sound_piano_g2), Pair(binding.btnDiyezG2, R.raw.sound_piano_g2diyez),
+            Pair(binding.btnA2, R.raw.sound_piano_a2), Pair(binding.btnDiyezA2, R.raw.sound_piano_a2diyez),
+            Pair(binding.btnB2, R.raw.sound_piano_b2),
+
+            // 3. Oktav
+            Pair(binding.btnC3, R.raw.sound_piano_c3), Pair(binding.btnDiyezC3, R.raw.sound_piano_c3diyez),
+            Pair(binding.btnD3, R.raw.sound_piano_d3), Pair(binding.btnDiyezD3, R.raw.sound_piano_d3diyez),
+            Pair(binding.btnE3, R.raw.sound_piano_e3),
+            Pair(binding.btnF3, R.raw.sound_piano_f3), Pair(binding.btnDiyezF3, R.raw.sound_piano_f3diyez),
+            Pair(binding.btnG3, R.raw.sound_piano_g3), Pair(binding.btnDiyezG3, R.raw.sound_piano_g3diyez),
+            Pair(binding.btnA3, R.raw.sound_piano_a3), Pair(binding.btnDiyezA3, R.raw.sound_piano_a3diyez),
+            Pair(binding.btnB3, R.raw.sound_piano_b3),
+
+            // 4. Oktav
+            Pair(binding.btnC4, R.raw.sound_piano_c4), Pair(binding.btnDiyezC4, R.raw.sound_piano_c4diyez),
+            Pair(binding.btnD4, R.raw.sound_piano_d4), Pair(binding.btnDiyezD4, R.raw.sound_piano_d4diyez),
+            Pair(binding.btnE4, R.raw.sound_piano_e4),
+            Pair(binding.btnF4, R.raw.sound_piano_f4), Pair(binding.btnDiyezF4, R.raw.sound_piano_f4diyez),
+            Pair(binding.btnG4, R.raw.sound_piano_g4), Pair(binding.btnDiyezG4, R.raw.sound_piano_g4diyez),
+            Pair(binding.btnA4, R.raw.sound_piano_a4), Pair(binding.btnDiyezA4, R.raw.sound_piano_a4diyez),
+            Pair(binding.btnB4, R.raw.sound_piano_b4),
+
+            // 5. Oktav
+            Pair(binding.btnC5, R.raw.sound_piano_c5), Pair(binding.btnDiyezC5, R.raw.sound_piano_c5diyez),
+            Pair(binding.btnD5, R.raw.sound_piano_d5), Pair(binding.btnDiyezD5, R.raw.sound_piano_d5diyez),
+            Pair(binding.btnE5, R.raw.sound_piano_e5),
+            Pair(binding.btnF5, R.raw.sound_piano_f5), Pair(binding.btnDiyezF5, R.raw.sound_piano_f5diyez),
+            Pair(binding.btnG5, R.raw.sound_piano_g5), Pair(binding.btnDiyezG5, R.raw.sound_piano_g5diyez),
+            Pair(binding.btnA5, R.raw.sound_piano_a5), Pair(binding.btnDiyezA5, R.raw.sound_piano_a5diyez),
+            Pair(binding.btnB5, R.raw.sound_piano_b5),
+
+            // 6. Oktav
+            Pair(binding.btnC6, R.raw.sound_piano_c6), Pair(binding.btnDiyezC6, R.raw.sound_piano_c6diyez),
+            Pair(binding.btnD6, R.raw.sound_piano_d6), Pair(binding.btnDiyezD6, R.raw.sound_piano_d6diyez),
+            Pair(binding.btnE6, R.raw.sound_piano_e6),
+            Pair(binding.btnF6, R.raw.sound_piano_f6), Pair(binding.btnDiyezF6, R.raw.sound_piano_f6diyez),
+            Pair(binding.btnG6, R.raw.sound_piano_g6), Pair(binding.btnDiyezG6, R.raw.sound_piano_g6diyez),
+            Pair(binding.btnA6, R.raw.sound_piano_a6), Pair(binding.btnDiyezA6, R.raw.sound_piano_a6diyez),
+            Pair(binding.btnB6, R.raw.sound_piano_b6),
+
+            // 7. Oktav
+            Pair(binding.btnC7, R.raw.sound_piano_c7),
         )
 
 // Her bir p ve b butonuna setOnTouchListener atıyoruz
