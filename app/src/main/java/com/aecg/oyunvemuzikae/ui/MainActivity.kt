@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae
+package com.aecg.oyunvemuzikae.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,9 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import com.aecg.oyunvemuzikae.Sesler.SesMenu
+import com.aecg.oyunvemuzikae.BaseActivity
+
+import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
@@ -21,10 +23,7 @@ class MainActivity : BaseActivity() {
         setContentView(view)
         animationzoom = AnimationUtils.loadAnimation(applicationContext, R.anim.zoom_inshort)
 
-        setClickListener(binding.seslerimg, SesMenu::class.java)
-        setClickListener(binding.oyunlarimg, OyunlarMenu::class.java)
-        setClickListener(binding.mainpiyanoimg, PlayPiyano::class.java)
-        setClickListener(binding.muzikimg, Muzikler::class.java)
+
     }
 
     private fun setClickListener(imageView: ImageView, targetActivity: Class<*>) {
