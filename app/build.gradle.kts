@@ -60,16 +60,16 @@ dependencies {
     debugImplementation("androidx.fragment:fragment-testing:1.8.4")
 
     // Navigation Fragment: Navigasyon için fragment desteği
-    implementation("androidx.navigation:navigation-fragment:2.8.3")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.3")
 
     // Navigation UI: Navigasyon arayüzü bileşenleri
-    implementation("androidx.navigation:navigation-ui:2.8.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.3")
 
     // Dynamic Features: Dinamik özellik desteği
     implementation("androidx.navigation:navigation-dynamic-features-fragment:2.8.3")
 
     // Navigation Testing: Navigasyon testleri için
-    androidTestImplementation("androidx.navigation:navigation-testing:2.8.0")
+    androidTestImplementation("androidx.navigation:navigation-testing:2.8.3")
 
     //Görsel Yükleme: Glide kütüphanesi
     implementation("com.github.bumptech.glide:glide:4.16.0")

@@ -234,7 +234,7 @@
              />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             >
             <intent-filter>
