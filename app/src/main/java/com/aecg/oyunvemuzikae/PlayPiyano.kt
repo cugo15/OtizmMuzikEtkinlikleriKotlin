@@ -1,7 +1,7 @@
 package com.aecg.oyunvemuzikae
 
 import android.content.Intent
-import android.media.MediaPlayer
+import android.media.SoundPool
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
@@ -13,22 +13,24 @@ import com.aecg.oyunvemuzikae.databinding.ActivityPlayPiyanoBinding
 
 class PlayPiyano : BaseActivity() {
     private lateinit var binding: ActivityPlayPiyanoBinding
+    private lateinit var soundPool: SoundPool
+    private val soundMap = mutableMapOf<View, Int>()
+
     private var c: Int = 0
     private var widthp = 0
     private var widthb = 0
 
-    //recordpath
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityPlayPiyanoBinding.inflate(
-            layoutInflater
-        )
+        binding = ActivityPlayPiyanoBinding.inflate(layoutInflater)
         val view: View = binding.root
         setContentView(view)
-
-
         binding.scrollViewKeyboard.setScrolling(false)
         tumdiez()
+
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(10) // Aynı anda çalabilecek maksimum ses sayısı
+            .build()
 
 
 
@@ -39,6 +41,7 @@ class PlayPiyano : BaseActivity() {
         }
 
         binding.scrollViewKeyboard.post { seekpiyanobagla(binding.btnC4) }
+
         binding.seekBarOctave.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 seekbag2(i)
@@ -50,6 +53,7 @@ class PlayPiyano : BaseActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar) {
             }
         })
+
         binding.btnIncreaseKeySize.setOnClickListener {
             binding.seekBarOctave.post {
                 val i = binding.seekBarOctave.progress
@@ -97,200 +101,94 @@ class PlayPiyano : BaseActivity() {
                 }
             }
         }
+        loadSounds()
 
-        val pianoButtons = listOf(
-            // 2. Oktav
-            Pair(binding.btnC2, R.raw.sound_piano_c2), Pair(binding.btnDiyezC2, R.raw.sound_piano_c2diyez),
-            Pair(binding.btnD2, R.raw.sound_piano_d2), Pair(binding.btnDiyezD2, R.raw.sound_piano_d2diyez),
-            Pair(binding.btnE2, R.raw.sound_piano_e2),
-            Pair(binding.btnF2, R.raw.sound_piano_f2), Pair(binding.btnDiyezF2, R.raw.sound_piano_f2diyez),
-            Pair(binding.btnG2, R.raw.sound_piano_g2), Pair(binding.btnDiyezG2, R.raw.sound_piano_g2diyez),
-            Pair(binding.btnA2, R.raw.sound_piano_a2), Pair(binding.btnDiyezA2, R.raw.sound_piano_a2diyez),
-            Pair(binding.btnB2, R.raw.sound_piano_b2),
-
-            // 3. Oktav
-            Pair(binding.btnC3, R.raw.sound_piano_c3), Pair(binding.btnDiyezC3, R.raw.sound_piano_c3diyez),
-            Pair(binding.btnD3, R.raw.sound_piano_d3), Pair(binding.btnDiyezD3, R.raw.sound_piano_d3diyez),
-            Pair(binding.btnE3, R.raw.sound_piano_e3),
-            Pair(binding.btnF3, R.raw.sound_piano_f3), Pair(binding.btnDiyezF3, R.raw.sound_piano_f3diyez),
-            Pair(binding.btnG3, R.raw.sound_piano_g3), Pair(binding.btnDiyezG3, R.raw.sound_piano_g3diyez),
-            Pair(binding.btnA3, R.raw.sound_piano_a3), Pair(binding.btnDiyezA3, R.raw.sound_piano_a3diyez),
-            Pair(binding.btnB3, R.raw.sound_piano_b3),
-
-            // 4. Oktav
-            Pair(binding.btnC4, R.raw.sound_piano_c4), Pair(binding.btnDiyezC4, R.raw.sound_piano_c4diyez),
-            Pair(binding.btnD4, R.raw.sound_piano_d4), Pair(binding.btnDiyezD4, R.raw.sound_piano_d4diyez),
-            Pair(binding.btnE4, R.raw.sound_piano_e4),
-            Pair(binding.btnF4, R.raw.sound_piano_f4), Pair(binding.btnDiyezF4, R.raw.sound_piano_f4diyez),
-            Pair(binding.btnG4, R.raw.sound_piano_g4), Pair(binding.btnDiyezG4, R.raw.sound_piano_g4diyez),
-            Pair(binding.btnA4, R.raw.sound_piano_a4), Pair(binding.btnDiyezA4, R.raw.sound_piano_a4diyez),
-            Pair(binding.btnB4, R.raw.sound_piano_b4),
-
-            // 5. Oktav
-            Pair(binding.btnC5, R.raw.sound_piano_c5), Pair(binding.btnDiyezC5, R.raw.sound_piano_c5diyez),
-            Pair(binding.btnD5, R.raw.sound_piano_d5), Pair(binding.btnDiyezD5, R.raw.sound_piano_d5diyez),
-            Pair(binding.btnE5, R.raw.sound_piano_e5),
-            Pair(binding.btnF5, R.raw.sound_piano_f5), Pair(binding.btnDiyezF5, R.raw.sound_piano_f5diyez),
-            Pair(binding.btnG5, R.raw.sound_piano_g5), Pair(binding.btnDiyezG5, R.raw.sound_piano_g5diyez),
-            Pair(binding.btnA5, R.raw.sound_piano_a5), Pair(binding.btnDiyezA5, R.raw.sound_piano_a5diyez),
-            Pair(binding.btnB5, R.raw.sound_piano_b5),
-
-            // 6. Oktav
-            Pair(binding.btnC6, R.raw.sound_piano_c6), Pair(binding.btnDiyezC6, R.raw.sound_piano_c6diyez),
-            Pair(binding.btnD6, R.raw.sound_piano_d6), Pair(binding.btnDiyezD6, R.raw.sound_piano_d6diyez),
-            Pair(binding.btnE6, R.raw.sound_piano_e6),
-            Pair(binding.btnF6, R.raw.sound_piano_f6), Pair(binding.btnDiyezF6, R.raw.sound_piano_f6diyez),
-            Pair(binding.btnG6, R.raw.sound_piano_g6), Pair(binding.btnDiyezG6, R.raw.sound_piano_g6diyez),
-            Pair(binding.btnA6, R.raw.sound_piano_a6), Pair(binding.btnDiyezA6, R.raw.sound_piano_a6diyez),
-            Pair(binding.btnB6, R.raw.sound_piano_b6),
-
-            // 7. Oktav
-            Pair(binding.btnC7, R.raw.sound_piano_c7),
-        )
-
-// Her bir p ve b butonuna setOnTouchListener atıyoruz
-        pianoButtons.forEach { (view, mediaPlayer) ->
-            view.setOnTouchListener { _, motionEvent ->
-                ondown(motionEvent, mediaPlayer)
+        soundMap.forEach { (button) ->
+            button.setOnTouchListener { _, event ->
+                if (event.action == MotionEvent.ACTION_DOWN) {
+                    playSound(button)
+                }
                 false
             }
         }
-
+// Her bir p ve b butonuna setOnTouchListener atıyoruz
     }
 
-    private fun ondown(event: MotionEvent, ses: MediaPlayer) {
-        if (event.action == MotionEvent.ACTION_DOWN) {
-            if (ses.isPlaying) {
-                ses.pause()
-                ses.seekTo(0)
-            }
-            ses.start()
-        }
+
+    private fun loadSounds() :Map<View,Int>{
+        // Sesleri yükleme işlemleri burada yapılacak
+        soundMap[binding.btnC2] = soundPool.load(this, R.raw.sound_piano_c2, 1)
+        soundMap[binding.btnDiyezC2] = soundPool.load(this, R.raw.sound_piano_c2diyez, 1)
+        soundMap[binding.btnD2] = soundPool.load(this, R.raw.sound_piano_d2, 1)
+        soundMap[binding.btnDiyezD2] = soundPool.load(this, R.raw.sound_piano_d2diyez, 1)
+        soundMap[binding.btnE2] = soundPool.load(this, R.raw.sound_piano_e2, 1)
+        soundMap[binding.btnF2] = soundPool.load(this, R.raw.sound_piano_f2, 1)
+        soundMap[binding.btnDiyezF2] = soundPool.load(this, R.raw.sound_piano_f2diyez, 1)
+        soundMap[binding.btnG2] = soundPool.load(this, R.raw.sound_piano_g2, 1)
+        soundMap[binding.btnDiyezG2] = soundPool.load(this, R.raw.sound_piano_g2diyez, 1)
+        soundMap[binding.btnA2] = soundPool.load(this, R.raw.sound_piano_a2, 1)
+        soundMap[binding.btnDiyezA2] = soundPool.load(this, R.raw.sound_piano_a2diyez, 1)
+        soundMap[binding.btnB2] = soundPool.load(this, R.raw.sound_piano_b2, 1)
+
+        soundMap[binding.btnC3] = soundPool.load(this, R.raw.sound_piano_c3, 1)
+        soundMap[binding.btnDiyezC3] = soundPool.load(this, R.raw.sound_piano_c3diyez, 1)
+        soundMap[binding.btnD3] = soundPool.load(this, R.raw.sound_piano_d3, 1)
+        soundMap[binding.btnDiyezD3] = soundPool.load(this, R.raw.sound_piano_d3diyez, 1)
+        soundMap[binding.btnE3] = soundPool.load(this, R.raw.sound_piano_e3, 1)
+        soundMap[binding.btnF3] = soundPool.load(this, R.raw.sound_piano_f3, 1)
+        soundMap[binding.btnDiyezF3] = soundPool.load(this, R.raw.sound_piano_f3diyez, 1)
+        soundMap[binding.btnG3] = soundPool.load(this, R.raw.sound_piano_g3, 1)
+        soundMap[binding.btnDiyezG3] = soundPool.load(this, R.raw.sound_piano_g3diyez, 1)
+        soundMap[binding.btnA3] = soundPool.load(this, R.raw.sound_piano_a3, 1)
+        soundMap[binding.btnDiyezA3] = soundPool.load(this, R.raw.sound_piano_a3diyez, 1)
+        soundMap[binding.btnB3] = soundPool.load(this, R.raw.sound_piano_b3, 1)
+
+        soundMap[binding.btnC4] = soundPool.load(this, R.raw.sound_piano_c4, 1)
+        soundMap[binding.btnDiyezC4] = soundPool.load(this, R.raw.sound_piano_c4diyez, 1)
+        soundMap[binding.btnD4] = soundPool.load(this, R.raw.sound_piano_d4, 1)
+        soundMap[binding.btnDiyezD4] = soundPool.load(this, R.raw.sound_piano_d4diyez, 1)
+        soundMap[binding.btnE4] = soundPool.load(this, R.raw.sound_piano_e4, 1)
+        soundMap[binding.btnF4] = soundPool.load(this, R.raw.sound_piano_f4, 1)
+        soundMap[binding.btnDiyezF4] = soundPool.load(this, R.raw.sound_piano_f4diyez, 1)
+        soundMap[binding.btnG4] = soundPool.load(this, R.raw.sound_piano_g4, 1)
+        soundMap[binding.btnDiyezG4] = soundPool.load(this, R.raw.sound_piano_g4diyez, 1)
+        soundMap[binding.btnA4] = soundPool.load(this, R.raw.sound_piano_a4, 1)
+        soundMap[binding.btnDiyezA4] = soundPool.load(this, R.raw.sound_piano_a4diyez, 1)
+        soundMap[binding.btnB4] = soundPool.load(this, R.raw.sound_piano_b4, 1)
+
+        soundMap[binding.btnC5] = soundPool.load(this, R.raw.sound_piano_c5, 1)
+        soundMap[binding.btnDiyezC5] = soundPool.load(this, R.raw.sound_piano_c5diyez, 1)
+        soundMap[binding.btnD5] = soundPool.load(this, R.raw.sound_piano_d5, 1)
+        soundMap[binding.btnDiyezD5] = soundPool.load(this, R.raw.sound_piano_d5diyez, 1)
+        soundMap[binding.btnE5] = soundPool.load(this, R.raw.sound_piano_e5, 1)
+        soundMap[binding.btnF5] = soundPool.load(this, R.raw.sound_piano_f5, 1)
+        soundMap[binding.btnDiyezF5] = soundPool.load(this, R.raw.sound_piano_f5diyez, 1)
+        soundMap[binding.btnG5] = soundPool.load(this, R.raw.sound_piano_g5, 1)
+        soundMap[binding.btnDiyezG5] = soundPool.load(this, R.raw.sound_piano_g5diyez, 1)
+        soundMap[binding.btnA5] = soundPool.load(this, R.raw.sound_piano_a5, 1)
+        soundMap[binding.btnDiyezA5] = soundPool.load(this, R.raw.sound_piano_a5diyez, 1)
+        soundMap[binding.btnB5] = soundPool.load(this, R.raw.sound_piano_b5, 1)
+
+        soundMap[binding.btnC6] = soundPool.load(this, R.raw.sound_piano_c6, 1)
+        soundMap[binding.btnDiyezC6] = soundPool.load(this, R.raw.sound_piano_c6diyez, 1)
+        soundMap[binding.btnD6] = soundPool.load(this, R.raw.sound_piano_d6, 1)
+        soundMap[binding.btnDiyezD6] = soundPool.load(this, R.raw.sound_piano_d6diyez, 1)
+        soundMap[binding.btnE6] = soundPool.load(this, R.raw.sound_piano_e6, 1)
+        soundMap[binding.btnF6] = soundPool.load(this, R.raw.sound_piano_f6, 1)
+        soundMap[binding.btnDiyezF6] = soundPool.load(this, R.raw.sound_piano_f6diyez, 1)
+        soundMap[binding.btnG6] = soundPool.load(this, R.raw.sound_piano_g6, 1)
+        soundMap[binding.btnDiyezG6] = soundPool.load(this, R.raw.sound_piano_g6diyez, 1)
+        soundMap[binding.btnA6] = soundPool.load(this, R.raw.sound_piano_a6, 1)
+        soundMap[binding.btnDiyezA6] = soundPool.load(this, R.raw.sound_piano_a6diyez, 1)
+        soundMap[binding.btnB6] = soundPool.load(this, R.raw.sound_piano_b6, 1)
+
+        soundMap[binding.btnC7] = soundPool.load(this, R.raw.sound_piano_c7, 1)
+        return soundMap
     }
 
-    private fun seekpiyanobagla(a: Button) {
-        binding.layoutKeyboard.post {
-            val x = a.left
-            val y = a.top
-            binding.scrollViewKeyboard.smoothScrollTo(x, y)
-        }
+    private fun playSound(view: View) {
+        soundPool.play(soundMap[view] ?: 0, 1f, 1f, 0, 0, 1f)
     }
-
-    private fun diezilkboyut(diez: Button, heightFactor: Float = 3 / 5f) {
-        binding.p1.viewTreeObserver.addOnGlobalLayoutListener {
-            val height = (binding.p1.height * heightFactor).toInt()
-            val params = diez.layoutParams as RelativeLayout.LayoutParams
-            params.height = height
-            diez.layoutParams = params
-        }
-    }
-
-    private fun tumdiez() {
-        val bButtons = getBButtons()
-        // Tüm butonların boyutunu ayarlamak için döngü kullanıyoruz.
-        for (button in bButtons) {
-            diezilkboyut(button)
-        }
-    }
-    // Tüm b butonlarını döndüren fonksiyon
-    private fun getBButtons(): List<Button> {
-        return listOf(
-            binding.b1, binding.b2, binding.b3, binding.b4, binding.b5,
-            binding.b6, binding.b7, binding.b8, binding.b9, binding.b10,
-            binding.b11, binding.b12, binding.b13, binding.b14, binding.b15,
-            binding.b16, binding.b17, binding.b18, binding.b19, binding.b20,
-            binding.b21, binding.b22, binding.b23, binding.b24, binding.b25
-        )
-    }
-    // Tüm p butonlarını döndüren fonksiyon
-    private fun getPButtons(): List<Button> {
-        return listOf(
-            binding.p1, binding.p2, binding.p3, binding.p4, binding.p5,
-            binding.p6, binding.p7, binding.p8, binding.p9, binding.p10,
-            binding.p11, binding.p12, binding.p13, binding.p14, binding.p15,
-            binding.p16, binding.p17, binding.p18, binding.p19, binding.p20,
-            binding.p21, binding.p22, binding.p23, binding.p24, binding.p25,
-            binding.p26, binding.p27, binding.p28, binding.p29, binding.p30,
-            binding.p31, binding.p32, binding.p33, binding.p34, binding.p35, binding.p36
-        )
-    }
-
-    fun increasesizep(buttonp: Button) {
-        if(widthp<270||widthp==0){
-            println(widthp)
-            binding.p1.post {
-                widthp = buttonp.width + 9
-                val paramsp = buttonp.layoutParams as RelativeLayout.LayoutParams
-                paramsp.width = widthp
-                buttonp.layoutParams = paramsp
-            }
-        }
-    }
-    fun increasesizeb(buttonb: Button) {
-       if(widthb<180||widthb==0){
-           println(widthb)
-           binding.p1.post {
-               widthb = buttonb.width + 6
-               val paramsb = buttonb.layoutParams as RelativeLayout.LayoutParams
-               paramsb.width = widthb
-               buttonb.layoutParams = paramsb
-           }
-       }
-    }
-    private fun decsizep(buttonp: Button) {
-        if(widthp>90||widthp==0){
-            binding.p1.post {
-                widthp = buttonp.width - 9
-                val paramsp = buttonp.layoutParams as RelativeLayout.LayoutParams
-                paramsp.width = widthp
-                buttonp.layoutParams = paramsp
-            }
-        }
-    }
-    private fun decsizeb(buttonb: Button) {
-        if(widthb>60||widthb==0){
-            binding.p1.post {
-                widthb = buttonb.width - 6
-                val paramsb = buttonb.layoutParams as RelativeLayout.LayoutParams
-                paramsb.width = widthb
-                buttonb.layoutParams = paramsb
-            }
-        }
-    }
-
-    private fun incsize() {
-        // Tüm butonları gruplandırıyoruz
-        val bButtons = getBButtons()
-        val pButtons = getPButtons()
-
-        // Butonları artırıyoruz
-        changeButtonSizes(bButtons, ::increasesizeb)
-        changeButtonSizes(pButtons, ::increasesizep)
-    }
-    private fun decsize() {
-        // Tüm butonları gruplandırıyoruz
-        val bButtons = getBButtons()
-        val pButtons = getPButtons()
-
-        // Butonları azaltıyoruz
-        changeButtonSizes(bButtons, ::decsizeb)
-        changeButtonSizes(pButtons, ::decsizep)
-    }
-
-    private fun changeButtonSizes(buttons: List<Button>, sizeChangeFunction: (Button) -> Unit) {
-        buttons.forEach { button -> sizeChangeFunction(button) }
-    }
-
-    private fun seekbag2(i: Int) {
-        val pianoBindings = getPButtons()
-
-        if (i in pianoBindings.indices) {
-            seekpiyanobagla(pianoBindings[i])
-        } else if (i == 36) {
-            seekpiyanobagla(binding.p36)
-        }
-    }
-
     private fun notatodoremi() {
         val notalar = listOf(
             "Do2", "Re2", "Mi2", "Fa2", "Sol2", "La2", "Si2",
@@ -358,4 +256,120 @@ class PlayPiyano : BaseActivity() {
             button.setBackgroundDrawable(getDrawable(R.drawable.pressed_and_normal_selector))
         }
     }
+    private fun seekpiyanobagla(a: Button) {
+        binding.layoutKeyboard.post {
+            val x = a.left
+            val y = a.top
+            binding.scrollViewKeyboard.smoothScrollTo(x, y)
+        }
+    }
+
+    private fun diezilkboyut(diez: Button, heightFactor: Float = 3 / 5f) {
+        binding.btnC.viewTreeObserver.addOnGlobalLayoutListener {
+            val height = (binding.btnC2.height * heightFactor).toInt()
+            val params = diez.layoutParams as RelativeLayout.LayoutParams
+            params.height = height
+            diez.layoutParams = params
+        }
+    }
+
+    private fun tumdiez() {
+        val bButtons = getBButtons()
+        // Tüm butonların boyutunu ayarlamak için döngü kullanıyoruz.
+        for (button in bButtons) {
+            diezilkboyut(button)
+        }
+    }
+    // Tüm b butonlarını döndüren fonksiyon
+    private fun getBButtons(): List<Button> {
+        return listOf(
+
+        )
+    }
+    // Tüm p butonlarını döndüren fonksiyon
+    private fun getPButtons(): List<Button> {
+        return listOf(
+
+        )
+    }
+
+    fun increasesizep(buttonp: Button) {
+        if(widthp<270||widthp==0){
+            println(widthp)
+            binding.btnC2.post {
+                widthp = buttonp.width + 9
+                val paramsp = buttonp.layoutParams as RelativeLayout.LayoutParams
+                paramsp.width = widthp
+                buttonp.layoutParams = paramsp
+            }
+        }
+    }
+    fun increasesizeb(buttonb: Button) {
+        if(widthb<180||widthb==0){
+            println(widthb)
+            binding.btnC2.post {
+                widthb = buttonb.width + 6
+                val paramsb = buttonb.layoutParams as RelativeLayout.LayoutParams
+                paramsb.width = widthb
+                buttonb.layoutParams = paramsb
+            }
+        }
+    }
+
+    private fun decsizep(buttonp: Button) {
+        if(widthp>90||widthp==0){
+            binding.btnC2.post {
+                widthp = buttonp.width - 9
+                val paramsp = buttonp.layoutParams as RelativeLayout.LayoutParams
+                paramsp.width = widthp
+                buttonp.layoutParams = paramsp
+            }
+        }
+    }
+    private fun decsizeb(buttonb: Button) {
+        if(widthb>60||widthb==0){
+            binding.btnC2.post {
+                widthb = buttonb.width - 6
+                val paramsb = buttonb.layoutParams as RelativeLayout.LayoutParams
+                paramsb.width = widthb
+                buttonb.layoutParams = paramsb
+            }
+        }
+    }
+
+    private fun incsize() {
+        // Tüm butonları gruplandırıyoruz
+        val bButtons = getBButtons()
+        val pButtons = getPButtons()
+
+        // Butonları artırıyoruz
+        changeButtonSizes(bButtons, ::increasesizeb)
+        changeButtonSizes(pButtons, ::increasesizep)
+    }
+    private fun decsize() {
+        // Tüm butonları gruplandırıyoruz
+        val bButtons = getBButtons()
+        val pButtons = getPButtons()
+
+        // Butonları azaltıyoruz
+        changeButtonSizes(bButtons, ::decsizeb)
+        changeButtonSizes(pButtons, ::decsizep)
+    }
+
+    private fun changeButtonSizes(buttons: List<Button>, sizeChangeFunction: (Button) -> Unit) {
+        buttons.forEach { button -> sizeChangeFunction(button) }
+    }
+
+    private fun seekbag2(i: Int) {
+        val pianoBindings = getPButtons()
+
+        if (i in pianoBindings.indices) {
+            seekpiyanobagla(pianoBindings[i])
+        } else if (i == 36) {
+            seekpiyanobagla(binding.btnC7)
+        }
+    }
+
+
+
 }
