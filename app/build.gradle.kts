@@ -54,19 +54,19 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 
     // Fragment KTX: Kotlin ile daha kolay fragment kullanımı
-    implementation("androidx.fragment:fragment-ktx:1.8.3")
+    implementation("androidx.fragment:fragment-ktx:1.8.4")
 
     // Fragment Testing: Fragment testleri için destek
-    debugImplementation("androidx.fragment:fragment-testing:1.8.3")
+    debugImplementation("androidx.fragment:fragment-testing:1.8.4")
 
     // Navigation Fragment: Navigasyon için fragment desteği
-    implementation("androidx.navigation:navigation-fragment:2.8.0")
+    implementation("androidx.navigation:navigation-fragment:2.8.3")
 
     // Navigation UI: Navigasyon arayüzü bileşenleri
-    implementation("androidx.navigation:navigation-ui:2.8.0")
+    implementation("androidx.navigation:navigation-ui:2.8.3")
 
     // Dynamic Features: Dinamik özellik desteği
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.8.0")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.8.3")
 
     // Navigation Testing: Navigasyon testleri için
     androidTestImplementation("androidx.navigation:navigation-testing:2.8.0")
