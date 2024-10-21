@@ -9,5 +9,14 @@
         android:id="@+id/homeFragment"
         android:name="com.aecg.oyunvemuzikae.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/homeFragment_to_pianoFragment"
+            app:destination="@id/pianoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pianoFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.PianoFragment"
+        android:label="fragment_piano"
+        tools:layout="@layout/fragment_piano" />
 </navigation>
