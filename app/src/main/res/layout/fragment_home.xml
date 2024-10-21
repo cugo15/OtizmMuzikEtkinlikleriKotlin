@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home"
+    tools:context=".ui.HomeFragment">
+
+    <ImageView
+        android:id="@+id/btnHomePiyano"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:rotationY="10"
+        app:layout_constraintEnd_toStartOf="@+id/btnHomeOyunlar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHomeHeader"
+        app:srcCompat="@drawable/ic_home_piyano" />
+
+    <TextView
+        android:id="@+id/txtHomePiyano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mogra"
+        android:rotationY="10"
+        android:shadowColor="@color/black"
+        android:shadowDx="1"
+        android:shadowRadius="2"
+        android:text="Piyano"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/btnHomePiyano"
+        app:layout_constraintStart_toStartOf="@+id/btnHomePiyano"
+        app:layout_constraintTop_toBottomOf="@+id/btnHomePiyano" />
+
+    <ImageView
+        android:id="@+id/btnHomeOyunlar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+
+        android:layout_marginTop="32dp"
+        android:rotationY="10"
+        app:layout_constraintEnd_toStartOf="@+id/btnHomeSesler"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnHomePiyano"
+        app:layout_constraintTop_toTopOf="@+id/btnHomePiyano"
+        app:srcCompat="@drawable/ic_home_oyunlar" />
+
+    <TextView
+        android:id="@+id/txtHomeOyunlar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mogra"
+        android:rotationY="10"
+        android:shadowColor="@color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:text="Oyunlar"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/btnHomeOyunlar"
+        app:layout_constraintStart_toStartOf="@+id/btnHomeOyunlar"
+        app:layout_constraintTop_toBottomOf="@+id/btnHomeOyunlar" />
+
+    <ImageView
+        android:id="@+id/btnHomeSesler"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:rotationY="-10"
+        app:layout_constraintEnd_toStartOf="@+id/btnHomeMuzikler"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnHomeOyunlar"
+        app:layout_constraintTop_toTopOf="@+id/btnHomeOyunlar"
+        app:srcCompat="@drawable/ic_home_sesler" />
+
+    <TextView
+        android:id="@+id/txtHomeSesler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mogra"
+        android:rotationY="-10"
+        android:shadowColor="@color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:text="Sesler"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/btnHomeSesler"
+        app:layout_constraintStart_toStartOf="@+id/btnHomeSesler"
+        app:layout_constraintTop_toBottomOf="@+id/btnHomeSesler" />
+
+    <ImageView
+        android:id="@+id/btnHomeMuzikler"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:rotationY="-10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnHomeSesler"
+        app:layout_constraintTop_toTopOf="@+id/btnHomePiyano"
+        app:srcCompat="@drawable/ic_home_muzik" />
+
+    <TextView
+        android:id="@+id/txtHomeMuzikler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mogra"
+        android:rotationY="-10"
+        android:shadowColor="@color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:text="Müzikler"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/btnHomeMuzikler"
+        app:layout_constraintStart_toStartOf="@+id/btnHomeMuzikler"
+        app:layout_constraintTop_toBottomOf="@+id/btnHomeMuzikler" />
+
+    <TextView
+        android:id="@+id/txtHomeHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/mogra"
+        android:rotation="-1"
+        android:rotationX="29"
+        android:rotationY="-4"
+        android:shadowColor="@color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:text="Oyun Ve Müzik"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="70sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
