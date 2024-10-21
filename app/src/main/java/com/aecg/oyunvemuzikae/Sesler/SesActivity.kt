@@ -9,7 +9,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aecg.oyunvemuzikae.BaseActivity
-import com.aecg.oyunvemuzikae.MainActivity
+import com.aecg.oyunvemuzikae.ui.MainActivity
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.ActivitySesBinding
 import com.aecg.oyunvemuzikae.scrollInDirection

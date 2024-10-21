@@ -7,7 +7,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ScrollView
 import com.aecg.oyunvemuzikae.BaseActivity
-import com.aecg.oyunvemuzikae.MainActivity
+import com.aecg.oyunvemuzikae.ui.MainActivity
 import com.aecg.oyunvemuzikae.MyApplication
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.ActivitySesMenuBinding

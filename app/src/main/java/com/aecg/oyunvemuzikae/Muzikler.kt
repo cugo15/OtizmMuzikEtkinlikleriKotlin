@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import com.aecg.oyunvemuzikae.databinding.ActivityMuziklerBinding
+import com.aecg.oyunvemuzikae.ui.MainActivity
 
 class Muzikler : AppCompatActivity() {
     private lateinit var binding: ActivityMuziklerBinding

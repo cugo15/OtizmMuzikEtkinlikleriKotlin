@@ -6,9 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.aecg.oyunvemuzikae.MainActivity;
+import com.aecg.oyunvemuzikae.ui.MainActivity;
 import com.aecg.oyunvemuzikae.OyunlarMenu;
-import com.aecg.oyunvemuzikae.Sesler.SesMenu;
 import com.aecg.oyunvemuzikae.databinding.ActivityMemoryMapBinding;
 
 public class MemoryMap extends AppCompatActivity {

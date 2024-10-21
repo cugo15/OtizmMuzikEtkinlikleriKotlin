@@ -10,6 +10,7 @@ import android.widget.RelativeLayout
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import com.aecg.oyunvemuzikae.databinding.ActivityPlayPiyanoBinding
+import com.aecg.oyunvemuzikae.ui.MainActivity
 
 class PlayPiyano : BaseActivity() {
     private lateinit var binding: ActivityPlayPiyanoBinding

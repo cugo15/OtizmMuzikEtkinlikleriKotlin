@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
-import com.aecg.oyunvemuzikae.MainActivity;
+import com.aecg.oyunvemuzikae.ui.MainActivity;
 import com.aecg.oyunvemuzikae.R;
 import com.aecg.oyunvemuzikae.databinding.ActivityMemoryLevelOneBinding;
 

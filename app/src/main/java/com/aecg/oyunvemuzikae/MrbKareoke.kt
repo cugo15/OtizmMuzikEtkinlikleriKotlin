@@ -15,6 +15,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.aecg.oyunvemuzikae.databinding.ActivityMrbKareokeBinding
+import com.aecg.oyunvemuzikae.ui.MainActivity
 
 class MrbKareoke : AppCompatActivity() {
     private lateinit var connectivityManager: ConnectivityManager

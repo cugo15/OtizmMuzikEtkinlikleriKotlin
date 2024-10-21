@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ScrollView;
 
-import com.aecg.oyunvemuzikae.HafizaOyunu.MemoryLevelOne;
 import com.aecg.oyunvemuzikae.HafizaOyunu.MemoryMap;
 import com.aecg.oyunvemuzikae.ResimdenBul.ResimdenBulBaglama;
 import com.aecg.oyunvemuzikae.ResimdenBul.ResimdenBulBateri;
@@ -44,8 +43,8 @@ import com.aecg.oyunvemuzikae.SestenBul.SestenBulUd;
 import com.aecg.oyunvemuzikae.SestenBul.SestenBulZil;
 import com.aecg.oyunvemuzikae.SestenBul.SestenBulZurna;
 import com.aecg.oyunvemuzikae.databinding.ActivityOyunlarMenuBinding;
-import com.aecg.oyunvemuzikae.databinding.ActivitySesMenuBinding;
 import com.aecg.oyunvemuzikae.HizliYavasOyunu.HizliYavasPiyano;
+import com.aecg.oyunvemuzikae.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
