@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutOyunHizliYavas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/hizliyavasbkg"
-    tools:context=".HizliYavasOyunu.HizliYavasPiyano">
+    tools:context=".ui.OyunHizliYavasFragment">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -13,9 +13,9 @@
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/cvphy"
+        app:layout_constraintBottom_toBottomOf="@+id/cardViewHizliYavas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cvphy"
+        app:layout_constraintTop_toTopOf="@+id/cardViewHizliYavas"
         app:srcCompat="@drawable/ilerigit" />
 
     <ImageView
@@ -24,13 +24,13 @@
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/cvphy"
+        app:layout_constraintBottom_toBottomOf="@+id/cardViewHizliYavas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cvphy"
+        app:layout_constraintTop_toTopOf="@+id/cardViewHizliYavas"
         app:srcCompat="@drawable/ilerigit" />
 
     <TextView
-        android:id="@+id/piyanosoru"
+        android:id="@+id/txtHizliYavasSoru"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mogra"
@@ -47,81 +47,84 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/Anasayfayadonpiyanooyunu"
+        android:id="@+id/btnHizliYavasHome"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/evicon3"  />
+        app:srcCompat="@drawable/evicon3" />
 
     <ImageView
-        android:id="@+id/Geritusupiyanooyunu"
+        android:id="@+id/btnHizliYavasBack"
         android:layout_width="55dp"
-        android:layout_marginTop="5dp"
         android:layout_height="55dp"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/geriyuruyencocuk"  />
+        app:srcCompat="@drawable/geriyuruyencocuk" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvphy"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/piyano1cimuzik"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#83FFFFFF"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/blue_border"
+        android:fontFamily="@font/mogra"
+        android:paddingStart="30dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="30dp"
+        android:paddingBottom="8dp"
+        android:text="1. Müzik"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/piyano2cimuzik"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+
+        android:id="@+id/piyano2cimuzik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/blue_border"
+
+        android:fontFamily="@font/mogra"
+        android:paddingStart="30dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="30dp"
+        android:paddingBottom="8dp"
+        android:text="2.Müzik"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/piyano1cimuzik"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/piyano1cimuzik" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewHizliYavas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintBottom_toTopOf="@+id/piyano1cimuzik"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/piyanosoru">
+        app:layout_constraintTop_toBottomOf="@+id/txtHizliYavasSoru">
 
         <ImageView
-            android:id="@+id/hizliolanibulpiyanoimg"
+            android:id="@+id/imgHizliYavas"
             android:layout_width="300dp"
             android:layout_height="210dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/ic_enstruman_piyano" />
+
     </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/piyano1cimuzik"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/mogra"
-            android:background="@drawable/blue_border"
-            android:text="1. Müzik"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <androidx.appcompat.widget.AppCompatButton
-
-            android:id="@+id/piyano2cimuzik"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="20dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/mogra"
-
-            android:background="@drawable/blue_border"
-            android:text="2.Müzik"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
