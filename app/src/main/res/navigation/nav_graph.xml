@@ -46,5 +46,13 @@
         <argument
             android:name="menuList"
             app:argType="com.aecg.oyunvemuzikae.ui.MenuModel[]" />
+        <action
+            android:id="@+id/menuFragment_to_oyunHizliYavasFragment"
+            app:destination="@id/oyunHizliYavasFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/oyunHizliYavasFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.OyunHizliYavasFragment"
+        android:label="fragment_oyun_hizli_yavas"
+        tools:layout="@layout/fragment_oyun_hizli_yavas" />
 </navigation>
