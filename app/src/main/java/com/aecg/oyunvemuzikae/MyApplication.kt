@@ -105,4 +105,11 @@ class MyApplication:Application() {
         MenuModel("Sayılar",MenuType.SES,R.drawable.ic_sesmenu_sayilar),
         MenuModel("Şekiller",MenuType.SES,R.drawable.ic_sesmenu_sekiller),
     )
+
+    val oyunMenuList = arrayListOf(
+        MenuModel("Hızlı Yavaş",MenuType.OYUN,R.drawable.ic_oyunmenu_hizliyavas),
+        MenuModel("Resimden Bul",MenuType.OYUN,R.drawable.ic_oyunmenu_resimdenbul),
+        MenuModel("Sesten Bul",MenuType.OYUN,R.drawable.ic_oyunmenu_sestenbul),
+        MenuModel("Hafıza Oyunu",MenuType.OYUN,R.drawable.ic_oyunmenu_hafiza),
+    )
 }
