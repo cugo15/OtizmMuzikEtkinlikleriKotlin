@@ -13,6 +13,9 @@
         <action
             android:id="@+id/homeFragment_to_pianoFragment"
             app:destination="@id/pianoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/pianoFragment"
@@ -22,5 +25,26 @@
         <action
             android:id="@+id/pianoFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sesFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.SesFragment"
+        android:label="fragment_ses"
+        tools:layout="@layout/fragment_ses" >
+        <argument
+            android:name="sesList"
+            app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/menuFragment_to_sesFragment"
+            app:destination="@id/sesFragment" />
+        <argument
+            android:name="menuList"
+            app:argType="com.aecg.oyunvemuzikae.ui.MenuModel[]" />
     </fragment>
 </navigation>
