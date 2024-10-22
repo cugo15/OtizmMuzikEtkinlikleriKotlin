@@ -8,18 +8,7 @@
     tools:context=".ui.OyunHizliYavasFragment">
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/cardViewHizliYavas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardViewHizliYavas"
-        app:srcCompat="@drawable/ilerigit" />
-
-    <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/btnHizliYavasNextSound"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
