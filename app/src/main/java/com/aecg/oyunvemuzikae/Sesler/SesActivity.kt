@@ -36,17 +36,17 @@ class SesActivity : BaseActivity() {
 
         sesList = intent.getParcelableArrayListExtra<SesModel>("sesListesi") ?: arrayListOf()
 
-        val category = sesList[1].category
+        val category = sesList[1].type
         binding.textViewSesHeader.text = category.displayName
 
         val backgroundResourceMap = mapOf(
-            SesCategory.HAYVAN to R.drawable.bg_hayvanlar,
-            SesCategory.INSAN to R.drawable.bg_insanlar,
-            SesCategory.ENSTRUMAN to R.drawable.bg_enstrumanlar,
-            SesCategory.DOGA to R.drawable.bg_doga,
-            SesCategory.ARAC to R.drawable.bg_araclar,
-            SesCategory.SAYI to R.drawable.bg_sayilar,
-            SesCategory.SEKIL to R.drawable.bg_sekiller
+            SesType.HAYVAN to R.drawable.bg_hayvanlar,
+            SesType.INSAN to R.drawable.bg_insanlar,
+            SesType.ENSTRUMAN to R.drawable.bg_enstrumanlar,
+            SesType.DOGA to R.drawable.bg_doga,
+            SesType.ARAC to R.drawable.bg_araclar,
+            SesType.SAYI to R.drawable.bg_sayilar,
+            SesType.SEKIL to R.drawable.bg_sekiller
         )
         val backgroundResource = backgroundResourceMap[category] ?: R.drawable.bg_doga
 
