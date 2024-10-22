@@ -4,17 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.aecg.oyunvemuzikae.databinding.SesItemBinding
+import com.aecg.oyunvemuzikae.MenuType
+import com.aecg.oyunvemuzikae.databinding.MenuItemBinding
 
 class MenuAdapter(
     private val menuList: ArrayList<MenuModel>, // MenuModel nesnelerinin bulunduğu liste
-    private val onItemClick: (Int) -> Unit, // Tıklama olayı için callback
+    private val onItemClick: (String, MenuType) -> Unit, // Tıklama olayı için callback
     private val onItemAnimate: (View) -> Unit // Animasyon tetiklemek için callback
 ) : RecyclerView.Adapter<MenuViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = SesItemBinding.inflate(inflater, parent, false)
+        val binding = MenuItemBinding.inflate(inflater, parent, false)
         return MenuViewHolder(binding)
     }
 
