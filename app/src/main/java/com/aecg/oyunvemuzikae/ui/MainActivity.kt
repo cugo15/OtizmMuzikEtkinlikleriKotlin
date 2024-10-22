@@ -1,11 +1,9 @@
 package com.aecg.oyunvemuzikae.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import com.aecg.oyunvemuzikae.BaseActivity
 
 import com.aecg.oyunvemuzikae.R
@@ -24,14 +22,6 @@ class MainActivity : BaseActivity() {
         animationzoom = AnimationUtils.loadAnimation(applicationContext, R.anim.zoom_inshort)
 
 
-    }
-
-    private fun setClickListener(imageView: ImageView, targetActivity: Class<*>) {
-        imageView.setOnClickListener {
-            imageView.startAnimation(animationzoom) // Animasyonu başlat
-            val intent = Intent(this@MainActivity, targetActivity)
-            startActivity(intent) // Aktiviteyi başlat
-        }
     }
     override fun onDestroy() {
         super.onDestroy()
