@@ -14,6 +14,7 @@ import com.aecg.oyunvemuzikae.MyApplication
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.FragmentMenuBinding
 import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
+import com.aecg.oyunvemuzikae.scrollInDirection
 
 
 class MenuFragment : Fragment() {
@@ -48,6 +49,13 @@ class MenuFragment : Fragment() {
 
         binding.layoutMenu.loadLayoutBackgroundWithGlide(requireContext(), backgroundResource, R.drawable.bg_doga)
 
+        binding.btnScrollLeftMenu.setOnClickListener {
+            binding.rvMenu.scrollInDirection(-1)
+        }
+
+        binding.BtnScrollRightMenu.setOnClickListener {
+            binding.rvMenu.scrollInDirection(1)
+        }
 
         return view
     }
