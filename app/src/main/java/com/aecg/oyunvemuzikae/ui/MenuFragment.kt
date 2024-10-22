@@ -76,6 +76,12 @@ class MenuFragment : Fragment() {
                     else -> null // Geçersiz bir isim durumunda
                 }
                 action?.let { findNavController().navigate(it) }
+            }else if(type == MenuType.OYUN){
+                when (name) {
+                    "Hızlı Yavaş" -> findNavController().navigate(R.id.menuFragment_to_oyunHizliYavasFragment)
+
+                    else -> null // Geçersiz bir isim durumunda
+                }
             }
 
         }) { view ->
