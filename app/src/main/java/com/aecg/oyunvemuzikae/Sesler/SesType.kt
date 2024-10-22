@@ -1,6 +1,6 @@
 package com.aecg.oyunvemuzikae.Sesler
 
-enum class SesCategory(val displayName: String) {
+enum class SesType(val displayName: String) {
     HAYVAN("Hayvan Sesleri"),
     INSAN("İnsan Sesleri"),
     ENSTRUMAN("Enstrüman Sesleri"),
