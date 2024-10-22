@@ -1,60 +1,98 @@
 package com.aecg.oyunvemuzikae.ui
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.aecg.oyunvemuzikae.MenuType
+import com.aecg.oyunvemuzikae.MyApplication
 import com.aecg.oyunvemuzikae.R
+import com.aecg.oyunvemuzikae.databinding.FragmentMenuBinding
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MenuFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MenuFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private var _binding: FragmentMenuBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var animationZoom: Animation
+    private lateinit var menuList: ArrayList<MenuModel>
+
+    private val myApplication: MyApplication by lazy {
+        requireActivity().application as MyApplication
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentMenuBinding.inflate(inflater, container, false)
+        val view = binding.root
+        animationZoom = AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_inshort)
+
+        menuList = MenuFragmentArgs.fromBundle(requireArguments()).menuList.toList() as ArrayList<MenuModel>
+        setupRecyclerView(menuList)
+        val category = menuList[1].type
+        binding.textViewMenuHeader.text = category.displayName
+
+        val backgroundResourceMap = mapOf(
+            MenuType.SES to R.drawable.bg_menu_ses,
+            MenuType.OYUN to R.drawable.bg_menu_oyun,
+        )
+        val backgroundResource = backgroundResourceMap[category] ?: R.drawable.bg_doga
+
+        Glide.with(this)
+            .load(backgroundResource)
+            .into(object : CustomTarget<Drawable>() {
+                override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+                    // Yüklenen Drawable'i arka plana set et
+                    binding.layoutMenu.background = resource
+                }
+                override fun onLoadCleared(placeholder: Drawable?) {
+                    // Yükleme iptal edildiğinde yapılacak işlemler
+                }
+                override fun onLoadFailed(errorDrawable: Drawable?) {
+                    // Yükleme başarısız olursa varsayılan arka plan ayarla
+                    binding.layoutMenu.setBackgroundResource(R.drawable.bg_doga) // varsayılan arka plan
+                }
+            })
+
+        return view
+    }
+    private fun setupRecyclerView(menuList: ArrayList<MenuModel>) {
+        // RecyclerView'e yatay (horizontal) LinearLayoutManager ata
+        binding.rvMenu.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        // SesAdapter'ı RecyclerView'e ata
+        binding.rvMenu.adapter = MenuAdapter(menuList, { name,type ->
+            if (type == MenuType.SES) {
+                val action = when (name) {
+                    "Enstrüman" -> MenuFragmentDirections.menuFragmentToSesFragment(myApplication.enstrumanList.toTypedArray())
+                    "Doğa" -> MenuFragmentDirections.menuFragmentToSesFragment(myApplication.dogaList.toTypedArray())
+                    "İnsan" -> MenuFragmentDirections.menuFragmentToSesFragment(myApplication.insanList.toTypedArray())
+                    "Araçlar" -> MenuFragmentDirections.menuFragmentToSesFragment(myApplication.aracList.toTypedArray())
+                    "Hayvan" -> MenuFragmentDirections.menuFragmentToSesFragment(myApplication.hayvanList.toTypedArray())
+                    "Şekiller" -> MenuFragmentDirections.menuFragmentToSesFragment(myApplication.sekilList.toTypedArray())
+                    "Sayılar" -> MenuFragmentDirections.menuFragmentToSesFragment(myApplication.sayiList.toTypedArray())
+                    else -> null // Geçersiz bir isim durumunda
+                }
+                action?.let { findNavController().navigate(it) }
+            }
+
+        }) { view ->
+            // Animasyonu başlat
+            view.startAnimation(animationZoom)
         }
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MenuFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MenuFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
