@@ -5,20 +5,20 @@ import android.os.Parcelable
 
 data class SesModel(
     val sesName: String,
-    val category: SesCategory, // category enum olarak tanımlı
+    val type: SesType, // type enum olarak tanımlı
     val sesResourceId: Int, // raw klasöründeki ses dosyasını temsil eden ID
     val imageResourceId: Int
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "", // sesName
-        SesCategory.valueOf(parcel.readString() ?: SesCategory.HAYVAN.name), // category
+        SesType.valueOf(parcel.readString() ?: SesType.HAYVAN.name), // type
         parcel.readInt(), // sesResourceId
         parcel.readInt() // imageResourceId
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(sesName) // sesName
-        parcel.writeString(category.name) // category'yi yaz
+        parcel.writeString(type.name) // category'yi yaz
         parcel.writeInt(sesResourceId) // sesResourceId
         parcel.writeInt(imageResourceId) // imageResourceId
     }
