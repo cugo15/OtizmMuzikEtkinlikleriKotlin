@@ -1,6 +1,5 @@
 package com.aecg.oyunvemuzikae.ui
 
-import android.graphics.drawable.Drawable
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,11 +15,8 @@ import com.aecg.oyunvemuzikae.Sesler.SesType
 import com.aecg.oyunvemuzikae.Sesler.SesMenu
 import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentSesBinding
+import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.scrollInDirection
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
-
 
 class SesFragment : Fragment() {
     private var _binding: FragmentSesBinding? = null
@@ -56,22 +52,7 @@ class SesFragment : Fragment() {
         )
         val backgroundResource = backgroundResourceMap[category] ?: R.drawable.bg_doga
 
-        Glide.with(this)
-            .load(backgroundResource)
-            .into(object : CustomTarget<Drawable>() {
-                override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-                    // Yüklenen Drawable'i arka plana set et
-                    binding.layoutSes.background = resource
-                }
-                override fun onLoadCleared(placeholder: Drawable?) {
-                    // Yükleme iptal edildiğinde yapılacak işlemler
-                }
-                override fun onLoadFailed(errorDrawable: Drawable?) {
-                    // Yükleme başarısız olursa varsayılan arka plan ayarla
-                    binding.layoutSes.setBackgroundResource(R.drawable.bg_doga) // varsayılan arka plan
-                }
-            })
-
+        binding.layoutSes.loadLayoutBackgroundWithGlide(requireContext(), backgroundResource, R.drawable.bg_doga)
 
 
         setupRecyclerView(sesList)
