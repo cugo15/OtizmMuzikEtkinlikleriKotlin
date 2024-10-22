@@ -32,6 +32,11 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.actionHomeFragmentToMenuFragment(myApplication.sesMenuList.toTypedArray())
             findNavController().navigate(action)
         }
+        binding.btnHomeOyunlar.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToMenuFragment(myApplication.oyunMenuList.toTypedArray())
+            findNavController().navigate(action)
+        }
+
         return view
     }
 
