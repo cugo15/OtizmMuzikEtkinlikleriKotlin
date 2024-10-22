@@ -12,7 +12,7 @@ import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.Sesler.SesAdapter
-import com.aecg.oyunvemuzikae.Sesler.SesCategory
+import com.aecg.oyunvemuzikae.Sesler.SesType
 import com.aecg.oyunvemuzikae.Sesler.SesMenu
 import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentSesBinding
@@ -41,19 +41,18 @@ class SesFragment : Fragment() {
 
         animationzoom = AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_inshort)
 
-        sesList = arrayListOf()
-
-        val category = sesList[1].category
+        sesList = SesFragmentArgs.fromBundle(requireArguments()).sesList.toList() as ArrayList<SesModel>
+        val category = sesList[1].type
         binding.textViewSesHeader.text = category.displayName
 
         val backgroundResourceMap = mapOf(
-            SesCategory.HAYVAN to R.drawable.bg_hayvanlar,
-            SesCategory.INSAN to R.drawable.bg_insanlar,
-            SesCategory.ENSTRUMAN to R.drawable.bg_enstrumanlar,
-            SesCategory.DOGA to R.drawable.bg_doga,
-            SesCategory.ARAC to R.drawable.bg_araclar,
-            SesCategory.SAYI to R.drawable.bg_sayilar,
-            SesCategory.SEKIL to R.drawable.bg_sekiller
+            SesType.HAYVAN to R.drawable.bg_hayvanlar,
+            SesType.INSAN to R.drawable.bg_insanlar,
+            SesType.ENSTRUMAN to R.drawable.bg_enstrumanlar,
+            SesType.DOGA to R.drawable.bg_doga,
+            SesType.ARAC to R.drawable.bg_araclar,
+            SesType.SAYI to R.drawable.bg_sayilar,
+            SesType.SEKIL to R.drawable.bg_sekiller
         )
         val backgroundResource = backgroundResourceMap[category] ?: R.drawable.bg_doga
 
