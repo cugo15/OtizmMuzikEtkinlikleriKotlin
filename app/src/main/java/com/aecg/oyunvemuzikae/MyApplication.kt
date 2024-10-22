@@ -3,6 +3,7 @@ package com.aecg.oyunvemuzikae
 import android.app.Application
 import com.aecg.oyunvemuzikae.Sesler.SesCategory
 import com.aecg.oyunvemuzikae.Sesler.SesModel
+import com.aecg.oyunvemuzikae.ui.MenuModel
 
 class MyApplication:Application() {
 
@@ -94,4 +95,14 @@ class MyApplication:Application() {
         SesModel("On",SesCategory.SAYI, R.raw.sound_sayi_on, R.drawable.ic_sayi_on),
         )
 
+
+    val sesMenuList = arrayListOf(
+        MenuModel(1,"Doğa",R.drawable.ic_sesmenu_doga),
+        MenuModel(2,"İnsan",R.drawable.ic_sesmenu_insan),
+        MenuModel(3,"Araçlar",R.drawable.ic_sesmenu_araclar),
+        MenuModel(4,"Hayvan",R.drawable.ic_sesmenu_hayvan),
+        MenuModel(5,"Sayılar",R.drawable.ic_sesmenu_sayilar),
+        MenuModel(6,"Enstrüman",R.drawable.ic_sesmenu_enstruman),
+        MenuModel(7,"Şekiller",R.drawable.ic_sesmenu_sekiller),
+    )
 }
