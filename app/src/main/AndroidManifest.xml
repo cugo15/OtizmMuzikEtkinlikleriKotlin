@@ -21,222 +21,134 @@
         <activity
             android:name=".Muzikler"
             android:exported="false" />
-        <activity
-            android:name=".HizliYavasOyunu.HizliYavasOff"
-            android:exported="false"
-             />
-        <activity
-            android:name=".HizliYavasOyunu.HizliYavasTchai"
-            android:exported="false"
-             />
-        <activity
-            android:name=".HizliYavasOyunu.HizliYavasWill"
-            android:exported="false"
-             />
+
         <activity
             android:name=".HafizaOyunu.MemoryLevelFive"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".HafizaOyunu.MemoryLevelFour"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".HafizaOyunu.MemoryLevelThree"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".HafizaOyunu.MemoryLevelTwo"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".HafizaOyunu.MemoryLevelOne"
-            android:exported="false"
-             />
-
+            android:exported="false" />
         <activity
             android:name=".HafizaOyunu.MemoryMap"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulZurna"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulZil"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulUd"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulTrompet"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulTrombon"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulPiyano"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulObua"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulMetronom"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulKsilafon"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulKeman"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulKanun"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulGitar"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulFlut"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulDef"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulDavul"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulBaglama"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".SestenBul.SestenBulBateri"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".MrbKareoke"
-            android:exported="false"
-             />
-
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulKanun"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulUd"
-            android:exported="false"
-             />
-
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulGitar"
-            android:exported="false"
-             />
-
-        <activity
-            android:name=".OyunlarMenu"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulMetronom"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulDavul"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulZurna"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulZil"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulTrombon"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulDef"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulObua"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulKsilafon"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulBateri"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulFlut"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulPiyano"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulTrompet"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulKeman"
-            android:exported="false"
-             />
+            android:exported="false" />
         <activity
             android:name=".ResimdenBul.ResimdenBulBaglama"
-            android:exported="false"
-             />
-        <activity
-            android:name=".PlayPiyano"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="false"
-             />
-        <activity
-            android:name=".HizliYavasOyunu.HizliYavasMozart"
-            android:exported="false"
-             />
-        <activity
-            android:name=".HizliYavasOyunu.HizliYavasTrompet"
-            android:exported="false"
-             />
-        <activity
-            android:name=".HizliYavasOyunu.HizliYavasPiyano"
-            android:exported="false"
-             />
-        <activity
-            android:name=".Sesler.SesActivity"
-            android:exported="false"
-             />
-
-
-        <activity
-            android:name=".Sesler.SesMenu"
-            android:exported="false"
-             />
+            android:exported="false" />
 
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
