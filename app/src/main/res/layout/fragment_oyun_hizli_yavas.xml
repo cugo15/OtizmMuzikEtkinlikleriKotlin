@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/ilerigit" />
 
     <TextView
-        android:id="@+id/txtHizliYavasSoru"
+        android:id="@+id/txtHizliYavasHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mogra"
@@ -111,7 +111,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnMuzik1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtHizliYavasSoru">
+        app:layout_constraintTop_toBottomOf="@+id/txtHizliYavasHeader">
 
         <ImageView
             android:id="@+id/imgHizliYavas"
