@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.Sesler.SesAdapter
 import com.aecg.oyunvemuzikae.Sesler.SesType
-import com.aecg.oyunvemuzikae.Sesler.SesMenu
 import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentSesBinding
 import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
@@ -65,8 +64,7 @@ class SesFragment : Fragment() {
             binding.rvSes.scrollInDirection(1)
         }
 
-        binding.btnHomeSes.setOnClickListener { navigateToActivity(MainActivity::class.java) }
-        binding.btnBackSes.setOnClickListener { navigateToActivity(SesMenu::class.java) }
+
         return view
     }
 
@@ -95,10 +93,6 @@ class SesFragment : Fragment() {
         mediaPlayer.setOnCompletionListener {
             mediaPlayer.release()
         }
-    }
-
-    private fun navigateToActivity(destination: Class<*>) {
-
     }
 
     override fun onDestroyView() {

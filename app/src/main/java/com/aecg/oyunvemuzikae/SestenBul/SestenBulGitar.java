@@ -11,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.aecg.oyunvemuzikae.ui.MainActivity;
-import com.aecg.oyunvemuzikae.OyunlarMenu;
 import com.aecg.oyunvemuzikae.R;
 import com.aecg.oyunvemuzikae.databinding.ActivitySestenBulGitarBinding;
 
@@ -1632,19 +1631,7 @@ public class SestenBulGitar extends AppCompatActivity {
                 finish();
             }
         });
-        binding.Geritususestengitar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(hand!=null){
-                    hand.removeCallbacks(runab);
-                }
-                seskes();
-                Intent intent = new Intent(SestenBulGitar.this, OyunlarMenu.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-                finish();
-            }
-        });
+
         binding.gitarimg1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

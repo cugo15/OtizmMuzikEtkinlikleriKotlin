@@ -10,7 +10,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.aecg.oyunvemuzikae.ui.MainActivity
-import com.aecg.oyunvemuzikae.OyunlarMenu
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.ActivityResimdenBulBaglamaBinding
 import java.util.Random
@@ -1623,16 +1622,7 @@ class ResimdenBulBaglama : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        binding!!.Geritusuacababaglama.setOnClickListener {
-            if (hand != null) {
-                hand!!.removeCallbacks(runab!!)
-            }
-            seskes()
-            val intent = Intent(this@ResimdenBulBaglama, OyunlarMenu::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-            startActivity(intent)
-            finish()
-        }
+
         binding!!.baglamaimg1.setOnClickListener {
             if (r == 0) {
                 binding!!.bag1card.setBackgroundResource(R.drawable.border)

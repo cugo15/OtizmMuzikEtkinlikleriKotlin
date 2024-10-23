@@ -11,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.aecg.oyunvemuzikae.ui.MainActivity;
-import com.aecg.oyunvemuzikae.OyunlarMenu;
 import com.aecg.oyunvemuzikae.R;
 import com.aecg.oyunvemuzikae.databinding.ActivityResimdenBulKsilafonBinding;
 
@@ -1631,20 +1630,7 @@ public class ResimdenBulKsilafon extends AppCompatActivity {
                 finish();
             }
         });
-        binding.Geritusuresimdenksi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(hand!=null){
-                    hand.removeCallbacks(runab);
-                }
 
-                seskes();
-                Intent intent = new Intent(ResimdenBulKsilafon.this, OyunlarMenu.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-                finish();
-            }
-        });
         binding.ksilafonimg1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

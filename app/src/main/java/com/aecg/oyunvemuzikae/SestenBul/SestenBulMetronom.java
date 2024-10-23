@@ -11,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.aecg.oyunvemuzikae.ui.MainActivity;
-import com.aecg.oyunvemuzikae.OyunlarMenu;
 import com.aecg.oyunvemuzikae.R;
 import com.aecg.oyunvemuzikae.databinding.ActivitySestenBulMetronomBinding;
 
@@ -1632,19 +1631,7 @@ public class SestenBulMetronom extends AppCompatActivity {
                 finish();
             }
         });
-        binding.Geritususestenmetronom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(hand!=null){
-                    hand.removeCallbacks(runab);
-                }
-                seskes();
-                Intent intent = new Intent(SestenBulMetronom.this, OyunlarMenu.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-                finish();
-            }
-        });
+
         binding.metronomimg1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

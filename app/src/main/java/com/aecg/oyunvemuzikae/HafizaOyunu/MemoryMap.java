@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.aecg.oyunvemuzikae.ui.MainActivity;
-import com.aecg.oyunvemuzikae.OyunlarMenu;
 import com.aecg.oyunvemuzikae.databinding.ActivityMemoryMapBinding;
 
 public class MemoryMap extends AppCompatActivity {
@@ -28,15 +27,7 @@ public class MemoryMap extends AppCompatActivity {
                 }
             }
         });
-        binding.imageView16.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MemoryMap.this, OyunlarMenu.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-                finish();
-            }
-        });
+
         binding.imageView17.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
