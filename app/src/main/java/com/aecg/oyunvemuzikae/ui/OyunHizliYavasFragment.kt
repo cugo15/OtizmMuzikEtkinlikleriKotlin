@@ -10,9 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import com.aecg.oyunvemuzikae.R
+import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunHizliYavasBinding
-import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
+import com.bumptech.glide.Glide
 import kotlin.random.Random
 
 class OyunHizliYavasFragment : Fragment() {
@@ -21,16 +23,12 @@ class OyunHizliYavasFragment : Fragment() {
 
     private var handler: Handler? = null
 
-    private val randomFast = Random.nextBoolean()
-    private val randomQuestion = Random.nextBoolean()
+    private val randomFirstOneFast = Random.nextBoolean()
+    private val randomQuestionFast = Random.nextBoolean()
 
-    private val soundResIds = listOf(
-        if (randomQuestion) R.raw.hizliolanibul else R.raw.yavasolanibul,
-        R.raw.sound_enstruman_piyano,
-        R.raw.ikincmuzik,
-        R.raw.sound_enstruman_piyano,
-        if (randomQuestion) R.raw.hizlitempo else R.raw.yavastempo,
-    )
+    private lateinit var sesList: ArrayList<SesModel>
+    private lateinit var soundResIds: List<Int>
+    private lateinit var randomSound: SesModel
 
     private var mediaPlayer: MediaPlayer? = null
     private var currentIndex = 0
@@ -43,6 +41,16 @@ class OyunHizliYavasFragment : Fragment() {
         _binding = FragmentOyunHizliYavasBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        setSoruText(randomQuestionFast)
+        sesList = OyunHizliYavasFragmentArgs.fromBundle(requireArguments()).hizliYavasList.toList() as ArrayList<SesModel>
+        randomSound = sesList.random()
+
+        Glide.with(requireContext())
+            .load(randomSound.imageResourceId)
+            .into(binding.imgHizliYavas)
+
+        sesList.remove(randomSound)
+        soundResIds = getSoundResIds()
         playNextSound()
 
         binding.btnHizliYavasNextSound.setOnClickListener {
@@ -51,31 +59,70 @@ class OyunHizliYavasFragment : Fragment() {
         }
 
         binding.btnMuzik1.setOnClickListener {
-            setButtonBackground(binding.btnMuzik1, randomFast, randomQuestion)
+            setButtonBackground(binding.btnMuzik1, randomFirstOneFast, randomQuestionFast)
         }
 
         binding.btnMuzik2.setOnClickListener {
-            setButtonBackground(binding.btnMuzik2, !randomFast, randomQuestion)
+            setButtonBackground(binding.btnMuzik2, !randomFirstOneFast, randomQuestionFast)
         }
 
         return view
     }
+    private fun setSoruText(randomQuestionFast: Boolean) {
+        binding.txtHizliYavasSoru.text = if (randomQuestionFast) {
+            "Hızlı olan müziği bulabilir misin ?"
+        } else {
+            "Yavaş olan müziği bulabilir misin ?"
+        }
+    }
+
+    private fun getSoundResIds(): List<Int> {
+        return listOf(
+            if (randomQuestionFast) R.raw.hizliolanibul else R.raw.yavasolanibul,
+            randomSound.sesResourceId,
+            R.raw.ikincmuzik,
+            randomSound.sesResourceId,
+            if (randomQuestionFast) R.raw.hizlitempo else R.raw.yavastempo,
+            R.raw.sound_cevap_dogru
+        )
+    }
 
     private fun playNextSound() {
+        // Geçerli indeks ses kaynakları içinde sınırdaysa
         if (currentIndex < soundResIds.size) {
-            // Mevcut medya çalar kaynakları serbest bırakılıyor ve yeni medya çalıcı başlatılıyor
+            // Mevcut medya çalar kaynaklarını serbest bırak ve yeni medya çalar oluştur
             releaseAndCreateMediaPlayer()
-            // Hızlandırma işlemi
+            // Hızlandırma işlemini uygula
             adjustPlaybackSpeed(currentIndex)
-            // Butonun görünürlüğünü ayarla
+            // Buton görünürlüğünü ayarla
             manageButtonVisibility(currentIndex)
             // Ses tamamlandığında bir sonraki sesi çal
             mediaPlayer?.setOnCompletionListener {
-                currentIndex++
-                playNextSound()
+                handleSoundCompletion()
             }
             mediaPlayer?.start()
         }
+    }
+
+    private fun handleSoundCompletion() {
+        when (currentIndex) {
+            4 -> isAnswerButtonsEnabled(true)
+            5 -> navigateToSelf()
+            else -> {
+                currentIndex++
+                playNextSound()
+            }
+        }
+    }
+
+    private fun navigateToSelf() {
+        val action = OyunHizliYavasFragmentDirections.actionOyunHizliYavasFragmentSelf(sesList.toTypedArray())
+        findNavController().navigate(action)
+    }
+
+    private fun isAnswerButtonsEnabled(boolean: Boolean) {
+        binding.btnMuzik1.isEnabled = boolean
+        binding.btnMuzik2.isEnabled = boolean
     }
 
     private fun releaseAndCreateMediaPlayer() {
@@ -84,35 +131,37 @@ class OyunHizliYavasFragment : Fragment() {
     }
 
     private fun adjustPlaybackSpeed(index: Int) {
-        // Hızlandırma ve yavaşlatma hızları
         val fastSpeed = 1.3f
         val slowSpeed = 0.7f
-        // İlk ve üçüncü ses dosyası için hız değişimi yap
+        // Hız ayarlamak için uygun hız değerini belirle
+        val playbackSpeed = when {
+            index == 1 && randomFirstOneFast -> fastSpeed // İlk müzik hızlıysa
+            index == 3 && randomFirstOneFast -> slowSpeed // Üçüncü müzik yavaşsa
+            index == 1 && !randomFirstOneFast -> slowSpeed // İlk müzik yavaşsa
+            index == 3 && !randomFirstOneFast -> fastSpeed // Üçüncü müzik hızlıysa
+            else -> 1.0f // Normal hız
+        }
+        // Eğer index 1 veya 3 ise hız ayarını uygula
         if (index == 1 || index == 3) {
             val playbackParams = PlaybackParams().apply {
-                speed = when {
-                    randomFast && index == 1 -> fastSpeed // İlk müzik hızlıysa
-                    randomFast && index == 3 -> slowSpeed // Üçüncü müzik yavaşsa
-                    !randomFast && index == 1 -> slowSpeed // İlk müzik yavaşsa
-                    !randomFast && index == 3 -> fastSpeed // Üçüncü müzik hızlıysa
-                    else -> 1.0f // Normal hız
-                }
+                speed = playbackSpeed
             }
             mediaPlayer?.playbackParams = playbackParams
         }
     }
 
     private fun manageButtonVisibility(index: Int) {
-        // Tek indekslerde buton görünür, çift indekslerde gizlenir
-        if (index % 2 == 1) {
-            handler = Handler(Looper.getMainLooper())
-            handler?.postDelayed({
-                if (isAdded) {
-                    binding.btnHizliYavasNextSound.visibility = View.VISIBLE
-                }
-            }, 2000)
-        } else {
-            binding.btnHizliYavasNextSound.visibility = View.GONE
+        when {
+            index == 5 -> binding.btnHizliYavasNextSound.visibility = View.GONE
+            index % 2 == 1 -> {
+                handler = Handler(Looper.getMainLooper())
+                handler?.postDelayed({
+                    if (isAdded) {
+                        binding.btnHizliYavasNextSound.visibility = View.VISIBLE
+                    }
+                }, 2000)
+            }
+            else -> binding.btnHizliYavasNextSound.visibility = View.GONE
         }
     }
 
@@ -121,10 +170,13 @@ class OyunHizliYavasFragment : Fragment() {
         isFirstMusicFast: Boolean, // Çalınan müzik hızlı mı
         isQuestionAskingForFast: Boolean // Soru hızlı müziği mi bulmamızı istiyor
     ) {
-        val backgroundResource = if (isQuestionAskingForFast == isFirstMusicFast) {
-            R.drawable.border
-        } else {
-            R.drawable.border_red
+        val backgroundResource = when {
+            isQuestionAskingForFast == isFirstMusicFast -> {
+                currentIndex++
+                playNextSound()
+                R.drawable.border
+            }
+            else -> R.drawable.border_red
         }
         selectedButton.setBackgroundResource(backgroundResource)
     }
