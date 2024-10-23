@@ -120,9 +120,9 @@ class OyunHizliYavasFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun isAnswerButtonsEnabled(boolean: Boolean) {
-        binding.btnMuzik1.isEnabled = boolean
-        binding.btnMuzik2.isEnabled = boolean
+    private fun isAnswerButtonsEnabled(isEnabled: Boolean) {
+        binding.btnMuzik1.isEnabled = isEnabled
+        binding.btnMuzik2.isEnabled = isEnabled
     }
 
     private fun releaseAndCreateMediaPlayer() {
@@ -172,6 +172,7 @@ class OyunHizliYavasFragment : Fragment() {
     ) {
         val backgroundResource = when {
             isQuestionAskingForFast == isFirstMusicFast -> {
+                isAnswerButtonsEnabled(false)
                 currentIndex++
                 playNextSound()
                 R.drawable.border
