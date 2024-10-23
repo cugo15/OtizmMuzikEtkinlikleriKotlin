@@ -58,5 +58,10 @@
         <argument
             android:name="hizliYavasList"
             app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
+        <action
+            android:id="@+id/action_oyunHizliYavasFragment_self"
+            app:destination="@id/oyunHizliYavasFragment"
+            app:popUpTo="@id/oyunHizliYavasFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
