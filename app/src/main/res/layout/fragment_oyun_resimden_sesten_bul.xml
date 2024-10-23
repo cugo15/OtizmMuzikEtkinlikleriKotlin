@@ -1,14 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layoutOyunResimdenSestenBul"
     tools:context=".ui.OyunResimdenSestenBulFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/btnOyunResimdenSestenBulNextSound"
+        android:layout_width="75dp"
+        android:layout_height="65dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="10dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewOyunResimdenSestenBulAnswer2"
+        app:srcCompat="@drawable/ilerigit" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/txtOyunResimdenSestenBulHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mogra"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="10"
+        android:text="Acaba bağlama hangisi ?"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnOyunResimdenSestenBulHome"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/evicon3" />
+
+    <ImageView
+        android:id="@+id/btnOyunResimdenSestenBulBack"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/geriyuruyencocuk" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewOyunResimdenSestenBulAnswer1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardViewOyunResimdenSestenBulAnswer2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtOyunResimdenSestenBulHeader">
+
+        <ImageView
+            android:id="@+id/imgOyunResimdenSestenBulAnswer1"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewOyunResimdenSestenBulAnswer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardViewOyunResimdenSestenBulAnswer1"
+        app:layout_constraintEnd_toStartOf="@+id/cardViewOyunResimdenSestenBulAnswer3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cardViewOyunResimdenSestenBulAnswer1"
+        app:layout_constraintTop_toTopOf="@+id/cardViewOyunResimdenSestenBulAnswer1">
+
+        <ImageView
+            android:id="@+id/imgOyunResimdenSestenBulAnswer2"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_margin="10dp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewOyunResimdenSestenBulAnswer3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardViewOyunResimdenSestenBulAnswer2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cardViewOyunResimdenSestenBulAnswer2"
+        app:layout_constraintTop_toTopOf="@+id/cardViewOyunResimdenSestenBulAnswer2">
+
+        <ImageView
+            android:id="@+id/imgOyunResimdenSestenBulAnswer3"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
