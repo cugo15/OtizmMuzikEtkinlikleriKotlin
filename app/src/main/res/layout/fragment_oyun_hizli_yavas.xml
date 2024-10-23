@@ -5,6 +5,7 @@
     android:id="@+id/layoutOyunHizliYavas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_oyun_hizliyavas"
     tools:context=".ui.OyunHizliYavasFragment">
 
     <ImageView

@@ -43,7 +43,6 @@ class OyunHizliYavasFragment : Fragment() {
         _binding = FragmentOyunHizliYavasBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.layoutOyunHizliYavas.loadLayoutBackgroundWithGlide(requireContext(), R.drawable.hizliyavasbkg, R.drawable.bg_doga)
         playNextSound()
 
         binding.btnHizliYavasNextSound.setOnClickListener {
