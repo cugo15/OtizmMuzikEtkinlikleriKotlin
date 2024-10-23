@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunHizliYavasBinding
 import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
@@ -17,14 +18,18 @@ import kotlin.random.Random
 class OyunHizliYavasFragment : Fragment() {
     private var _binding: FragmentOyunHizliYavasBinding? = null
     private val binding get() = _binding!!
+
     private var handler: Handler? = null
-    private var randomBoolean: Boolean? = null
+
+    private val randomFast = Random.nextBoolean()
+    private val randomQuestion = Random.nextBoolean()
+
     private val soundResIds = listOf(
-        R.raw.hizliolanibul, // Hızlandırılacak ses dosyası
+        if (randomQuestion) R.raw.hizliolanibul else R.raw.yavasolanibul,
         R.raw.sound_enstruman_piyano,
         R.raw.ikincmuzik,
         R.raw.sound_enstruman_piyano,
-        R.raw.hizlitempo
+        if (randomQuestion) R.raw.hizlitempo else R.raw.yavastempo,
     )
 
     private var mediaPlayer: MediaPlayer? = null
@@ -37,8 +42,8 @@ class OyunHizliYavasFragment : Fragment() {
     ): View {
         _binding = FragmentOyunHizliYavasBinding.inflate(inflater, container, false)
         val view = binding.root
+
         binding.layoutOyunHizliYavas.loadLayoutBackgroundWithGlide(requireContext(), R.drawable.hizliyavasbkg, R.drawable.bg_doga)
-        randomBoolean = Random.nextBoolean()
         playNextSound()
 
         binding.btnHizliYavasNextSound.setOnClickListener {
@@ -46,54 +51,83 @@ class OyunHizliYavasFragment : Fragment() {
             playNextSound()
         }
 
+        binding.btnMuzik1.setOnClickListener {
+            setButtonBackground(binding.btnMuzik1, randomFast, randomQuestion)
+        }
+
+        binding.btnMuzik2.setOnClickListener {
+            setButtonBackground(binding.btnMuzik2, !randomFast, randomQuestion)
+        }
+
         return view
     }
 
     private fun playNextSound() {
         if (currentIndex < soundResIds.size) {
-            mediaPlayer?.release()
-            mediaPlayer = MediaPlayer.create(requireContext(), soundResIds[currentIndex])
-
-            // Hızlandırma işlemi sadece ilk ses dosyası için
-            if (randomBoolean!!) {
-                // Eğer randomBoolean true ise, ilk ses dosyasını hızlandır
-                if (currentIndex == 1) { // Hızlandırma sadece ilk ses dosyası için
-                    val playbackParams = PlaybackParams().setSpeed(1.5f) // 1.5 kat hızlandır
-                    mediaPlayer?.playbackParams = playbackParams
-                }
-                if (currentIndex == 3) {
-                    val playbackParams = PlaybackParams().setSpeed(0.5f) // 1.5 kat hızlandır
-                    mediaPlayer?.playbackParams = playbackParams
-                }
-            } else {
-                if (currentIndex == 1) {
-                    val playbackParams = PlaybackParams().setSpeed(0.5f) // 1.5 kat hızlandır
-                    mediaPlayer?.playbackParams = playbackParams
-                }
-                if (currentIndex == 3) {
-                    val playbackParams = PlaybackParams().setSpeed(1.5f) // 1.5 kat hızlandır
-                    mediaPlayer?.playbackParams = playbackParams
-                }
-            }
-
-            if (currentIndex % 2 == 1) {
-                handler = Handler(Looper.getMainLooper())
-                handler?.postDelayed({
-                    if (isAdded) { // Fragment hala aktif mi kontrol et
-                        binding.btnHizliYavasNextSound.visibility = View.VISIBLE
-                    }
-                }, 2000)
-            } else {
-                binding.btnHizliYavasNextSound.visibility = View.GONE
-            }
-
+            // Mevcut medya çalar kaynakları serbest bırakılıyor ve yeni medya çalıcı başlatılıyor
+            releaseAndCreateMediaPlayer()
+            // Hızlandırma işlemi
+            adjustPlaybackSpeed(currentIndex)
+            // Butonun görünürlüğünü ayarla
+            manageButtonVisibility(currentIndex)
+            // Ses tamamlandığında bir sonraki sesi çal
             mediaPlayer?.setOnCompletionListener {
                 currentIndex++
                 playNextSound()
             }
-
             mediaPlayer?.start()
         }
+    }
+
+    private fun releaseAndCreateMediaPlayer() {
+        mediaPlayer?.release()
+        mediaPlayer = MediaPlayer.create(requireContext(), soundResIds[currentIndex])
+    }
+
+    private fun adjustPlaybackSpeed(index: Int) {
+        // Hızlandırma ve yavaşlatma hızları
+        val fastSpeed = 1.3f
+        val slowSpeed = 0.7f
+        // İlk ve üçüncü ses dosyası için hız değişimi yap
+        if (index == 1 || index == 3) {
+            val playbackParams = PlaybackParams().apply {
+                speed = when {
+                    randomFast && index == 1 -> fastSpeed // İlk müzik hızlıysa
+                    randomFast && index == 3 -> slowSpeed // Üçüncü müzik yavaşsa
+                    !randomFast && index == 1 -> slowSpeed // İlk müzik yavaşsa
+                    !randomFast && index == 3 -> fastSpeed // Üçüncü müzik hızlıysa
+                    else -> 1.0f // Normal hız
+                }
+            }
+            mediaPlayer?.playbackParams = playbackParams
+        }
+    }
+
+    private fun manageButtonVisibility(index: Int) {
+        // Tek indekslerde buton görünür, çift indekslerde gizlenir
+        if (index % 2 == 1) {
+            handler = Handler(Looper.getMainLooper())
+            handler?.postDelayed({
+                if (isAdded) {
+                    binding.btnHizliYavasNextSound.visibility = View.VISIBLE
+                }
+            }, 2000)
+        } else {
+            binding.btnHizliYavasNextSound.visibility = View.GONE
+        }
+    }
+
+    private fun setButtonBackground(
+        selectedButton: Button,
+        isFirstMusicFast: Boolean, // Çalınan müzik hızlı mı
+        isQuestionAskingForFast: Boolean // Soru hızlı müziği mi bulmamızı istiyor
+    ) {
+        val backgroundResource = if (isQuestionAskingForFast == isFirstMusicFast) {
+            R.drawable.border
+        } else {
+            R.drawable.border_red
+        }
+        selectedButton.setBackgroundResource(backgroundResource)
     }
 
     override fun onDestroyView() {
