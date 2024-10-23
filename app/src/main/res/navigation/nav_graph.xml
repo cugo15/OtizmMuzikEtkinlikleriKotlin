@@ -54,5 +54,9 @@
         android:id="@+id/oyunHizliYavasFragment"
         android:name="com.aecg.oyunvemuzikae.ui.OyunHizliYavasFragment"
         android:label="fragment_oyun_hizli_yavas"
-        tools:layout="@layout/fragment_oyun_hizli_yavas" />
+        tools:layout="@layout/fragment_oyun_hizli_yavas" >
+        <argument
+            android:name="hizliYavasList"
+            app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
+    </fragment>
 </navigation>
