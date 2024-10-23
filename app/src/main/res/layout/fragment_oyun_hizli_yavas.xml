@@ -28,7 +28,7 @@
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="10"
-        android:text="Hızlı olan müziği bulabilir misin ?"
+        tools:text="Hızlı olan müziği bulabilir misin ?"
         android:textColor="@color/orange"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -114,8 +114,7 @@
             android:id="@+id/imgHizliYavas"
             android:layout_width="300dp"
             android:layout_height="210dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_enstruman_piyano" />
+            android:layout_gravity="center" />
 
     </androidx.cardview.widget.CardView>
 
