@@ -112,4 +112,24 @@ class MyApplication:Application() {
         MenuModel("Sesten Bul",MenuType.OYUN,R.drawable.ic_oyunmenu_sestenbul),
         MenuModel("Hafıza Oyunu",MenuType.OYUN,R.drawable.ic_oyunmenu_hafiza),
     )
+    val oyunHizliYavasList = arrayListOf(
+        SesModel("Trombon",SesType.ENSTRUMAN, R.raw.sound_enstruman_trombon, R.drawable.ic_enstruman_trombon),
+        SesModel("Piyano",SesType.ENSTRUMAN, R.raw.sound_enstruman_piyano, R.drawable.ic_enstruman_piyano),
+        SesModel("Obua",SesType.ENSTRUMAN, R.raw.sound_enstruman_obua, R.drawable.ic_enstruman_obua),
+        SesModel("Metronom",SesType.ENSTRUMAN, R.raw.sound_enstruman_metronom, R.drawable.ic_enstruman_metronom),
+        SesModel("Gitar",SesType.ENSTRUMAN, R.raw.sound_enstruman_gitar, R.drawable.ic_enstruman_gitar),
+        SesModel("Trompet",SesType.ENSTRUMAN, R.raw.sound_enstruman_trompet, R.drawable.ic_enstruman_trompet),
+        SesModel("Bateri",SesType.ENSTRUMAN, R.raw.sound_enstruman_bateri, R.drawable.ic_enstruman_bateri),
+        SesModel("Bağlama",SesType.ENSTRUMAN, R.raw.sound_enstruman_baglama, R.drawable.ic_enstruman_baglama),
+        SesModel("Zurna",SesType.ENSTRUMAN, R.raw.sound_enstruman_zurna, R.drawable.ic_enstruman_zurna),
+        SesModel("Zil",SesType.ENSTRUMAN, R.raw.sound_enstruman_zil, R.drawable.ic_enstruman_zil),
+        SesModel("Keman",SesType.ENSTRUMAN, R.raw.sound_enstruman_keman, R.drawable.ic_enstruman_keman),
+        SesModel("Flüt",SesType.ENSTRUMAN, R.raw.sound_enstruman_flut, R.drawable.ic_enstruman_flut),
+        SesModel("Def",SesType.ENSTRUMAN, R.raw.sound_enstruman_def, R.drawable.ic_enstruman_def),
+        SesModel("Davul",SesType.ENSTRUMAN, R.raw.sound_enstruman_davul, R.drawable.ic_enstruman_davul),
+        SesModel("Ksilafon",SesType.ENSTRUMAN, R.raw.sound_enstruman_ksilafon, R.drawable.ic_enstruman_ksilofon),
+        SesModel("Kanun",SesType.ENSTRUMAN, R.raw.sound_enstruman_kanun, R.drawable.ic_enstruman_kanun),
+        SesModel("Ud",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_ud),
+
+    )
 }
