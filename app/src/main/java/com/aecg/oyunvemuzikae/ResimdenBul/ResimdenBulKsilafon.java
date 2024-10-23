@@ -60,7 +60,7 @@ public class ResimdenBulKsilafon extends AppCompatActivity {
         soru = MediaPlayer.create(this, R.raw.acabaksilafon);
         dogruses = MediaPlayer.create(this, R.raw.sound_enstruman_ksilafon);
         mediaPlayeryanliscevap = MediaPlayer.create(this,R.raw.yanliscevap);
-        mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.tebriklerdogrucevap);
+        mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.sound_cevap_dogru);
         int sorusure = soru.getDuration();
         int yanliscevapsure = mediaPlayeryanliscevap.getDuration();
         int dogrusessure = dogruses.getDuration();

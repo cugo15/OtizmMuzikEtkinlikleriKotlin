@@ -60,7 +60,7 @@ public class SestenBulTrombon extends AppCompatActivity {
         soru = MediaPlayer.create(this, R.raw.acababuseshangiens);
         dogruses = MediaPlayer.create(this, R.raw.sound_enstruman_trombon);
         mediaPlayeryanliscevap = MediaPlayer.create(this,R.raw.yanliscevap);
-        mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.tebriklerdogrucevap);
+        mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.sound_cevap_dogru);
         int sorusure = soru.getDuration();
         int yanliscevapsure = mediaPlayeryanliscevap.getDuration();
         int dogrusessure = dogruses.getDuration();

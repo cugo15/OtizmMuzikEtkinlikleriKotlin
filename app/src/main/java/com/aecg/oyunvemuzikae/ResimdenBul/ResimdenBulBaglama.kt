@@ -60,7 +60,7 @@ class ResimdenBulBaglama : AppCompatActivity() {
         soru = MediaPlayer.create(this, R.raw.acababaglama)
         dogruses = MediaPlayer.create(this, R.raw.sound_enstruman_baglama)
         mediaPlayeryanliscevap = MediaPlayer.create(this, R.raw.yanliscevap)
-        mediaPlayerdogrucevap = MediaPlayer.create(this, R.raw.tebriklerdogrucevap)
+        mediaPlayerdogrucevap = MediaPlayer.create(this, R.raw.sound_cevap_dogru)
         val sorusure = soru!!.getDuration()
         val yanliscevapsure = mediaPlayeryanliscevap!!.getDuration()
         val dogrusessure = dogruses!!.getDuration()

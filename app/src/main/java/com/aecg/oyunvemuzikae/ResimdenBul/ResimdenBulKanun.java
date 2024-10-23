@@ -62,7 +62,7 @@ public class ResimdenBulKanun extends AppCompatActivity {
         soru = MediaPlayer.create(this, R.raw.acabakanun);
         dogruses = MediaPlayer.create(this, R.raw.sound_enstruman_kanun);
         mediaPlayeryanliscevap = MediaPlayer.create(this,R.raw.yanliscevap);
-        mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.tebriklerdogrucevap);
+        mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.sound_cevap_dogru);
         int sorusure = soru.getDuration();
         int yanliscevapsure = mediaPlayeryanliscevap.getDuration();
         int dogrusessure = dogruses.getDuration();

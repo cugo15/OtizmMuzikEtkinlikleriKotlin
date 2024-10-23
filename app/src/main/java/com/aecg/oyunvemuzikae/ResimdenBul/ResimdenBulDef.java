@@ -61,7 +61,7 @@ public class ResimdenBulDef extends AppCompatActivity {
         soru = MediaPlayer.create(this, R.raw.acabadef);
         dogruses = MediaPlayer.create(this, R.raw.sound_enstruman_def);
         mediaPlayeryanliscevap = MediaPlayer.create(this,R.raw.yanliscevap);
-        mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.tebriklerdogrucevap);
+        mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.sound_cevap_dogru);
 
         int sorusure = soru.getDuration();
         int yanliscevapsure = mediaPlayeryanliscevap.getDuration();

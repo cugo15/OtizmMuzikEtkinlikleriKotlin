@@ -60,7 +60,7 @@ public class SestenBulBaglama extends AppCompatActivity {
         soru = MediaPlayer.create(this, R.raw.acababuseshangiens);
         dogruses = MediaPlayer.create(this, R.raw.sound_enstruman_baglama);
         mediaPlayeryanliscevap = MediaPlayer.create(this,R.raw.yanliscevap);
-        mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.tebriklerdogrucevap);
+        mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.sound_cevap_dogru);
 
         soru.start();
         soru.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
