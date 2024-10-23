@@ -56,7 +56,7 @@
         app:srcCompat="@drawable/geriyuruyencocuk" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/piyano1cimuzik"
+        android:id="@+id/btnMuzik1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -71,13 +71,13 @@
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/piyano2cimuzik"
+        app:layout_constraintEnd_toStartOf="@+id/btnMuzik2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
 
-        android:id="@+id/piyano2cimuzik"
+        android:id="@+id/btnMuzik2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -91,10 +91,10 @@
         android:text="2.Müzik"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/piyano1cimuzik"
+        app:layout_constraintBottom_toBottomOf="@+id/btnMuzik1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/piyano1cimuzik" />
+        app:layout_constraintStart_toEndOf="@+id/btnMuzik1" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewHizliYavas"
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/piyano1cimuzik"
+        app:layout_constraintBottom_toTopOf="@+id/btnMuzik1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHizliYavasSoru">
