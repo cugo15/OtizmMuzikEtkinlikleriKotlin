@@ -79,6 +79,8 @@ class MenuFragment : Fragment() {
             }else if(type == MenuType.OYUN){
                 val action = when (name) {
                     "Hızlı Yavaş" -> MenuFragmentDirections.menuFragmentToOyunHizliYavasFragment(myApplication.oyunHizliYavasList.toTypedArray())
+                    "Resimden Bul" -> MenuFragmentDirections.menuFragmentToOyunResimdenSestenBulFragment(myApplication.enstrumanList.toTypedArray(),"Resimden Bul")
+                    "Sesten Bul" -> MenuFragmentDirections.menuFragmentToOyunResimdenSestenBulFragment(myApplication.enstrumanList.toTypedArray(),"Sesten Bul")
                     else -> null // Geçersiz bir isim durumunda
                 }
                 action?.let { findNavController().navigate(it) }
