@@ -42,7 +42,11 @@ class OyunHizliYavasFragment : Fragment() {
         val view = binding.root
 
         setSoruText(randomQuestionFast)
-        sesList = OyunHizliYavasFragmentArgs.fromBundle(requireArguments()).hizliYavasList.toList() as ArrayList<SesModel>
+        sesList = OyunHizliYavasFragmentArgs
+            .fromBundle(requireArguments())
+            .hizliYavasList
+            .toCollection(ArrayList())
+
         randomSound = sesList.random()
 
         Glide.with(requireContext())
@@ -69,7 +73,7 @@ class OyunHizliYavasFragment : Fragment() {
         return view
     }
     private fun setSoruText(randomQuestionFast: Boolean) {
-        binding.txtHizliYavasSoru.text = if (randomQuestionFast) {
+        binding.txtHizliYavasHeader.text = if (randomQuestionFast) {
             "Hızlı olan müziği bulabilir misin ?"
         } else {
             "Yavaş olan müziği bulabilir misin ?"
