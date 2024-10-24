@@ -2,12 +2,15 @@ package com.aecg.oyunvemuzikae.ui
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.aecg.oyunvemuzikae.MyApplication
 import com.aecg.oyunvemuzikae.R
@@ -15,6 +18,8 @@ import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunResimdenSestenBulBinding
 import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class OyunResimdenSestenBulFragment : Fragment() {
     
@@ -50,7 +55,7 @@ class OyunResimdenSestenBulFragment : Fragment() {
     ): View {
         _binding = FragmentOyunResimdenSestenBulBinding.inflate(inflater, container, false)
         val view = binding.root
-
+        isAnswerButtonsEnabled(false)
         initializeGameData()
 
         // Doğru enstrümanı rastgele seç ve listeden çıkar
@@ -65,6 +70,7 @@ class OyunResimdenSestenBulFragment : Fragment() {
             binding.layoutOyunResimdenSestenBul.loadLayoutBackgroundWithGlide(requireContext(), R.drawable.sestenback, R.drawable.bg_doga)
             playNextSound()
         }
+
         setCardViewClickListener(binding.cardViewOyunResimdenSestenBulAnswer1,binding.imgOyunResimdenSestenBulAnswer1)
         setCardViewClickListener(binding.cardViewOyunResimdenSestenBulAnswer2, binding.imgOyunResimdenSestenBulAnswer2)
         setCardViewClickListener(binding.cardViewOyunResimdenSestenBulAnswer3, binding.imgOyunResimdenSestenBulAnswer3)
@@ -108,7 +114,10 @@ class OyunResimdenSestenBulFragment : Fragment() {
 
     private fun handleAnswerSelection(selectedAnswer: ImageView, cardView: CardView) {
         cardView.setBackgroundResource(if (selectedAnswer == correctImageView) {
-            R.drawable.border.also { handleSoundCompletion() }
+            R.drawable.border.also {
+                increaseIndexAndPlayNextSound()
+                isAnswerButtonsEnabled(false)
+            }
         } else {
             R.drawable.border_red
         })
@@ -133,23 +142,39 @@ class OyunResimdenSestenBulFragment : Fragment() {
                 .into(imageView)
         }
     }
-    private fun handleSoundCompletion() {
-        if (currentIndex == 2) {
-            navigateToSelf()
-        }else{
-            currentIndex++
-            playNextSound()
-        }
+
+    private fun isAnswerButtonsEnabled(isEnabled: Boolean) {
+        binding.cardViewOyunResimdenSestenBulAnswer1.isEnabled = isEnabled
+        binding.cardViewOyunResimdenSestenBulAnswer2.isEnabled = isEnabled
+        binding.cardViewOyunResimdenSestenBulAnswer3.isEnabled = isEnabled
     }
+
     private fun playNextSound() {
-        // Geçerli indeks ses kaynakları içinde sınırdaysa
+        // Check if the current index is within the bounds of sound resources
         if (currentIndex < soundListSestenBul.size) {
             releaseAndCreateMediaPlayer()
+            if (currentIndex == 1) {
+                lifecycleScope.launch {
+                    delay(2000)
+                    isAnswerButtonsEnabled(true)
+                }
+            }
             mediaPlayer?.setOnCompletionListener {
                 handleSoundCompletion()
             }
             mediaPlayer?.start()
         }
+    }
+
+    private fun handleSoundCompletion() {
+        when (currentIndex) {
+            2 -> navigateToSelf()
+            0 -> increaseIndexAndPlayNextSound()
+        }
+    }
+    private fun increaseIndexAndPlayNextSound() {
+        currentIndex++
+        playNextSound()
     }
     private fun releaseAndCreateMediaPlayer() {
         mediaPlayer?.release()
@@ -164,6 +189,10 @@ class OyunResimdenSestenBulFragment : Fragment() {
             gameType, // Oyun tipini geç // Sabit listeyi array olarak geç
         )
         findNavController().navigate(action) // Fragmana geçiş yap
+    }
+    override fun onPause() {
+        super.onPause()
+        mediaPlayer?.pause()
     }
     override fun onDestroyView() {
         super.onDestroyView()

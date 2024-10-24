@@ -3,25 +3,24 @@ package com.aecg.oyunvemuzikae.ui
 import android.media.MediaPlayer
 import android.media.PlaybackParams
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunHizliYavasBinding
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class OyunHizliYavasFragment : Fragment() {
     private var _binding: FragmentOyunHizliYavasBinding? = null
     private val binding get() = _binding!!
-
-    private var handler: Handler? = null
 
     private val randomFirstOneFast = Random.nextBoolean()
     private val randomQuestionFast = Random.nextBoolean()
@@ -156,18 +155,23 @@ class OyunHizliYavasFragment : Fragment() {
 
     private fun manageButtonVisibility(index: Int) {
         when {
-            index == 5 -> binding.btnHizliYavasNextSound.visibility = View.GONE
+            index == 5 -> {
+                binding.btnHizliYavasNextSound.visibility = View.GONE
+            }
             index % 2 == 1 -> {
-                handler = Handler(Looper.getMainLooper())
-                handler?.postDelayed({
+                lifecycleScope.launch {
+                    delay(2000) // 2 saniye bekle
                     if (isAdded) {
                         binding.btnHizliYavasNextSound.visibility = View.VISIBLE
                     }
-                }, 2000)
+                }
             }
-            else -> binding.btnHizliYavasNextSound.visibility = View.GONE
+            else -> {
+                binding.btnHizliYavasNextSound.visibility = View.GONE
+            }
         }
     }
+
 
     private fun setButtonBackground(
         selectedButton: Button,
@@ -188,7 +192,6 @@ class OyunHizliYavasFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        handler?.removeCallbacksAndMessages(null)
         _binding = null
         mediaPlayer?.release() // Activity kapatıldığında mediaPlayer'i serbest bırak
     }
