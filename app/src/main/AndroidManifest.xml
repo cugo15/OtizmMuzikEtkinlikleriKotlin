@@ -40,57 +40,7 @@
         <activity
             android:name=".HafizaOyunu.MemoryMap"
             android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulZurna"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulZil"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulUd"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulTrompet"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulTrombon"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulPiyano"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulObua"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulMetronom"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulKsilafon"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulKeman"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulKanun"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulGitar"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulFlut"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulDef"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulDavul"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulBaglama"
-            android:exported="false" />
-        <activity
-            android:name=".SestenBul.SestenBulBateri"
-            android:exported="false" />
+
         <activity
             android:name=".MrbKareoke"
             android:exported="false" />
