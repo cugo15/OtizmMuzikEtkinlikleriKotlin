@@ -49,6 +49,9 @@
         <action
             android:id="@+id/menuFragment_to_oyunHizliYavasFragment"
             app:destination="@id/oyunHizliYavasFragment" />
+        <action
+            android:id="@+id/menuFragment_to_oyunResimdenSestenBulFragment"
+            app:destination="@id/oyunResimdenSestenBulFragment" />
     </fragment>
     <fragment
         android:id="@+id/oyunHizliYavasFragment"
@@ -62,6 +65,22 @@
             android:id="@+id/action_oyunHizliYavasFragment_self"
             app:destination="@id/oyunHizliYavasFragment"
             app:popUpTo="@id/oyunHizliYavasFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/oyunResimdenSestenBulFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.OyunResimdenSestenBulFragment"
+        android:label="fragment_oyun_resimden_sesten_bul"
+        tools:layout="@layout/fragment_oyun_resimden_sesten_bul" >
+        <argument android:name="resimdenSestenBulList"
+            app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
+        <argument
+            android:name="resimdenSestenBulType"
+            app:argType="string" />
+        <action
+            android:id="@+id/oyunResimdenSestenBulFragment_self"
+            app:destination="@id/oyunResimdenSestenBulFragment"
+            app:popUpTo="@id/oyunResimdenSestenBulFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>
