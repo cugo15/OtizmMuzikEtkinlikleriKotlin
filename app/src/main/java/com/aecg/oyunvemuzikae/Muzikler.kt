@@ -22,8 +22,8 @@ class Muzikler : AppCompatActivity() {
         val view: View = binding.root
         setContentView(view)
 
-        merhaba = MediaPlayer.create(this, R.raw.merhabasarkisi)
-        ucboyutlucisimler = MediaPlayer.create(this, R.raw.ucboyutlucisimler)
+        merhaba = MediaPlayer.create(this, R.raw.sound_muzik_merhabasarkisi)
+        ucboyutlucisimler = MediaPlayer.create(this, R.raw.sound_muzik_ucboyutlucisimler)
 
         decorView = window.decorView
         decorView.setOnSystemUiVisibilityChangeListener { i ->

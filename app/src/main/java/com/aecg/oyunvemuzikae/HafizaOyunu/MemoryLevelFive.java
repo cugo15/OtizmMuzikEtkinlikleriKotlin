@@ -48,7 +48,7 @@ public class MemoryLevelFive extends AppCompatActivity {
                 }
             }
         });
-        mediaPlayeryanliscevap = MediaPlayer.create(this,R.raw.yanliscevap);
+        mediaPlayeryanliscevap = MediaPlayer.create(this,R.raw.sound_yanlis_cevap);
         mediaPlayerdogrucevap = MediaPlayer.create(this,R.raw.dogrucingil);
         dogrucevapsure = mediaPlayerdogrucevap.getDuration();
 

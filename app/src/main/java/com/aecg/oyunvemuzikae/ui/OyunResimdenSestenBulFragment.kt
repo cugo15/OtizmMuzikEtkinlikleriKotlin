@@ -101,7 +101,7 @@ class OyunResimdenSestenBulFragment : Fragment() {
 
     private fun createSoundSestenBulList(correctInstrument: SesModel) {
         soundListSestenBul = arrayListOf(
-            R.raw.acababuseshangiens,
+            R.raw.sound_oyun_sestenbul_soru,
             correctInstrument.sesResourceId,
             R.raw.sound_cevap_dogru
         )

@@ -81,11 +81,11 @@ class OyunHizliYavasFragment : Fragment() {
 
     private fun getSoundResIds(): List<Int> {
         return listOf(
-            if (randomQuestionFast) R.raw.hizliolanibul else R.raw.yavasolanibul,
+            if (randomQuestionFast) R.raw.sound_oyun_hizliyavas_hizli1 else R.raw.sound_oyun_sestenbul_soru_yavas,
             randomSound.sesResourceId,
-            R.raw.ikincmuzik,
+            R.raw.sound_oyun_sestenbul_soru_ikincimuzik,
             randomSound.sesResourceId,
-            if (randomQuestionFast) R.raw.hizlitempo else R.raw.yavastempo,
+            if (randomQuestionFast) R.raw.sound_oyun_sestenbul_soru2 else R.raw.sound_oyun_sestenbul_soru_yavas2,
             R.raw.sound_cevap_dogru
         )
     }
