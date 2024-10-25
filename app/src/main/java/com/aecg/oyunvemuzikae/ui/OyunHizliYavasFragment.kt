@@ -166,12 +166,9 @@ class OyunHizliYavasFragment : Fragment() {
                     }
                 }
             }
-            else -> {
-                binding.btnHizliYavasNextSound.visibility = View.GONE
-            }
+            else -> binding.btnHizliYavasNextSound.visibility = View.GONE
         }
     }
-
 
     private fun setButtonBackground(
         selectedButton: Button,
