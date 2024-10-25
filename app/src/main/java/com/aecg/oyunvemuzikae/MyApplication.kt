@@ -35,7 +35,31 @@ class MyApplication:Application() {
         SesModel("Ksilafon",SesType.ENSTRUMAN, R.raw.sound_enstruman_ksilafon, R.drawable.ic_enstruman_ksilofon),
         SesModel("Kanun",SesType.ENSTRUMAN, R.raw.sound_enstruman_kanun, R.drawable.ic_enstruman_kanun),
         SesModel("Ud",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_ud),
-    )
+
+
+        SesModel("Blok Flüt",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_blokflut),
+        SesModel("Cümbüş",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_cumbus),
+        SesModel("Elektro Gitar",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_elektrogitar),
+        SesModel("Guiro",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_guiro),
+        SesModel("Saksafon",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_saksafon),
+        SesModel("Korno",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_korno),
+        SesModel("Ritim Çubuğu",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_ritimcubugu),
+        SesModel("Trampet",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_trampet),
+        SesModel("Kastanyet",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_kastanyet),
+        SesModel("İnek Çanı",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_inekcani),
+        SesModel("Mandolin",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_mandolin),
+        SesModel("Rüzgar Çanı",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_ruzgarcani),
+        SesModel("Tuba",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_tuba),
+        SesModel("Darbuka",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_darbuka),
+        SesModel("Kajon",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_kajon),
+        SesModel("Marakas",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_marakas),
+        SesModel("Timpani",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_timpani),
+        SesModel("Tumba",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_tumba),
+        SesModel("El Davulu",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_eldavulu),
+        SesModel("Konser Zili",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_konserzili),
+        SesModel("Tahta Blok",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_tahtablok),
+        SesModel("Ney",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_ney),
+        )
 
     val insanList = arrayListOf(
         SesModel("Kız Çocuk",SesType.INSAN, R.raw.sound_insan_kiz_cocuk, R.drawable.ic_insan_kiz_cocuk),
@@ -54,6 +78,9 @@ class MyApplication:Application() {
         SesModel("Köpek",SesType.HAYVAN, R.raw.sound_hayvan_kopek, R.drawable.ic_hayvan_kopek),
         SesModel("Kedi",SesType.HAYVAN, R.raw.sound_hayvan_kedi, R.drawable.ic_hayvan_kedi),
         SesModel("Koyun",SesType.HAYVAN, R.raw.sound_hayvan_koyun, R.drawable.ic_hayvan_koyun),
+
+        SesModel("Ördek",SesType.HAYVAN, R.raw.sound_hayvan_koyun, R.drawable.ic_hayvan_ordek),
+
         )
 
     val aracList = arrayListOf(
@@ -65,7 +92,10 @@ class MyApplication:Application() {
         SesModel("At Arabası",SesType.ARAC, R.raw.sound_arac_at_arabasi, R.drawable.ic_arac_at_arabasi),
         SesModel("Helikopter",SesType.ARAC, R.raw.sound_arac_helikopter, R.drawable.ic_arac_helikopter),
         SesModel("Ambulans",SesType.ARAC, R.raw.sound_arac_ambulans, R.drawable.ic_arac_ambulans),
-    )
+
+        SesModel("Bisiklet",SesType.ARAC, R.raw.sound_arac_ambulans, R.drawable.ic_arac_bsiklet),
+
+        )
 
     val sekilList = arrayListOf(
         SesModel("Üçgen",SesType.SEKIL, R.raw.sound_sekil_ucgen, R.drawable.ic_sekil_ucgen),
@@ -132,4 +162,48 @@ class MyApplication:Application() {
         SesModel("Ud",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_ud),
 
     )
+
+    val oyunResimdenBulList = arrayListOf(
+        SesModel("Trombon",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_trombon, R.drawable.ic_enstruman_trombon),
+        SesModel("Piyano",SesType.ENSTRUMAN, R.raw.sound_enstruman_piyano, R.drawable.ic_enstruman_piyano),//piyano eksik
+        SesModel("Obua",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_obua, R.drawable.ic_enstruman_obua),
+        SesModel("Metronom",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_metronom, R.drawable.ic_enstruman_metronom),
+        SesModel("Gitar",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_gitar, R.drawable.ic_enstruman_gitar),
+        SesModel("Trompet",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_trompet, R.drawable.ic_enstruman_trompet),
+        SesModel("Bateri",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_bateri, R.drawable.ic_enstruman_bateri),
+        SesModel("Bağlama",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_baglama, R.drawable.ic_enstruman_baglama),
+        SesModel("Zurna",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_zurna, R.drawable.ic_enstruman_zurna),
+        SesModel("Zil",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_zil, R.drawable.ic_enstruman_zil),
+        SesModel("Keman",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_keman, R.drawable.ic_enstruman_keman),
+        SesModel("Flüt",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_flut, R.drawable.ic_enstruman_flut),
+        SesModel("Def",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_def, R.drawable.ic_enstruman_def),
+        SesModel("Davul",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_davul, R.drawable.ic_enstruman_davul),
+        SesModel("Ksilafon",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_ksilafon, R.drawable.ic_enstruman_ksilofon),
+        SesModel("Kanun",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_kanun, R.drawable.ic_enstruman_kanun),
+        SesModel("Ud",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_ud, R.drawable.ic_enstruman_ud),
+
+        SesModel("Blok Flüt",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_blokflut, R.drawable.ic_enstruman_blokflut),
+        SesModel("Cümbüş",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_cumbus, R.drawable.ic_enstruman_cumbus),
+        SesModel("Elektro Gitar",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_elektrogitar, R.drawable.ic_enstruman_elektrogitar),
+        SesModel("Guiro",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_guiro),//Guiro eksik
+        SesModel("Saksafon",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_saksafon, R.drawable.ic_enstruman_saksafon),
+        SesModel("Korno",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_korno, R.drawable.ic_enstruman_korno),
+        SesModel("Ritim Çubuğu",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_ritimcubugu, R.drawable.ic_enstruman_ritimcubugu),
+        SesModel("Trampet",SesType.ENSTRUMAN, R.raw.sound_enstruman_ud, R.drawable.ic_enstruman_trampet),//Trampet eksik
+        SesModel("Kastanyet",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_kastanyet, R.drawable.ic_enstruman_kastanyet),
+        SesModel("İnek Çanı",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_inekcani, R.drawable.ic_enstruman_inekcani),
+        SesModel("Mandolin",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_mandolin, R.drawable.ic_enstruman_mandolin),
+        SesModel("Rüzgar Çanı",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_ruzgarcani, R.drawable.ic_enstruman_ruzgarcani),
+        SesModel("Tuba",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_tuba, R.drawable.ic_enstruman_tuba),
+        SesModel("Darbuka",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_darbuka, R.drawable.ic_enstruman_darbuka),
+        SesModel("Kajon",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_kajon, R.drawable.ic_enstruman_kajon),
+        SesModel("Marakas",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_marakas, R.drawable.ic_enstruman_marakas),
+        SesModel("Timpani",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_timpani, R.drawable.ic_enstruman_timpani),
+        SesModel("Tumba",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_tumba, R.drawable.ic_enstruman_tumba),
+        SesModel("El Davulu",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_eldavulu, R.drawable.ic_enstruman_eldavulu),
+        SesModel("Konser Zili",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_konserzili, R.drawable.ic_enstruman_konserzili),
+        SesModel("Tahta Blok",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_tahtablok, R.drawable.ic_enstruman_tahtablok),
+        SesModel("Ney",SesType.ENSTRUMAN, R.raw.sound_enstruman_name_ney, R.drawable.ic_enstruman_ney),
+
+        )
 }
