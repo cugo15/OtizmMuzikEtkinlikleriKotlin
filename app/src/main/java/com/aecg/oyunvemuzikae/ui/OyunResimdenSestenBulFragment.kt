@@ -26,6 +26,7 @@ class OyunResimdenSestenBulFragment : Fragment() {
 
     private lateinit var enstrumanList: ArrayList<SesModel>
     private lateinit var enstrumanFullList: ArrayList<SesModel>
+    
     private lateinit var gameType: String
 
     private var mediaPlayer: MediaPlayer? = null
@@ -59,13 +60,16 @@ class OyunResimdenSestenBulFragment : Fragment() {
         // Doğru enstrümanı rastgele seç ve listeden çıkar
         val correctInstrument = enstrumanList.random().also { enstrumanList.remove(it) }
         binding.txtOyunResimdenSestenBulHeader.text = correctInstrument.sesName
-        createSoundList(correctInstrument)
+
         setInstrumentImages(correctImageView,correctInstrument.imageResourceId,selectWrongInstruments(correctInstrument))
 
         if (gameType == "Resimden Bul") {
             binding.layoutOyunResimdenSestenBul.loadLayoutBackgroundWithGlide(requireContext(), R.drawable.resimdenbulback2, R.drawable.bg_doga)
+            createSoundResimdenBulList(correctInstrument)
+            playNextSound()
         }else{
             binding.layoutOyunResimdenSestenBul.loadLayoutBackgroundWithGlide(requireContext(), R.drawable.sestenback, R.drawable.bg_doga)
+            createSoundSestenBulList(correctInstrument)
             playNextSound()
         }
 
@@ -76,13 +80,18 @@ class OyunResimdenSestenBulFragment : Fragment() {
         return view
     }
     private fun initializeGameData() {
-        enstrumanFullList = myApplication
-            .enstrumanList
-            .toCollection(ArrayList())
-
         gameType = OyunResimdenSestenBulFragmentArgs
             .fromBundle(requireArguments())
             .resimdenSestenBulType
+        if(gameType == "Resimden Bul"){
+            enstrumanFullList = myApplication
+                .oyunResimdenBulList
+                .toCollection(ArrayList())
+        }else{
+            enstrumanFullList = myApplication
+                .enstrumanList
+                .toCollection(ArrayList())
+        }
 
         enstrumanList = OyunResimdenSestenBulFragmentArgs
             .fromBundle(requireArguments())
@@ -90,14 +99,20 @@ class OyunResimdenSestenBulFragment : Fragment() {
             .toCollection(ArrayList())
     }
 
-    private fun createSoundList(correctInstrument: SesModel) {
+    private fun createSoundSestenBulList(correctInstrument: SesModel) {
         soundListSestenBul = arrayListOf(
             R.raw.acababuseshangiens,
             correctInstrument.sesResourceId,
             R.raw.sound_cevap_dogru
         )
     }
-
+    private fun createSoundResimdenBulList(correctInstrument: SesModel) {
+        soundListSestenBul = arrayListOf(
+            correctInstrument.sesResourceId,
+            R.raw.sound_oyun_resimdenbul_soru,
+            R.raw.sound_cevap_dogru
+        )
+    }
     private fun selectWrongInstruments(correctInstrument: SesModel): Pair<Int, Int> {
         enstrumanFullList.remove(correctInstrument)
         val shuffledList = enstrumanFullList.map { it.imageResourceId }.shuffled()
