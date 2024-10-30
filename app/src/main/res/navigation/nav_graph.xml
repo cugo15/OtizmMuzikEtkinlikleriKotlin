@@ -14,8 +14,11 @@
             android:id="@+id/homeFragment_to_pianoFragment"
             app:destination="@id/pianoFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_menuFragment"
+            android:id="@+id/homeFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/homeFragment_to_muzikFragment"
+            app:destination="@id/muzikFragment" />
     </fragment>
     <fragment
         android:id="@+id/pianoFragment"
@@ -83,4 +86,9 @@
             app:popUpTo="@id/oyunResimdenSestenBulFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/muzikFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.MuzikFragment"
+        android:label="fragment_muzik"
+        tools:layout="@layout/fragment_muzik" />
 </navigation>
