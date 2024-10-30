@@ -29,11 +29,11 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.homeFragment_to_pianoFragment)
         }
         binding.btnHomeSesler.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToMenuFragment(myApplication.sesMenuList.toTypedArray())
+            val action = HomeFragmentDirections.homeFragmentToMenuFragment(myApplication.sesMenuList.toTypedArray())
             findNavController().navigate(action)
         }
         binding.btnHomeOyunlar.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToMenuFragment(myApplication.oyunMenuList.toTypedArray())
+            val action = HomeFragmentDirections.homeFragmentToMenuFragment(myApplication.oyunMenuList.toTypedArray())
             findNavController().navigate(action)
         }
 
