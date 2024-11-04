@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import com.aecg.oyunvemuzikae.BaseActivity
+import androidx.appcompat.app.AppCompatActivity
 
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
     var animationzoom: Animation? = null
@@ -20,7 +20,6 @@ class MainActivity : BaseActivity() {
         val view: View = binding.root
         setContentView(view)
         animationzoom = AnimationUtils.loadAnimation(applicationContext, R.anim.zoom_inshort)
-
 
     }
     override fun onDestroy() {
