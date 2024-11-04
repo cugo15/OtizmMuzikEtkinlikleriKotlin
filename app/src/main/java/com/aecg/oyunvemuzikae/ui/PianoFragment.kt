@@ -2,10 +2,8 @@ package com.aecg.oyunvemuzikae.ui
 
 import android.media.SoundPool
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.SeekBar
@@ -17,9 +15,7 @@ import com.aecg.oyunvemuzikae.R
 
 import com.aecg.oyunvemuzikae.databinding.FragmentPianoBinding
 
-class PianoFragment : BaseFragment() {
-    private var _binding: FragmentPianoBinding? = null
-    private val binding get() = _binding!!
+class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::inflate) {
 
     private lateinit var soundPool: SoundPool
     private val soundMap = mutableMapOf<View, Int>()
@@ -28,13 +24,8 @@ class PianoFragment : BaseFragment() {
     private lateinit var firstVisibleItem: Button
     private var c: Int = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentPianoBinding.inflate(inflater, container, false)
-        val view = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         whiteKeys = getWhiteKeys()
         blackKeys = getBlackKeys()
         firstVisibleItem = binding.btnC4
@@ -87,10 +78,6 @@ class PianoFragment : BaseFragment() {
                 else -> colorfulKeyboard()      // Renkli yap
             }
         }
-
-
-
-        return view
     }
 
     private fun initializeSoundPool() {
@@ -415,6 +402,5 @@ class PianoFragment : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         soundPool.release()
-        _binding = null
     }
 }

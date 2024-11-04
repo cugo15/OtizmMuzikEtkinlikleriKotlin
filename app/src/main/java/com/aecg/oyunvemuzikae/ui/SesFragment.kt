@@ -17,23 +17,13 @@ import com.aecg.oyunvemuzikae.databinding.FragmentSesBinding
 import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.scrollInDirection
 
-class SesFragment : BaseFragment() {
-    private var _binding: FragmentSesBinding? = null
-    private val binding get() = _binding!!
-
+class SesFragment : BaseFragment<FragmentSesBinding>(FragmentSesBinding::inflate) {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var sesList: ArrayList<SesModel>
     private lateinit var animationzoom: Animation
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSesBinding.inflate(inflater, container, false)
-        val view = binding.root
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         animationzoom = AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_inshort)
 
         sesList = SesFragmentArgs.fromBundle(requireArguments()).sesList.toList() as ArrayList<SesModel>
@@ -53,19 +43,10 @@ class SesFragment : BaseFragment() {
 
         binding.layoutSes.loadLayoutBackgroundWithGlide(requireContext(), backgroundResource, R.drawable.bg_doga)
 
-
         setupRecyclerView(sesList)
 
-        binding.btnScrollLeftSes.setOnClickListener {
-            binding.rvSes.scrollInDirection(-1)
-        }
-
-        binding.BtnScrollRightSes.setOnClickListener {
-            binding.rvSes.scrollInDirection(1)
-        }
-
-
-        return view
+        binding.btnScrollLeftSes.setOnClickListener {binding.rvSes.scrollInDirection(-1)}
+        binding.BtnScrollRightSes.setOnClickListener {binding.rvSes.scrollInDirection(1)}
     }
 
     private fun setupRecyclerView(sesList: ArrayList<SesModel>) {
@@ -101,6 +82,5 @@ class SesFragment : BaseFragment() {
             mediaPlayer.release()
         }
         sesList.clear()
-        _binding = null
     }
 }

@@ -2,9 +2,7 @@ package com.aecg.oyunvemuzikae.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -14,22 +12,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class WebViewDialogFragment : BaseFragment() {
+class WebViewDialogFragment : BaseFragment<FragmentWebViewDialogBinding>(FragmentWebViewDialogBinding::inflate) {
 
-    private var _binding: FragmentWebViewDialogBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentWebViewDialogBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val videoId = WebViewDialogFragmentArgs.fromBundle(requireArguments()).videoId
-
         setupWebView()
         loadYouTubeVideo(videoId)
-
-        return binding.root
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -82,6 +71,5 @@ class WebViewDialogFragment : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding.webView.destroy() // WebView'i yok et
-        _binding = null
     }
 }

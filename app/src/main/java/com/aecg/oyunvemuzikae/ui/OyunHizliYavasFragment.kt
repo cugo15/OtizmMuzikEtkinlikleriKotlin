@@ -18,9 +18,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class OyunHizliYavasFragment : BaseFragment() {
-    private var _binding: FragmentOyunHizliYavasBinding? = null
-    private val binding get() = _binding!!
+class OyunHizliYavasFragment : BaseFragment<FragmentOyunHizliYavasBinding>(FragmentOyunHizliYavasBinding::inflate) {
 
     private val randomFirstOneFast = Random.nextBoolean()
     private val randomQuestionFast = Random.nextBoolean()
@@ -32,14 +30,8 @@ class OyunHizliYavasFragment : BaseFragment() {
     private var mediaPlayer: MediaPlayer? = null
     private var currentIndex = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentOyunHizliYavasBinding.inflate(inflater, container, false)
-        val view = binding.root
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setSoruText(randomQuestionFast)
         sesList = OyunHizliYavasFragmentArgs
             .fromBundle(requireArguments())
@@ -68,9 +60,8 @@ class OyunHizliYavasFragment : BaseFragment() {
         binding.btnMuzik2.setOnClickListener {
             setButtonBackground(binding.btnMuzik2, !randomFirstOneFast, randomQuestionFast)
         }
-
-        return view
     }
+
     private fun setSoruText(randomQuestionFast: Boolean) {
         binding.txtHizliYavasHeader.text = if (randomQuestionFast) {
             "Hızlı olan müziği bulabilir misin ?"
@@ -189,7 +180,6 @@ class OyunHizliYavasFragment : BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
         mediaPlayer?.release() // Activity kapatıldığında mediaPlayer'i serbest bırak
     }
 }

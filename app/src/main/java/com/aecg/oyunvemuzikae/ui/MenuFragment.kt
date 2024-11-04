@@ -1,9 +1,7 @@
 package com.aecg.oyunvemuzikae.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.findNavController
@@ -16,24 +14,17 @@ import com.aecg.oyunvemuzikae.databinding.FragmentMenuBinding
 import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.scrollInDirection
 
+class MenuFragment : BaseFragment<FragmentMenuBinding>(FragmentMenuBinding::inflate) {
 
-class MenuFragment : BaseFragment() {
-
-    private var _binding: FragmentMenuBinding? = null
-    private val binding get() = _binding!!
     private lateinit var animationZoom: Animation
     private lateinit var menuList: ArrayList<MenuModel>
 
     private val myApplication: MyApplication by lazy {
         requireActivity().application as MyApplication
     }
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentMenuBinding.inflate(inflater, container, false)
-        val view = binding.root
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         animationZoom = AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_inshort)
 
         menuList = MenuFragmentArgs.fromBundle(requireArguments()).menuList.toList() as ArrayList<MenuModel>
@@ -56,9 +47,8 @@ class MenuFragment : BaseFragment() {
         binding.BtnScrollRightMenu.setOnClickListener {
             binding.rvMenu.scrollInDirection(1)
         }
-
-        return view
     }
+
     private fun setupRecyclerView(menuList: ArrayList<MenuModel>) {
         // RecyclerView'e yatay (horizontal) LinearLayoutManager ata
         binding.rvMenu.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -90,9 +80,5 @@ class MenuFragment : BaseFragment() {
             // Animasyonu başlat
             view.startAnimation(animationZoom)
         }
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

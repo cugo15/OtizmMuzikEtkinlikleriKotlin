@@ -3,43 +3,26 @@ package com.aecg.oyunvemuzikae.ui
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.findNavController
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.FragmentMuzikBinding
 
-
-
-class MuzikFragment : BaseFragment() {
-
-    private var _binding: FragmentMuzikBinding? = null
-    private val binding get() = _binding!!
+class MuzikFragment : BaseFragment<FragmentMuzikBinding>(FragmentMuzikBinding::inflate) {
 
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var muzikList: ArrayList<MuzikModel>
     private lateinit var animationzoom: Animation
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentMuzikBinding.inflate(inflater, container, false)
-        val view = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         animationzoom = AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_inshort)
-
         muzikList = MuzikFragmentArgs.fromBundle(requireArguments()).muzikList.toCollection(ArrayList())
         setupRecyclerView(muzikList)
-
-
-        return view
     }
 
     private fun setupRecyclerView(muzikList: ArrayList<MuzikModel>) {
@@ -77,16 +60,5 @@ class MuzikFragment : BaseFragment() {
     private fun openVideo(videoId: String) {
         val action = MuzikFragmentDirections.actionMuzikFragmentToWebViewDialogFragment(videoId)
         findNavController().navigate(action)
-    }
-
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        if (::mediaPlayer.isInitialized) {
-            mediaPlayer.release()
-        }
-        muzikList.clear()
-        _binding = null
     }
 }

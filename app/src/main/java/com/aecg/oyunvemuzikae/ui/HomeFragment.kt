@@ -1,29 +1,17 @@
 package com.aecg.oyunvemuzikae.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.MyApplication
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.FragmentHomeBinding
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = binding.root
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val myApplication = requireActivity().application as MyApplication
         binding.btnHomePiyano.setOnClickListener {
             findNavController().navigate(R.id.homeFragment_to_pianoFragment)
@@ -40,13 +28,6 @@ class HomeFragment : BaseFragment() {
             val action = HomeFragmentDirections.homeFragmentToMuzikFragment(myApplication.muzikMenuList.toTypedArray())
             findNavController().navigate(action)
         }
-
-        return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
 }
