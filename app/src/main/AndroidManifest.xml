@@ -19,10 +19,6 @@
         tools:targetApi="34">
 
         <activity
-            android:name=".Muzikler"
-            android:exported="false" />
-
-        <activity
             android:name=".HafizaOyunu.MemoryLevelFive"
             android:exported="false" />
         <activity
@@ -39,61 +35,6 @@
             android:exported="false" />
         <activity
             android:name=".HafizaOyunu.MemoryMap"
-            android:exported="false" />
-
-        <activity
-            android:name=".MrbKareoke"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulKanun"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulUd"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulGitar"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulMetronom"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulDavul"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulZurna"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulZil"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulTrombon"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulDef"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulObua"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulKsilafon"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulBateri"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulFlut"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulPiyano"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulTrompet"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulKeman"
-            android:exported="false" />
-        <activity
-            android:name=".ResimdenBul.ResimdenBulBaglama"
             android:exported="false" />
 
         <activity
