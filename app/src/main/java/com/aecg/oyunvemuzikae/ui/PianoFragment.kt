@@ -33,9 +33,6 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
         initializeSoundPool()
         loadSounds()
         setupListeners()
-
-        binding.scrollViewKeyboard.setScrolling(false)
-
         binding.scrollViewKeyboard.post { attachKeyToSeekBar(firstVisibleItem) }
 
         binding.seekBarOctave.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {

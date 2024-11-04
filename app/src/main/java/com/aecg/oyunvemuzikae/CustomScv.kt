@@ -1,46 +1,25 @@
-package com.aecg.oyunvemuzikae;
+package com.aecg.oyunvemuzikae
 
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.os.Build;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.widget.HorizontalScrollView;
-public class CustomScv extends HorizontalScrollView {
-    private boolean enableScrolling = true;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.util.AttributeSet
+import android.view.MotionEvent
+import android.widget.HorizontalScrollView
 
-    public CustomScv(Context context) {
-        super(context);
+class CustomScv @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : HorizontalScrollView(context, attrs, defStyleAttr) {
+
+    override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
+        // Kaydırmayı engelle
+        return false // Hiçbir dokunma olayını yakalamaz
     }
 
-    public CustomScv(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouchEvent(ev: MotionEvent): Boolean {
+        // Kaydırmayı engelle
+        return false // Dokunma olaylarını işleme almaz
     }
-
-    public CustomScv(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if(scrollingEnabled()){
-            return super.onInterceptTouchEvent(ev);
-        }else {return false;}
-    }
-
-    private boolean scrollingEnabled() {
-        return enableScrolling;
-    }
-    public void setScrolling(boolean enableScrolling){
-        this.enableScrolling = enableScrolling;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        if(scrollingEnabled()){
-            return super.onTouchEvent(ev);}
-        else {return false;}
-
-    }
-
 }
