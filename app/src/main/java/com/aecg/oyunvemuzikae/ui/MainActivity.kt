@@ -19,11 +19,10 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view: View = binding.root
         setContentView(view)
-
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         // Animasyonu bir kez yükleyin
         animationZoom = AnimationUtils.loadAnimation(this, R.anim.zoom_inshort)
         // Uygulamanın yatay modda açılmasını sağla
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
     }
 
     override fun onDestroy() {
