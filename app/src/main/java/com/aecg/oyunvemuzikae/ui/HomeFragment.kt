@@ -36,6 +36,10 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.homeFragmentToMenuFragment(myApplication.oyunMenuList.toTypedArray())
             findNavController().navigate(action)
         }
+        binding.btnHomeMuzikler.setOnClickListener {
+            val action = HomeFragmentDirections.homeFragmentToMuzikFragment(myApplication.muzikMenuList.toTypedArray())
+            findNavController().navigate(action)
+        }
 
         return view
     }
