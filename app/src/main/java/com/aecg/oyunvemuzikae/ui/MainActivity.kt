@@ -3,16 +3,13 @@ package com.aecg.oyunvemuzikae.ui
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
-    private lateinit var animationZoom: Animation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +17,6 @@ class MainActivity : AppCompatActivity() {
         val view: View = binding.root
         setContentView(view)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-        // Animasyonu bir kez yükleyin
-        animationZoom = AnimationUtils.loadAnimation(this, R.anim.zoom_inshort)
         // Uygulamanın yatay modda açılmasını sağla
     }
 
