@@ -1,6 +1,5 @@
 package com.aecg.oyunvemuzikae
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,17 +22,6 @@ abstract class BaseFragment <VB : ViewBinding>(private val bindingInflater: (Lay
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-        // Sadece landscape modda çalışmasını sağla
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-    }
-
-    override fun onPause() {
-        super.onPause()
-        // Fragment kapandığında eski ayara dön
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null // Memory leak'i önlemek için
