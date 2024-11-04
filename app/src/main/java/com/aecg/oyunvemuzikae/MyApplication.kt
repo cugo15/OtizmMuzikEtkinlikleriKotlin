@@ -4,6 +4,8 @@ import android.app.Application
 import com.aecg.oyunvemuzikae.Sesler.SesType
 import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.ui.MenuModel
+import com.aecg.oyunvemuzikae.ui.MuzikModel
+import com.aecg.oyunvemuzikae.ui.MuzikType
 
 class MyApplication:Application() {
 
@@ -138,6 +140,18 @@ class MyApplication:Application() {
         MenuModel("Sesten Bul",MenuType.OYUN,R.drawable.ic_oyunmenu_sestenbul),
         MenuModel("Hafıza Oyunu",MenuType.OYUN,R.drawable.ic_oyunmenu_hafiza),
     )
+
+    val muzikMenuList = arrayListOf(
+        MuzikModel("Merhaba Şarkısı", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_merhabasarkisi}",R.drawable.merhabaimg),
+        MuzikModel("Üç Boyutlu Cisimler", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_ucboyutlucisimler}",R.drawable.ucboyutluimg),
+
+        MuzikModel("Geri Sayma", MuzikType.VIDEO,"bZtDgNI2QWY",R.drawable.gerisaymaicon),
+        MuzikModel("Merhaba Kareoke", MuzikType.VIDEO,"MU8o4SA-DB4",R.drawable.kareokeimg),
+        MuzikModel("Alkış Oyunu", MuzikType.VIDEO,"soqD2OJ9Nb8",R.drawable.ic_muzikler_alkis_oyunu),
+        )
+
+
+
     val oyunHizliYavasList = arrayListOf(
         SesModel("Trombon",SesType.ENSTRUMAN, R.raw.sound_enstruman_trombon, R.drawable.ic_enstruman_trombon),
         SesModel("Piyano",SesType.ENSTRUMAN, R.raw.sound_enstruman_piyano, R.drawable.ic_enstruman_piyano),
