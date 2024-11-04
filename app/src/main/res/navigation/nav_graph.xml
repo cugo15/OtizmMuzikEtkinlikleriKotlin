@@ -90,5 +90,20 @@
         android:id="@+id/muzikFragment"
         android:name="com.aecg.oyunvemuzikae.ui.MuzikFragment"
         android:label="fragment_muzik"
-        tools:layout="@layout/fragment_muzik" />
+        tools:layout="@layout/fragment_muzik" >
+        <argument
+            android:name="muzikList"
+            app:argType="com.aecg.oyunvemuzikae.ui.MuzikModel[]" />
+        <action
+            android:id="@+id/action_muzikFragment_to_webViewDialogFragment"
+            app:destination="@id/webViewDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewDialogFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.WebViewDialogFragment"
+        android:label="YouTube Video">
+        <argument
+            android:name="videoId"
+            app:argType="string" />
+    </fragment>
 </navigation>
