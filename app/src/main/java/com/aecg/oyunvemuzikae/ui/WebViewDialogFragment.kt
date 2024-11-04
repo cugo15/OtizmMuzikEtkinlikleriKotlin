@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.fragment.app.Fragment
+import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentWebViewDialogBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class WebViewDialogFragment : Fragment() {
+class WebViewDialogFragment : BaseFragment() {
 
     private var _binding: FragmentWebViewDialogBinding? = null
     private val binding get() = _binding!!

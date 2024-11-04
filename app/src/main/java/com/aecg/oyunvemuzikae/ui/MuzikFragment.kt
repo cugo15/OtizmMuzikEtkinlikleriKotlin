@@ -1,10 +1,8 @@
 package com.aecg.oyunvemuzikae.ui
 
-import android.app.Dialog
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +11,13 @@ import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.findNavController
 
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.FragmentMuzikBinding
 
 
 
-class MuzikFragment : Fragment() {
+class MuzikFragment : BaseFragment() {
 
     private var _binding: FragmentMuzikBinding? = null
     private val binding get() = _binding!!

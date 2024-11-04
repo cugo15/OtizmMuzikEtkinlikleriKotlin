@@ -2,7 +2,6 @@ package com.aecg.oyunvemuzikae.ui
 
 import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.MyApplication
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.Sesler.SesModel
@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class OyunResimdenSestenBulFragment : Fragment() {
+class OyunResimdenSestenBulFragment : BaseFragment() {
     
     private var _binding: FragmentOyunResimdenSestenBulBinding? = null
     private val binding get() = _binding!!

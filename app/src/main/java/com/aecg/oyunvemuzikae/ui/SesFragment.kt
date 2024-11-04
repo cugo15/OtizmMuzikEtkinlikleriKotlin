@@ -2,13 +2,13 @@ package com.aecg.oyunvemuzikae.ui
 
 import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.Sesler.SesAdapter
 import com.aecg.oyunvemuzikae.Sesler.SesType
@@ -17,7 +17,7 @@ import com.aecg.oyunvemuzikae.databinding.FragmentSesBinding
 import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.scrollInDirection
 
-class SesFragment : Fragment() {
+class SesFragment : BaseFragment() {
     private var _binding: FragmentSesBinding? = null
     private val binding get() = _binding!!
 

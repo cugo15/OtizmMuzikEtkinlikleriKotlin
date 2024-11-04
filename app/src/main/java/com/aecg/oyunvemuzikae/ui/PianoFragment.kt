@@ -2,7 +2,6 @@ package com.aecg.oyunvemuzikae.ui
 
 import android.media.SoundPool
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -13,11 +12,12 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.R
 
 import com.aecg.oyunvemuzikae.databinding.FragmentPianoBinding
 
-class PianoFragment : Fragment() {
+class PianoFragment : BaseFragment() {
     private var _binding: FragmentPianoBinding? = null
     private val binding get() = _binding!!
 
