@@ -28,13 +28,17 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(FragmentMenuBinding::infl
         animationZoom = AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_inshort)
 
         menuList = MenuFragmentArgs.fromBundle(requireArguments()).menuList.toList() as ArrayList<MenuModel>
-        setupRecyclerView(menuList)
         val category = menuList[1].type
+        setupRecyclerView(menuList)
+        if (category==MenuType.MEMORYLEVEL){
+         binding.rvMenu.background = null
+        }
         binding.textViewMenuHeader.text = category.displayName
 
         val backgroundResourceMap = mapOf(
             MenuType.SES to R.drawable.bg_menu_ses,
             MenuType.OYUN to R.drawable.bg_menu_oyun,
+            MenuType.MEMORYLEVEL to R.drawable.space1,
         )
         val backgroundResource = backgroundResourceMap[category] ?: R.drawable.bg_doga
 
@@ -71,10 +75,22 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(FragmentMenuBinding::infl
                     "Hızlı Yavaş" -> MenuFragmentDirections.menuFragmentToOyunHizliYavasFragment(myApplication.oyunHizliYavasList.toTypedArray())
                     "Resimden Bul" -> MenuFragmentDirections.menuFragmentToOyunResimdenSestenBulFragment(myApplication.oyunResimdenBulList.toTypedArray(),"Resimden Bul")
                     "Sesten Bul" -> MenuFragmentDirections.menuFragmentToOyunResimdenSestenBulFragment(myApplication.enstrumanList.toTypedArray(),"Sesten Bul")
+                    "Hafıza Oyunu" -> MenuFragmentDirections.menuFragmentToSelf(myApplication.oyunMemoryMenuList.toTypedArray())
+                    else -> null // Geçersiz bir isim durumunda
+                }
+                action?.let { findNavController().navigate(it) }
+            }else if(type == MenuType.MEMORYLEVEL){
+                val action = when (name) {
+                    //"Seviye 1" ->
+                    //"Seviye 2" ->
+                    //"Seviye 3" ->
+                    //"Seviye 4" ->
+                    "Seviye 5" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray())
                     else -> null // Geçersiz bir isim durumunda
                 }
                 action?.let { findNavController().navigate(it) }
             }
+
 
         }) { view ->
             // Animasyonu başlat
