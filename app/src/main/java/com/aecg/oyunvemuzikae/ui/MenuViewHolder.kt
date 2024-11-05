@@ -18,6 +18,12 @@ class MenuViewHolder(val binding: MenuItemBinding) : RecyclerView.ViewHolder(bin
         Glide.with(binding.imgMenu.context)
             .load(menuModel.menuImageResourceId)
             .into(binding.imgMenu)
+        if (menuModel.type == MenuType.MEMORYLEVEL) {
+            binding.cardMenu.layoutParams = binding.cardMenu.layoutParams.apply {
+                width = 600
+                height = 600
+            }
+        }
 
         // Ses modelinin adını TextView'a ata
         binding.txtMenu.text = menuModel.menuName
