@@ -55,6 +55,12 @@
         <action
             android:id="@+id/menuFragment_to_oyunResimdenSestenBulFragment"
             app:destination="@id/oyunResimdenSestenBulFragment" />
+        <action
+            android:id="@+id/menuFragment_to_self"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/menuFragment_to_oyunHafizaFragment"
+            app:destination="@id/oyunHafizaFragment" />
     </fragment>
     <fragment
         android:id="@+id/oyunHizliYavasFragment"
@@ -105,5 +111,13 @@
         <argument
             android:name="videoId"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/oyunHafizaFragment"
+        android:name="com.aecg.oyunvemuzikae.OyunHafizaFragment"
+        android:label="fragment_oyun_hafiza"
+        tools:layout="@layout/fragment_oyun_hafiza" >
+        <argument android:name="enstrumanList"
+            app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
     </fragment>
 </navigation>
