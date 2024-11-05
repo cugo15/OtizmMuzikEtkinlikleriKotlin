@@ -141,6 +141,16 @@ class MyApplication:Application() {
         MenuModel("Hafıza Oyunu",MenuType.OYUN,R.drawable.ic_oyunmenu_hafiza),
     )
 
+    val oyunMemoryMenuList = arrayListOf(
+        MenuModel("Seviye 1",MenuType.MEMORYLEVEL,R.drawable.lvloneisland),
+        MenuModel("Seviye 2",MenuType.MEMORYLEVEL,R.drawable.lvltwoisland),
+        MenuModel("Seviye 3",MenuType.MEMORYLEVEL,R.drawable.lvlthreeisland),
+        MenuModel("Seviye 4",MenuType.MEMORYLEVEL,R.drawable.lvlfourisland),
+        MenuModel("Seviye 5",MenuType.MEMORYLEVEL,R.drawable.lvlfiveisland1),
+
+        )
+
+
     val muzikMenuList = arrayListOf(
         MuzikModel("Merhaba Şarkısı", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_merhabasarkisi}",R.drawable.merhabaimg),
         MuzikModel("Üç Boyutlu Cisimler", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_ucboyutlucisimler}",R.drawable.ucboyutluimg),
