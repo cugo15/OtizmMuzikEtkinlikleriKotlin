@@ -12,8 +12,8 @@ import com.aecg.oyunvemuzikae.Sesler.SesAdapter
 import com.aecg.oyunvemuzikae.Sesler.SesType
 import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentSesBinding
-import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
-import com.aecg.oyunvemuzikae.scrollInDirection
+import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
+import com.aecg.oyunvemuzikae.utils.scrollInDirection
 
 class SesFragment : BaseFragment<FragmentSesBinding>(FragmentSesBinding::inflate) {
     private lateinit var mediaPlayer: MediaPlayer
@@ -39,7 +39,7 @@ class SesFragment : BaseFragment<FragmentSesBinding>(FragmentSesBinding::inflate
         )
         val backgroundResource = backgroundResourceMap[category] ?: R.drawable.bg_doga
 
-        binding.layoutSes.loadLayoutBackgroundWithGlide(requireContext(), backgroundResource, R.drawable.bg_doga)
+        binding.layoutSes.loadLayoutBackgroundWithGlide(requireContext(), backgroundResource)
 
         setupRecyclerView(sesList)
 
