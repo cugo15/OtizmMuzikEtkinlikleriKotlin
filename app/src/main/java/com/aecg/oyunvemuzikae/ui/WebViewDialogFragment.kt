@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 
 class WebViewDialogFragment : BaseFragment<FragmentWebViewDialogBinding>(FragmentWebViewDialogBinding::inflate) {
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val videoId = WebViewDialogFragmentArgs.fromBundle(requireArguments()).videoId
@@ -68,8 +69,4 @@ class WebViewDialogFragment : BaseFragment<FragmentWebViewDialogBinding>(Fragmen
         """.trimIndent()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding.webView.destroy() // WebView'i yok et
-    }
 }
