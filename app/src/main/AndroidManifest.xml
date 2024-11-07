@@ -18,25 +18,6 @@
         tools:targetApi="34">
 
         <activity
-            android:name=".HafizaOyunu.MemoryLevelFive"
-            android:exported="false" />
-        <activity
-            android:name=".HafizaOyunu.MemoryLevelFour"
-            android:exported="false" />
-        <activity
-            android:name=".HafizaOyunu.MemoryLevelThree"
-            android:exported="false" />
-        <activity
-            android:name=".HafizaOyunu.MemoryLevelTwo"
-            android:exported="false" />
-        <activity
-            android:name=".HafizaOyunu.MemoryLevelOne"
-            android:exported="false" />
-        <activity
-            android:name=".HafizaOyunu.MemoryMap"
-            android:exported="false" />
-
-        <activity
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
