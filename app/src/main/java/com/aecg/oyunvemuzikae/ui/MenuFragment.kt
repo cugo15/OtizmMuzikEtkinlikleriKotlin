@@ -11,8 +11,8 @@ import com.aecg.oyunvemuzikae.MenuType
 import com.aecg.oyunvemuzikae.MyApplication
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.databinding.FragmentMenuBinding
-import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
-import com.aecg.oyunvemuzikae.scrollInDirection
+import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
+import com.aecg.oyunvemuzikae.utils.scrollInDirection
 
 class MenuFragment : BaseFragment<FragmentMenuBinding>(FragmentMenuBinding::inflate) {
 
@@ -42,7 +42,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(FragmentMenuBinding::infl
         )
         val backgroundResource = backgroundResourceMap[category] ?: R.drawable.bg_doga
 
-        binding.layoutMenu.loadLayoutBackgroundWithGlide(requireContext(), backgroundResource, R.drawable.bg_doga)
+        binding.layoutMenu.loadLayoutBackgroundWithGlide(requireContext(), backgroundResource)
 
         binding.btnScrollLeftMenu.setOnClickListener {
             binding.rvMenu.scrollInDirection(-1)
@@ -81,11 +81,11 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(FragmentMenuBinding::infl
                 action?.let { findNavController().navigate(it) }
             }else if(type == MenuType.MEMORYLEVEL){
                 val action = when (name) {
-                    //"Seviye 1" ->
-                    //"Seviye 2" ->
-                    //"Seviye 3" ->
-                    //"Seviye 4" ->
-                    "Seviye 5" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray())
+                    "Seviye 1" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),1)
+                    "Seviye 2" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),2)
+                    "Seviye 3" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),3)
+                    "Seviye 4" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),4)
+                    "Seviye 5" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),5)
                     else -> null // Geçersiz bir isim durumunda
                 }
                 action?.let { findNavController().navigate(it) }
