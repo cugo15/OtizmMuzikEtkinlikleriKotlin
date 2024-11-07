@@ -81,11 +81,11 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(FragmentMenuBinding::infl
                 action?.let { findNavController().navigate(it) }
             }else if(type == MenuType.MEMORYLEVEL){
                 val action = when (name) {
-                    "Seviye 1" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),1)
-                    "Seviye 2" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),2)
-                    "Seviye 3" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),3)
-                    "Seviye 4" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),4)
-                    "Seviye 5" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),5)
+                    "Seviye 1" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),1,1)
+                    "Seviye 2" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),2,6)
+                    "Seviye 3" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),3,11)
+                    "Seviye 4" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),4,16)
+                    "Seviye 5" -> MenuFragmentDirections.menuFragmentToOyunHafizaFragment(myApplication.enstrumanList.toTypedArray(),5,21)
                     else -> null // Geçersiz bir isim durumunda
                 }
                 action?.let { findNavController().navigate(it) }
