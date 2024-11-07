@@ -1,12 +1,12 @@
 package com.aecg.oyunvemuzikae
 
-import android.media.AudioAttributes
-import android.media.SoundPool
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunHafizaBinding
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
@@ -23,43 +23,63 @@ class OyunHafizaFragment : BaseFragment<FragmentOyunHafizaBinding>(FragmentOyunH
     private var lastClickedCardView: CardView? = null
     private lateinit var imgPairs: MutableList<Pair<ImageView, CardView>>
     private lateinit var shuffledImages: List<Int>
-    private var soundPool: SoundPool? = null
-    private var correctSoundId: Int = 0
-    private var wrongSoundId: Int = 0
+    private var correctSoundId: Int = R.raw.dogrucingil
+    private var wrongSoundId: Int = R.raw.sound_yanlis_cevap
+    private var difficulty: Int = 0
+    private var lvl: Int = 0
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeSoundPool()
-        enstrumanList = OyunHafizaFragmentArgs.fromBundle(requireArguments()).enstrumanList.toCollection(ArrayList())
-        val lvl = OyunHafizaFragmentArgs.fromBundle(requireArguments()).level
-        shuffledImages = getShuffledImages(enstrumanList, lvl)
+
         imgPairs = initializeImagePairs()
-        initializeLevel(lvl)
+        enstrumanList = OyunHafizaFragmentArgs.fromBundle(requireArguments()).enstrumanList.toCollection(ArrayList())
+        difficulty = OyunHafizaFragmentArgs.fromBundle(requireArguments()).difficulty
+        shuffledImages = getShuffledImages(enstrumanList, difficulty)
+        lvl = OyunHafizaFragmentArgs.fromBundle(requireArguments()).lvl
+
+
         binding.imageViewOyunHafizaHint.setOnClickListener {handleHintClick()}
+
+        initializeDifficulty(difficulty)
+        updateLevelAndDifficulty()
         addClickListenerToCards()
+
     }
 
-    private fun initializeSoundPool() {
-        val audioAttributes = AudioAttributes.Builder()
-            .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-            .setUsage(AudioAttributes.USAGE_GAME)
-            .build()
-
-        // SoundPool nesnesini oluştur
-        soundPool = SoundPool.Builder()
-            .setMaxStreams(1) // Aynı anda sadece bir ses çalacak şekilde ayarla
-            .setAudioAttributes(audioAttributes)
-            .build()
-
-        // Ses dosyalarını yükle
-        correctSoundId = soundPool?.load(requireContext(), R.raw.dogrucingil, 1) ?: 0
-        wrongSoundId = soundPool?.load(requireContext(), R.raw.sound_yanlis_cevap, 1) ?: 0
+    private fun updateLevelAndDifficulty() {
+        binding.txtOyunHafizaLvl.text = lvl.toString()
+        if (lvl % 5 == 0 ) {
+            difficulty++
+        }
+        lvl++
+    }
+    private fun initializeDifficulty(difficulty: Int) {
+        // Arka planı yükle
+        setLayoutBackgroundForLevel(difficulty)
+        // Seviye bazında gizlenecek öğeleri belirle
+        val hiddenIndices = getHiddenIndicesForLevel(difficulty)
+        // Gizlenmesi gereken öğeleri `View.GONE` yap
+        hiddenIndices.forEach { index ->
+            imgPairs.getOrNull(index)?.second?.visibility = View.GONE
+        }
+        // Gizlenen öğeleri imgPairs listesinden kaldır
+        imgPairs.removeAll { it.second.visibility == View.GONE }
     }
 
-    private fun playSound(soundId: Int) {
-        // SoundPool'dan ses çal
-        soundPool?.play(soundId, 1f, 1f, 0, 0, 1f)
+    private fun playSoundWithMediaPlayer(soundResId: Int, onCompletion: () -> Unit) {
+        mediaPlayer?.release()
+        mediaPlayer = MediaPlayer.create(requireContext(), soundResId).apply {
+            setOnCompletionListener {
+                // Ses tamamlandığında yapılacak işlem
+                onCompletion()
+                // MediaPlayer'ı serbest bırak
+                release()
+            }
+            start() // Sesi çalmaya başla
+        }
     }
+
     private fun initializeImagePairs(): MutableList<Pair<ImageView, CardView>> {
         return mutableListOf(
             binding.imageView1 to binding.cardView1,
@@ -75,18 +95,7 @@ class OyunHafizaFragment : BaseFragment<FragmentOyunHafizaBinding>(FragmentOyunH
         )
     }
 
-    private fun initializeLevel(lvl: Int) {
-        // Arka planı yükle
-        setLayoutBackgroundForLevel(lvl)
-        // Seviye bazında gizlenecek öğeleri belirle
-        val hiddenIndices = getHiddenIndicesForLevel(lvl)
-        // Gizlenmesi gereken öğeleri `View.GONE` yap
-        hiddenIndices.forEach { index ->
-            imgPairs.getOrNull(index)?.second?.visibility = View.GONE
-        }
-        // Gizlenen öğeleri imgPairs listesinden kaldır
-        imgPairs.removeAll { it.second.visibility == View.GONE }
-    }
+
 
     private fun getHiddenIndicesForLevel(level: Int): List<Int> {
         return when (level) {
@@ -125,14 +134,23 @@ class OyunHafizaFragment : BaseFragment<FragmentOyunHafizaBinding>(FragmentOyunH
         lastClickedView?.isEnabled = false
         updateLastClickedData(0, null)
         binding.imageViewOyunHafizaHint.isClickable = true
-        playSound(correctSoundId)
+        playSoundWithMediaPlayer(correctSoundId){ navigateIfAllCardsDisabled() }
+    }
+    // imgPairs kontrolünü yapacak ve işlem sonucunda yönlendirme yapacak fonksiyon
+    private fun navigateIfAllCardsDisabled() {
+        // Eğer imgPairs'teki tüm öğeler pasif ise
+        if (imgPairs.all { !it.first.isEnabled }) {
+            // Navigasyonu gerçekleştirecek yönlendirme işlemi
+            OyunHafizaFragmentDirections.actionOyunHafizaFragmentSelf(enstrumanList.toTypedArray(), difficulty, lvl)
+                .also { findNavController().navigate(it) }
+        }
     }
 
     private fun handleIncorrectMatch(imageView: ImageView, shuffledImage: Int, cardView: CardView) {
         setImageViewsClickable(false)
         updateImageView(imageView, shuffledImage, 16)
         setCardsBorder(lastClickedCardView, cardView, R.drawable.border_red)
-        playSound(wrongSoundId)
+        playSoundWithMediaPlayer(wrongSoundId){}
         lifecycleScope.launch {
             delay(1000)
             setCardsBorder(lastClickedCardView, cardView, R.drawable.cardview_hafiza)
@@ -165,10 +183,8 @@ class OyunHafizaFragment : BaseFragment<FragmentOyunHafizaBinding>(FragmentOyunH
         // İpucu butonunu devre dışı bırak ve tüm imageView'ları tıklanamaz yap
         binding.imageViewOyunHafizaHint.isClickable = false
         setImageViewsClickable(false)
-
         // Tüm imageView'ları gerçek görselleriyle güncelle
         showAllImageViews()
-
         // 1.5 saniye bekleyip ardından tüm imageView'ları kapat
         lifecycleScope.launch {
             delay(1500)
@@ -230,6 +246,6 @@ class OyunHafizaFragment : BaseFragment<FragmentOyunHafizaBinding>(FragmentOyunH
 
     override fun onDestroyView() {
         super.onDestroyView()
-        soundPool?.release()
+        mediaPlayer?.release()
     }
 }
