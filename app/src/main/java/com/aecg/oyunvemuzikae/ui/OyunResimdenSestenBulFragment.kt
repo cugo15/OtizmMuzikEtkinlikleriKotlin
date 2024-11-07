@@ -12,7 +12,7 @@ import com.aecg.oyunvemuzikae.MyApplication
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunResimdenSestenBulBinding
-import com.aecg.oyunvemuzikae.loadLayoutBackgroundWithGlide
+import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -188,7 +188,7 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
             "Sesten Bul" -> R.drawable.sestenback to false
             else -> return
         }
-        binding.layoutOyunResimdenSestenBul.loadLayoutBackgroundWithGlide(requireContext(), background, R.drawable.bg_doga)
+        binding.layoutOyunResimdenSestenBul.loadLayoutBackgroundWithGlide(requireContext(), background)
         createSoundList(correctInstrument, isFromImage)
         playNextSound()
     }
