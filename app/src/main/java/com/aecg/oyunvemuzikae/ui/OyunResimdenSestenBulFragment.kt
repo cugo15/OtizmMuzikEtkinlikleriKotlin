@@ -13,6 +13,7 @@ import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunResimdenSestenBulBinding
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
+import com.aecg.oyunvemuzikae.utils.setForegroundDrawable
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -94,7 +95,7 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
     }
 
     private fun handleAnswerSelection(selectedAnswer: ImageView, cardView: CardView) {
-        cardView.setBackgroundResource(if (selectedAnswer == correctImageView) {
+        cardView.setForegroundDrawable(if (selectedAnswer == correctImageView) {
             R.drawable.border.also {
                 increaseIndexAndPlayNextSound()
                 isAnswerButtonsEnabled(false)
