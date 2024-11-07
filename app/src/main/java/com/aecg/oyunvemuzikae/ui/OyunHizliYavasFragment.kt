@@ -1,12 +1,12 @@
 package com.aecg.oyunvemuzikae.ui
 
+import android.content.res.ColorStateList
 import android.media.MediaPlayer
 import android.media.PlaybackParams
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.aecg.oyunvemuzikae.BaseFragment
@@ -171,11 +171,11 @@ class OyunHizliYavasFragment : BaseFragment<FragmentOyunHizliYavasBinding>(Fragm
                 isAnswerButtonsEnabled(false)
                 currentIndex++
                 playNextSound()
-                R.drawable.border
+                ContextCompat.getColor(requireContext(), R.color.green)
             }
-            else -> R.drawable.border_red
+            else -> ContextCompat.getColor(requireContext(), R.color.red)
         }
-        selectedButton.setBackgroundResource(backgroundResource)
+        selectedButton.backgroundTintList = ColorStateList.valueOf(backgroundResource)
     }
 
     override fun onDestroyView() {
