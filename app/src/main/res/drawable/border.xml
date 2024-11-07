@@ -9,5 +9,5 @@
         android:width="7dp"
 
         android:color="@color/green"/>
-    <solid android:color="@color/white"/>
+    <solid android:color="@color/transparent"/>
 </shape>
