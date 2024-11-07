@@ -6,7 +6,7 @@
     <!-- Kenar Çizgisi (Stroke) -->
     <stroke
         android:color="@color/white"
-        android:width="2dp" />
+        android:width="3dp" />
 
     <!-- Köşe Yumuşatma -->
     <corners android:radius="70dp" />
