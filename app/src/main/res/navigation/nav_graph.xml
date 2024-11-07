@@ -120,7 +120,15 @@
         <argument android:name="enstrumanList"
             app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
         <argument
-            android:name="level"
+            android:name="difficulty"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_oyunHafizaFragment_self"
+            app:destination="@id/oyunHafizaFragment"
+            app:popUpTo="@id/oyunHafizaFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="lvl"
             app:argType="integer" />
     </fragment>
 </navigation>
