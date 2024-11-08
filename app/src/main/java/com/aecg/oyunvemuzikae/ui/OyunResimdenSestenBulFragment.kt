@@ -96,12 +96,12 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
 
     private fun handleAnswerSelection(selectedAnswer: ImageView, cardView: CardView) {
         cardView.setForegroundDrawable(if (selectedAnswer == correctImageView) {
-            R.drawable.border.also {
+            R.drawable.border_card_green.also {
                 increaseIndexAndPlayNextSound()
                 isAnswerButtonsEnabled(false)
             }
         } else {
-            R.drawable.border_red.also { playWrongSound() }
+            R.drawable.border_card_red.also { playWrongSound() }
         })
     }
 
@@ -185,8 +185,8 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
     }
     private fun setupGameLayout(gameType: String, correctInstrument: SesModel) {
         val (background, isFromImage) = when (gameType) {
-            "Resimden Bul" -> R.drawable.resimdenbulback2 to true
-            "Sesten Bul" -> R.drawable.sestenback to false
+            "Resimden Bul" -> R.drawable.bg_oyun_resimdenbul to true
+            "Sesten Bul" -> R.drawable.bg_oyun_sestenbul to false
             else -> return
         }
         binding.layoutOyunResimdenSestenBul.loadLayoutBackgroundWithGlide(requireContext(), background)

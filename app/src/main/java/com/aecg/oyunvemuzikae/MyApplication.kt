@@ -142,21 +142,21 @@ class MyApplication:Application() {
     )
 
     val oyunMemoryMenuList = arrayListOf(
-        MenuModel("Seviye 1",MenuType.MEMORYLEVEL,R.drawable.lvloneisland),
-        MenuModel("Seviye 2",MenuType.MEMORYLEVEL,R.drawable.lvltwoisland),
-        MenuModel("Seviye 3",MenuType.MEMORYLEVEL,R.drawable.lvlthreeisland),
-        MenuModel("Seviye 4",MenuType.MEMORYLEVEL,R.drawable.lvlfourisland),
-        MenuModel("Seviye 5",MenuType.MEMORYLEVEL,R.drawable.lvlfiveisland1),
+        MenuModel("Seviye 1",MenuType.MEMORYLEVEL,R.drawable.ic_menu_oyun_hafiza_lvl1),
+        MenuModel("Seviye 2",MenuType.MEMORYLEVEL,R.drawable.ic_menu_oyun_hafiza_lvl2),
+        MenuModel("Seviye 3",MenuType.MEMORYLEVEL,R.drawable.ic_menu_oyun_hafiza_lvl3),
+        MenuModel("Seviye 4",MenuType.MEMORYLEVEL,R.drawable.ic_menu_oyun_hafiza_lvl4),
+        MenuModel("Seviye 5",MenuType.MEMORYLEVEL,R.drawable.ic_menu_oyun_hafiza_lvl5),
 
         )
 
 
     val muzikMenuList = arrayListOf(
-        MuzikModel("Merhaba Şarkısı", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_merhabasarkisi}",R.drawable.merhabaimg),
-        MuzikModel("Üç Boyutlu Cisimler", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_ucboyutlucisimler}",R.drawable.ucboyutluimg),
+        MuzikModel("Merhaba Şarkısı", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_merhabasarkisi}",R.drawable.ic_muzik_merhabalar),
+        MuzikModel("Üç Boyutlu Cisimler", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_ucboyutlucisimler}",R.drawable.ic_muzik_ucboyutlu),
 
-        MuzikModel("Geri Sayma", MuzikType.VIDEO,"bZtDgNI2QWY",R.drawable.gerisaymaicon),
-        MuzikModel("Merhaba Kareoke", MuzikType.VIDEO,"MU8o4SA-DB4",R.drawable.kareokeimg),
+        MuzikModel("Geri Sayma", MuzikType.VIDEO,"bZtDgNI2QWY",R.drawable.ic_muzik_gerisayma),
+        MuzikModel("Merhaba Kareoke", MuzikType.VIDEO,"MU8o4SA-DB4",R.drawable.ic_muzik_kareoke),
         MuzikModel("Alkış Oyunu", MuzikType.VIDEO,"soqD2OJ9Nb8",R.drawable.ic_muzikler_alkis_oyunu),
         )
 

@@ -109,11 +109,11 @@ class OyunHafizaFragment : BaseFragment<FragmentOyunHafizaBinding>(FragmentOyunH
 
     private fun setLayoutBackgroundForLevel(level: Int) {
         val backgroundResId = when (level) {
-            1 -> R.drawable.forestic1
-            2 -> R.drawable.desertcity
-            3 -> R.drawable.icecity
-            4 -> R.drawable.pinkcity2
-            else -> R.drawable.firecity2
+            1 -> R.drawable.bg_oyun_hafiza_lvl1
+            2 -> R.drawable.bg_oyun_hafiza_lvl2
+            3 -> R.drawable.bg_oyun_hafiza_lvl3
+            4 -> R.drawable.bg_oyun_hafiza_lvl4
+            else -> R.drawable.bg_oyun_hafiza_lvl5
         }
         binding.layoutFragmentOyunHafiza.loadLayoutBackgroundWithGlide(requireContext(), backgroundResId)
     }
@@ -121,7 +121,7 @@ class OyunHafizaFragment : BaseFragment<FragmentOyunHafizaBinding>(FragmentOyunH
     private fun handleFirstClick(imageView: ImageView, shuffledImage: Int, cardView: CardView) {
         updateLastClickedData(shuffledImage, imageView)
         updateImageView(imageView, shuffledImage, 16)
-        setCardsBorder(null, cardView, R.drawable.blue_border)
+        setCardsBorder(null, cardView, R.drawable.border_card_blue)
         lastClickedView?.isClickable = false
         binding.imageViewOyunHafizaHint.isClickable = false
         lastClickedCardView = cardView
@@ -129,7 +129,7 @@ class OyunHafizaFragment : BaseFragment<FragmentOyunHafizaBinding>(FragmentOyunH
 
     private fun handleCorrectMatch(imageView: ImageView, shuffledImage: Int, cardView: CardView) {
         updateImageView(imageView, shuffledImage, 16)
-        setCardsBorder(lastClickedCardView, cardView, R.drawable.border)
+        setCardsBorder(lastClickedCardView, cardView, R.drawable.border_card_green)
         imageView.isEnabled = false
         lastClickedView?.isEnabled = false
         updateLastClickedData(0, null)
@@ -149,13 +149,13 @@ class OyunHafizaFragment : BaseFragment<FragmentOyunHafizaBinding>(FragmentOyunH
     private fun handleIncorrectMatch(imageView: ImageView, shuffledImage: Int, cardView: CardView) {
         setImageViewsClickable(false)
         updateImageView(imageView, shuffledImage, 16)
-        setCardsBorder(lastClickedCardView, cardView, R.drawable.border_red)
+        setCardsBorder(lastClickedCardView, cardView, R.drawable.border_card_red)
         playSoundWithMediaPlayer(wrongSoundId){}
         lifecycleScope.launch {
             delay(1000)
             setCardsBorder(lastClickedCardView, cardView, R.drawable.cardview_hafiza)
-            updateImageView(lastClickedView, R.drawable.questionmark2, 0)
-            updateImageView(imageView, R.drawable.questionmark2, 0)
+            updateImageView(lastClickedView, R.drawable.ic_oyun_hafiza_card, 0)
+            updateImageView(imageView, R.drawable.ic_oyun_hafiza_card, 0)
             updateLastClickedData(0, null)
             binding.imageViewOyunHafizaHint.isClickable = true
             setImageViewsClickable(true)
@@ -202,7 +202,7 @@ class OyunHafizaFragment : BaseFragment<FragmentOyunHafizaBinding>(FragmentOyunH
     // Tüm imageView'ları kapatma görseliyle günceller
     private fun closeAllImageViews() {
         updateAllImageViews { _, imageView ->
-            updateImageView(imageView, R.drawable.questionmark2, 0)
+            updateImageView(imageView, R.drawable.ic_oyun_hafiza_card, 0)
         }
     }
     // Tüm imgPairs öğelerine belirli bir işlem uygular

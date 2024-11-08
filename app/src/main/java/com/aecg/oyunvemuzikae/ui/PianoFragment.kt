@@ -220,7 +220,7 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
             R.drawable.pressed_and_normal_selector_kirmizi,
             R.drawable.pressed_and_normal_selector_yesil,
             R.drawable.pressed_and_normal_selector_mor,
-            R.drawable.key_pressed_sari,
+            R.drawable.piano_key_pressed_sari,
             R.drawable.pressed_and_normal_selector_mavi,
             R.drawable.pressed_and_normal_selector_pembe,
             R.drawable.pressed_and_normal_selector_gri

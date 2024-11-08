@@ -38,7 +38,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(FragmentMenuBinding::infl
         val backgroundResourceMap = mapOf(
             MenuType.SES to R.drawable.bg_menu_ses,
             MenuType.OYUN to R.drawable.bg_menu_oyun,
-            MenuType.MEMORYLEVEL to R.drawable.space1,
+            MenuType.MEMORYLEVEL to R.drawable.bg_oyun_menu_hafiza,
         )
         val backgroundResource = backgroundResourceMap[category] ?: R.drawable.bg_doga
 
