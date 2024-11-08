@@ -5,7 +5,7 @@
     android:id="@+id/layoutMuzikler"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/muziklerbg"
+    android:background="@drawable/bg_menu_muzikler"
     tools:context=".ui.MuzikFragment">
 
     <ImageView
@@ -16,7 +16,7 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/evicon3" />
+        app:srcCompat="@drawable/ic_home" />
 
     <ImageView
         android:id="@+id/btnBackMuzikler"
@@ -26,7 +26,7 @@
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/geriyuruyencocuk" />
+        app:srcCompat="@drawable/ic_back" />
 
     <TextView
         android:id="@+id/txtMuziklerHeader"
@@ -60,7 +60,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/sol" />
+        app:srcCompat="@drawable/ic_recycler_left" />
 
     <ImageView
         android:id="@+id/BtnScrollRightMuzikler"
@@ -72,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnScrollLeftMuzikler"
-        app:srcCompat="@drawable/sag" />
+        app:srcCompat="@drawable/ic_recycler_right" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMuzikler"
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/card_bkg"
+        android:background="@drawable/bg_recycler"
         app:layout_constraintBottom_toTopOf="@+id/btnScrollLeftMuzikler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

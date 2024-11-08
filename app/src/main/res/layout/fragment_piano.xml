@@ -18,7 +18,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/pianodo"
+        android:background="@drawable/ic_piano_do"
 
         android:fontFamily="@font/mogra"
         android:textSize="20sp"
@@ -31,7 +31,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/pianoc"
+        android:background="@drawable/ic_piano_c"
 
         android:fontFamily="@font/mogra"
         android:textSize="20sp"
@@ -45,7 +45,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/rainbow"
+        android:background="@drawable/ic_piano_rainbow"
         app:layout_constraintBottom_toBottomOf="@+id/btnpitchNotation"
         app:layout_constraintStart_toEndOf="@+id/btnpitchNotation"
         app:layout_constraintTop_toTopOf="@+id/btnpitchNotation" />
@@ -57,7 +57,7 @@
         android:layout_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/evicon3" />
+        app:srcCompat="@drawable/ic_home" />
 
     <ImageView
         android:id="@+id/btnDecreaseKeySize"
@@ -68,7 +68,7 @@
         app:layout_constraintEnd_toStartOf="@+id/cardViewKeySize"
         app:layout_constraintTop_toTopOf="@+id/cardViewKeySize"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/minus" />
+        app:srcCompat="@drawable/ic_piano_minus" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewKeySize"
@@ -85,7 +85,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginEnd=".1dp"
-            app:srcCompat="@drawable/plus" />
+            app:srcCompat="@drawable/ic_piano_plus" />
     </androidx.cardview.widget.CardView>
 
     <com.aecg.oyunvemuzikae.CustomScv
@@ -717,7 +717,7 @@
             android:layout_width="400dp"
             android:layout_height="45dp"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/seekbarbkg"
+            android:background="@drawable/ic_piano_seekbar"
             android:clickable="false"
             android:indeterminate="false"
             android:max="36"
@@ -725,7 +725,7 @@
             android:paddingEnd="0dp"
             android:progress="14"
             android:progressDrawable="@null"
-            android:thumb="@drawable/baseline_music_note_24" />
+            android:thumb="@drawable/ic_piano_note" />
 
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

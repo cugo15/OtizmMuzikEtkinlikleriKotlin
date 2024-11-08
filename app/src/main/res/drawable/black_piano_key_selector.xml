@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@drawable/pressed_black_key"
+        android:drawable="@drawable/piano_key_pressed_siyah"
         android:paddingTop="10dp"
         >
     </item>
     <item
-        android:drawable="@drawable/normal_black_key"
+        android:drawable="@drawable/piano_key_siyah"
         android:layout_marginTop="50dp"
         >
 

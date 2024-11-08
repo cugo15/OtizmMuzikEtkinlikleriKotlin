@@ -34,7 +34,7 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/evicon3" />
+        app:srcCompat="@drawable/ic_home" />
 
     <ImageView
         android:id="@+id/btnOyunResimdenSestenBulBack"
@@ -44,7 +44,7 @@
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/geriyuruyencocuk" />
+        app:srcCompat="@drawable/ic_back" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewOyunResimdenSestenBulAnswer1"
@@ -108,7 +108,7 @@
         android:id="@+id/btnOyunResimdenSestenBulReplay"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:src="@drawable/eyes"
+        android:src="@drawable/ic_hint"
         app:layout_constraintBottom_toBottomOf="@+id/btnOyunResimdenSestenBulBack"
         app:layout_constraintEnd_toStartOf="@+id/txtOyunResimdenSestenBulHeader"
         app:layout_constraintStart_toEndOf="@+id/btnOyunResimdenSestenBulBack"

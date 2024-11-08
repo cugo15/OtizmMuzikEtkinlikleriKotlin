@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@drawable/key_press_pembe"
+        android:drawable="@drawable/piano_key_press_pembe"
         android:paddingTop="10dp"
         >
     </item>
     <item
-        android:drawable="@drawable/pembe_piano"
+        android:drawable="@drawable/piano_key_pembe"
         android:layout_marginTop="50dp"
         >
 

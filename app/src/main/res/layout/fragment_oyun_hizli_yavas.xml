@@ -18,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/cardViewHizliYavas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/cardViewHizliYavas"
-        app:srcCompat="@drawable/ilerigit" />
+        app:srcCompat="@drawable/ic_next" />
 
     <TextView
         android:id="@+id/txtHizliYavasHeader"
@@ -47,7 +47,7 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/evicon3" />
+        app:srcCompat="@drawable/ic_home" />
 
     <ImageView
         android:id="@+id/btnHizliYavasBack"
@@ -57,7 +57,7 @@
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/geriyuruyencocuk" />
+        app:srcCompat="@drawable/ic_back" />
 
     <Button
         android:id="@+id/btnMuzik1"
@@ -68,7 +68,7 @@
         android:fontFamily="@font/mogra"
         android:paddingStart="30dp"
         android:paddingTop="8dp"
-        android:background="@drawable/button_shape"
+        android:background="@drawable/shape_button"
         android:paddingEnd="30dp"
         android:paddingBottom="8dp"
         android:shadowColor="@color/black"
@@ -90,7 +90,7 @@
         android:id="@+id/btnMuzik2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_shape"
+        android:background="@drawable/shape_button"
         android:enabled="false"
         android:fontFamily="@font/mogra"
         android:paddingStart="30dp"

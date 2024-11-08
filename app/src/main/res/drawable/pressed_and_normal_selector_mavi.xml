@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@drawable/key_press_mavi"
+        android:drawable="@drawable/piano_key_press_mavi"
         android:paddingTop="10dp"
         >
     </item>
     <item
-        android:drawable="@drawable/mavi_piano"
+        android:drawable="@drawable/piano_key_mavi"
         android:layout_marginTop="50dp"
         >
 

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/card_bkg"
+        android:background="@drawable/bg_recycler"
         app:layout_constraintBottom_toTopOf="@+id/btnScrollLeftSes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/evicon3" />
+        app:srcCompat="@drawable/ic_home" />
 
     <ImageView
         android:id="@+id/btnBackSes"
@@ -56,7 +56,7 @@
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/geriyuruyencocuk" />
+        app:srcCompat="@drawable/ic_back" />
 
     <ImageView
         android:id="@+id/btnScrollLeftSes"
@@ -69,7 +69,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/sol" />
+        app:srcCompat="@drawable/ic_recycler_left" />
 
     <ImageView
         android:id="@+id/BtnScrollRightSes"
@@ -81,6 +81,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnScrollLeftSes"
-        app:srcCompat="@drawable/sag" />
+        app:srcCompat="@drawable/ic_recycler_right" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
