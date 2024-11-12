@@ -1,15 +1,16 @@
 package com.aecg.oyunvemuzikae.Sesler
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.aecg.oyunvemuzikae.databinding.SesItemBinding
 
 class SesAdapter(
     private val sesList: ArrayList<SesModel>, // SesModel nesnelerinin bulunduğu liste
-    private val onItemClick: (Int) -> Unit, // Tıklama olayı için callback
-    private val onItemAnimate: (View) -> Unit // Animasyon tetiklemek için callback
+    private val onItemClick: (CardView,Int) -> Unit, // Tıklama olayı için callback
+    private val onItemStyle: (CardView, ImageView, SesType) -> Unit // Animasyon tetiklemek için callback
 ) : RecyclerView.Adapter<SesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SesViewHolder {
@@ -28,6 +29,6 @@ class SesAdapter(
         // Mevcut pozisyondaki SesModel nesnesini al
         val currentSesModel = sesList[position]
         // ViewHolder'ı bağla ve gerekli callback'leri geçir
-        holder.bind(currentSesModel, onItemClick, onItemAnimate)
+        holder.bind(currentSesModel, onItemClick, onItemStyle)
     }
 }
