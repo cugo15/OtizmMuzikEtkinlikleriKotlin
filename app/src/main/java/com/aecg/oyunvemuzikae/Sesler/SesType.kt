@@ -12,11 +12,11 @@ sealed class SesType(val displayName: String) {
 
     // ENSTRUMAN türü için sealed class ve alt enum class tanımlıyoruz
     sealed class ENSTRUMAN(displayName: String) : SesType(displayName) {
-        object ORFF : ENSTRUMAN("Orff Çalgıları")
-        object VURMALI : ENSTRUMAN("Vurmalı Çalgılar")
-        object TELLI : ENSTRUMAN("Telli Çalgılar")
-        object UFLEMELI : ENSTRUMAN("Üflemeli Çalgılar")
-        object OTHER : ENSTRUMAN("Diğer Çalgılar")
+        object ORFF : ENSTRUMAN("Enstrüman Sesleri")
+        object VURMALI : ENSTRUMAN("Enstrüman Sesleri")
+        object TELLI : ENSTRUMAN("Enstrüman Sesleri")
+        object UFLEMELI : ENSTRUMAN("Enstrüman Sesleri")
+        object OTHER : ENSTRUMAN("Enstrüman Sesleri")
     }
 }
 
