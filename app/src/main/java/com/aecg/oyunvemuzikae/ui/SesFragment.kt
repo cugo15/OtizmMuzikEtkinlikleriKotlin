@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import com.aecg.oyunvemuzikae.BaseFragment
@@ -15,6 +16,7 @@ import com.aecg.oyunvemuzikae.Sesler.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentSesBinding
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.utils.scrollInDirection
+import com.aecg.oyunvemuzikae.utils.setForegroundDrawable
 
 class SesFragment : BaseFragment<FragmentSesBinding>(FragmentSesBinding::inflate) {
     private lateinit var mediaPlayer: MediaPlayer
@@ -26,7 +28,7 @@ class SesFragment : BaseFragment<FragmentSesBinding>(FragmentSesBinding::inflate
 
         animationzoom = AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_inshort)
         sesList = SesFragmentArgs.fromBundle(requireArguments()).sesList.toList() as ArrayList<SesModel>
-        val category = sesList[1].type
+        val category = sesList.first().type
         initializeCategory(category)
         setupRecyclerView(sesList)
 
@@ -50,20 +52,32 @@ class SesFragment : BaseFragment<FragmentSesBinding>(FragmentSesBinding::inflate
             smoothScroller.targetPosition = position
             startSmoothScroll(smoothScroller)
         }
-
     }
 
     private fun setupRecyclerView(sesList: ArrayList<SesModel>) {
-        // RecyclerView'e yatay (horizontal) LinearLayoutManager ata
-        binding.rvSes.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        // SesAdapter'ı RecyclerView'e ata
-        binding.rvSes.adapter = SesAdapter(sesList, { id ->
-            // Sesi çal
-            playSoundById(id)
-        }) { view ->
-            // Animasyonu başlat
-            view.startAnimation(animationzoom)
+        binding.rvSes.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = SesAdapter(sesList, { view, soundId ->
+                playSoundById(soundId)
+                view.startAnimation(animationzoom)
+            }) { cView, iView, sesType ->
+                applyStyle(cView, iView, sesType)
+            }
         }
+    }
+
+    private fun applyStyle(cview: CardView, iview: View, sesType: SesType) {
+        // SesType'a göre drawable ve padding değerlerini belirle
+        val (drawableResId, padding) = when (sesType) {
+            SesType.ENSTRUMAN.UFLEMELI -> R.drawable.underline_card_instrument_orange to 24
+            SesType.ENSTRUMAN.TELLI -> R.drawable.underline_card_instrument_blue to 24
+            SesType.ENSTRUMAN.VURMALI -> R.drawable.underline_card_instrument_green to 24
+            SesType.ENSTRUMAN.ORFF -> R.drawable.underline_card_instrument_purple to 24
+            else -> R.drawable.cardview_hafiza to 0
+        }
+        // Stil uygulaması
+        cview.setForegroundDrawable(drawableResId)
+        iview.setPadding(padding, padding, padding, padding)
     }
 
     private fun playSoundById(id: Int) {
