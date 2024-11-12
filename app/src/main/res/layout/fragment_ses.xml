@@ -31,7 +31,7 @@
         android:shadowDx="2"
         android:shadowDy="2"
         android:shadowRadius="2"
-        android:text="DOĞA SESLERİ"
+        tools:text="DOĞA SESLERİ"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         android:textStyle="bold"
