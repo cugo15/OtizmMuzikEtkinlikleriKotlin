@@ -61,4 +61,11 @@ class MuzikFragment : BaseFragment<FragmentMuzikBinding>(FragmentMuzikBinding::i
         val action = MuzikFragmentDirections.actionMuzikFragmentToWebViewDialogFragment(videoId)
         findNavController().navigate(action)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        if (::mediaPlayer.isInitialized) {
+            mediaPlayer.release()
+        }
+    }
 }
