@@ -71,7 +71,6 @@ class MyApplication:Application() {
 
         // Diğer türler (Normal enstrümanlar)
         SesModel("Piyano", SesType.ENSTRUMAN.OTHER, R.raw.sound_enstruman_piyano, R.drawable.ic_enstruman_piyano),
-        SesModel("Metronom", SesType.ENSTRUMAN.OTHER, R.raw.sound_enstruman_metronom, R.drawable.ic_enstruman_metronom),
         )
 
     val insanList = arrayListOf(
@@ -151,6 +150,7 @@ class MyApplication:Application() {
         MenuModel("Hızlı Yavaş",MenuType.OYUN,R.drawable.ic_oyunmenu_hizliyavas),
         MenuModel("Resimden Bul",MenuType.OYUN,R.drawable.ic_oyunmenu_resimdenbul),
         MenuModel("Sesten Bul",MenuType.OYUN,R.drawable.ic_oyunmenu_sestenbul),
+        MenuModel("Enstrüman Tipi",MenuType.OYUN,R.drawable.ic_oyunmenu_hafiza),
         MenuModel("Hafıza Oyunu",MenuType.OYUN,R.drawable.ic_oyunmenu_hafiza),
     )
 
@@ -226,7 +226,6 @@ class MyApplication:Application() {
 
         // Diğer türler (Normal enstrümanlar)
         SesModel("Piyano", SesType.ENSTRUMAN.OTHER, R.raw.sound_enstruman_piyano, R.drawable.ic_enstruman_piyano),
-        SesModel("Metronom", SesType.ENSTRUMAN.OTHER, R.raw.sound_enstruman_metronom, R.drawable.ic_enstruman_metronom),
     )
 
     val oyunResimdenBulList = arrayListOf(
@@ -251,6 +250,7 @@ class MyApplication:Application() {
         SesModel("Elektro Gitar", SesType.ENSTRUMAN.TELLI, R.raw.sound_enstruman_name_elektrogitar, R.drawable.ic_enstruman_elektrogitar),
         SesModel("Mandolin", SesType.ENSTRUMAN.TELLI, R.raw.sound_enstruman_name_mandolin, R.drawable.ic_enstruman_mandolin),
         SesModel("Ukulele", SesType.ENSTRUMAN.TELLI, R.raw.sound_enstruman_name_ukulele, R.drawable.ic_enstruman_ukulele),
+        SesModel("Piyano", SesType.ENSTRUMAN.TELLI, R.raw.sound_enstruman_piyano, R.drawable.ic_enstruman_piyano),// isim söylenmesi eksik
 
         // VURMALI Türü
         SesModel("Davul", SesType.ENSTRUMAN.VURMALI, R.raw.sound_enstruman_name_davul, R.drawable.ic_enstruman_davul),
@@ -279,8 +279,6 @@ class MyApplication:Application() {
         SesModel("Tahta Blok", SesType.ENSTRUMAN.ORFF, R.raw.sound_enstruman_name_tahtablok, R.drawable.ic_enstruman_tahtablok),
 
         // Diğer türler (Normal enstrümanlar)
-        SesModel("Piyano", SesType.ENSTRUMAN.OTHER, R.raw.sound_enstruman_piyano, R.drawable.ic_enstruman_piyano),// isim söylenmesi eksik
-        SesModel("Metronom", SesType.ENSTRUMAN.OTHER, R.raw.sound_enstruman_name_metronom, R.drawable.ic_enstruman_metronom),
 
         )
 }
