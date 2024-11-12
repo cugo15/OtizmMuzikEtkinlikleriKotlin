@@ -49,6 +49,7 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isAnswerButtonsEnabled(false)
+
         initializeGameData()
 
         // Doğru enstrümanı rastgele seç ve listeden çıkar
@@ -148,10 +149,12 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
                     }
                 }
             }
+                mediaPlayer?.start()
+
+
             mediaPlayer?.setOnCompletionListener {
                 handleSoundCompletion()
             }
-            mediaPlayer?.start()
         }
     }
 
@@ -168,7 +171,13 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
     private fun releaseAndCreateMediaPlayer() {
         mediaPlayer?.release()
         mediaPlayer = MediaPlayer.create(requireContext(), soundListSestenBul[currentIndex])
+
+        mediaPlayer?.setOnCompletionListener {
+            // Ses tamamlandığında yapılacak işlemler
+            increaseIndexAndPlayNextSound()
+        }
     }
+
     private fun navigateToSelf() {
         if (enstrumanList.isEmpty()) {
             enstrumanList = myApplication.enstrumanList
