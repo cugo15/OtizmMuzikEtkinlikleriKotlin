@@ -14,7 +14,7 @@ android {
             useSupportLibrary = true
         }
         applicationId = "com.aecg.oyunvemuzikae"
-        minSdk = 23
+        minSdk = 24
         targetSdk = 34
         versionCode = 2
         versionName = "2.0"
