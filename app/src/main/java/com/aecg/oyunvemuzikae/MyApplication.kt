@@ -3,6 +3,7 @@ package com.aecg.oyunvemuzikae
 import android.app.Application
 import com.aecg.oyunvemuzikae.Sesler.SesType
 import com.aecg.oyunvemuzikae.Sesler.SesModel
+import com.aecg.oyunvemuzikae.ui.GameType
 import com.aecg.oyunvemuzikae.ui.MenuModel
 import com.aecg.oyunvemuzikae.ui.MuzikModel
 import com.aecg.oyunvemuzikae.ui.MuzikType
@@ -70,7 +71,7 @@ class MyApplication:Application() {
         SesModel("Tahta Blok", SesType.ENSTRUMAN.ORFF, R.raw.sound_enstruman_tahtablok, R.drawable.ic_enstruman_tahtablok),
 
         // Diğer türler (Normal enstrümanlar)
-        SesModel("Piyano", SesType.ENSTRUMAN.OTHER, R.raw.sound_enstruman_piyano, R.drawable.ic_enstruman_piyano),
+        SesModel("Piyano", SesType.ENSTRUMAN.TELLI, R.raw.sound_enstruman_piyano, R.drawable.ic_enstruman_piyano),
         )
 
     val insanList = arrayListOf(
@@ -135,7 +136,6 @@ class MyApplication:Application() {
         SesModel("On",SesType.SAYI, R.raw.sound_sayi_on, R.drawable.ic_sayi_on),
         )
 
-
     val sesMenuList = arrayListOf(
         MenuModel("Enstrüman",MenuType.SES,R.drawable.ic_sesmenu_enstruman),
         MenuModel("Doğa",MenuType.SES,R.drawable.ic_sesmenu_doga),
@@ -147,11 +147,11 @@ class MyApplication:Application() {
     )
 
     val oyunMenuList = arrayListOf(
-        MenuModel("Hızlı Yavaş",MenuType.OYUN,R.drawable.ic_oyunmenu_hizliyavas),
-        MenuModel("Resimden Bul",MenuType.OYUN,R.drawable.ic_oyunmenu_resimdenbul),
-        MenuModel("Sesten Bul",MenuType.OYUN,R.drawable.ic_oyunmenu_sestenbul),
-        MenuModel("Enstrüman Tipi",MenuType.OYUN,R.drawable.ic_oyunmenu_hafiza),
-        MenuModel("Hafıza Oyunu",MenuType.OYUN,R.drawable.ic_oyunmenu_hafiza),
+        MenuModel(GameType.HIZLIYAVAS.displayName,MenuType.OYUN,R.drawable.ic_oyunmenu_hizliyavas),
+        MenuModel(GameType.RESIMDENBUL.displayName,MenuType.OYUN,R.drawable.ic_oyunmenu_resimdenbul),
+        MenuModel(GameType.SESTENBUL.displayName,MenuType.OYUN,R.drawable.ic_oyunmenu_sestenbul),
+        MenuModel(GameType.ENSTRUMANTIPI.displayName,MenuType.OYUN,R.drawable.ic_oyunmenu_hafiza),
+        MenuModel(GameType.HAFIZA.displayName,MenuType.OYUN,R.drawable.ic_oyunmenu_hafiza),
     )
 
     val oyunMemoryMenuList = arrayListOf(
@@ -163,7 +163,6 @@ class MyApplication:Application() {
 
         )
 
-
     val muzikMenuList = arrayListOf(
         MuzikModel("Merhaba Şarkısı", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_merhabasarkisi}",R.drawable.ic_muzik_merhabalar),
         MuzikModel("Üç Boyutlu Cisimler", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_ucboyutlucisimler}",R.drawable.ic_muzik_ucboyutlu),
@@ -171,8 +170,6 @@ class MyApplication:Application() {
         MuzikModel("Merhaba Kareoke", MuzikType.VIDEO,"MU8o4SA-DB4",R.drawable.ic_muzik_kareoke),
         MuzikModel("Alkış Oyunu", MuzikType.VIDEO,"soqD2OJ9Nb8",R.drawable.ic_muzikler_alkis_oyunu),
         )
-
-
 
     val oyunHizliYavasList = arrayListOf(
         // UFLEMELI Türü
@@ -225,7 +222,7 @@ class MyApplication:Application() {
         SesModel("Tahta Blok", SesType.ENSTRUMAN.ORFF, R.raw.sound_enstruman_tahtablok, R.drawable.ic_enstruman_tahtablok),
 
         // Diğer türler (Normal enstrümanlar)
-        SesModel("Piyano", SesType.ENSTRUMAN.OTHER, R.raw.sound_enstruman_piyano, R.drawable.ic_enstruman_piyano),
+        SesModel("Piyano", SesType.ENSTRUMAN.TELLI, R.raw.sound_enstruman_piyano, R.drawable.ic_enstruman_piyano),
     )
 
     val oyunResimdenBulList = arrayListOf(
