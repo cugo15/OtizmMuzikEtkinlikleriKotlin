@@ -84,8 +84,8 @@
         <argument android:name="resimdenSestenBulList"
             app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
         <argument
-            android:name="resimdenSestenBulType"
-            app:argType="string" />
+            android:name="gameType"
+            app:argType="com.aecg.oyunvemuzikae.ui.GameType" />
         <action
             android:id="@+id/oyunResimdenSestenBulFragment_self"
             app:destination="@id/oyunResimdenSestenBulFragment"
