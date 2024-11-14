@@ -36,7 +36,7 @@
         tools:layout="@layout/fragment_ses" >
         <argument
             android:name="sesList"
-            app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
+            app:argType="com.aecg.oyunvemuzikae.data.model.SesModel[]" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
@@ -48,7 +48,7 @@
             app:destination="@id/sesFragment" />
         <argument
             android:name="menuList"
-            app:argType="com.aecg.oyunvemuzikae.ui.MenuModel[]" />
+            app:argType="com.aecg.oyunvemuzikae.data.model.MenuModel[]" />
         <action
             android:id="@+id/menuFragment_to_oyunHizliYavasFragment"
             app:destination="@id/oyunHizliYavasFragment" />
@@ -69,7 +69,7 @@
         tools:layout="@layout/fragment_oyun_hizli_yavas" >
         <argument
             android:name="hizliYavasList"
-            app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
+            app:argType="com.aecg.oyunvemuzikae.data.model.SesModel[]" />
         <action
             android:id="@+id/action_oyunHizliYavasFragment_self"
             app:destination="@id/oyunHizliYavasFragment"
@@ -82,7 +82,7 @@
         android:label="fragment_oyun_resimden_sesten_bul"
         tools:layout="@layout/fragment_oyun_resimden_sesten_bul" >
         <argument android:name="resimdenSestenBulList"
-            app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
+            app:argType="com.aecg.oyunvemuzikae.data.model.SesModel[]" />
         <argument
             android:name="gameType"
             app:argType="com.aecg.oyunvemuzikae.domain.GameType" />
@@ -99,7 +99,7 @@
         tools:layout="@layout/fragment_muzik" >
         <argument
             android:name="muzikList"
-            app:argType="com.aecg.oyunvemuzikae.ui.MuzikModel[]" />
+            app:argType="com.aecg.oyunvemuzikae.data.model.MuzikModel[]" />
         <action
             android:id="@+id/action_muzikFragment_to_webViewDialogFragment"
             app:destination="@id/webViewDialogFragment" />
@@ -118,7 +118,7 @@
         android:label="fragment_oyun_hafiza"
         tools:layout="@layout/fragment_oyun_hafiza" >
         <argument android:name="enstrumanList"
-            app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
+            app:argType="com.aecg.oyunvemuzikae.data.model.SesModel[]" />
         <argument
             android:name="difficulty"
             app:argType="integer" />

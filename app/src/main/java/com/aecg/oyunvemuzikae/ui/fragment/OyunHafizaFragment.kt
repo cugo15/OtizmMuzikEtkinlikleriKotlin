@@ -7,8 +7,6 @@ import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.aecg.oyunvemuzikae.OyunHafizaFragmentArgs
-import com.aecg.oyunvemuzikae.OyunHafizaFragmentDirections
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.data.model.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunHafizaBinding

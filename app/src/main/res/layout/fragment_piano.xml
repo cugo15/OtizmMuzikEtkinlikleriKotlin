@@ -88,7 +88,7 @@
             app:srcCompat="@drawable/ic_piano_plus" />
     </androidx.cardview.widget.CardView>
 
-    <com.aecg.oyunvemuzikae.CustomScv
+    <com.aecg.oyunvemuzikae.ui.custom.CustomScv
         android:id="@+id/scrollViewKeyboard"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -700,7 +700,7 @@
 
             </RelativeLayout>
         </LinearLayout>
-    </com.aecg.oyunvemuzikae.CustomScv>
+    </com.aecg.oyunvemuzikae.ui.custom.CustomScv>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewSeekBarOctave"
