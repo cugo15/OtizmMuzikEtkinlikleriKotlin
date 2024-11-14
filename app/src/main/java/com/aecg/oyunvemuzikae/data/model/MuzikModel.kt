@@ -1,6 +1,7 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.data.model
 
 import android.os.Parcelable
+import com.aecg.oyunvemuzikae.domain.MuzikType
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

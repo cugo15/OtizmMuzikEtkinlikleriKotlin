@@ -1,11 +1,13 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.ui.actvity
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.aecg.oyunvemuzikae.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null

@@ -1,8 +1,10 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.ui.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.aecg.oyunvemuzikae.data.model.MuzikModel
 import com.aecg.oyunvemuzikae.databinding.MenuItemBinding
+import com.aecg.oyunvemuzikae.domain.MuzikType
 import com.bumptech.glide.Glide
 
 class MuzikViewHolder(val binding: MenuItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -10,7 +12,7 @@ class MuzikViewHolder(val binding: MenuItemBinding) : RecyclerView.ViewHolder(bi
     // Bind fonksiyonu, bir SesModel nesnesini alır ve gerekli verileri UI bileşenlerine atar
     inline fun bind(
         muzikModel: MuzikModel,
-        crossinline onClickListener: (String,MuzikType) -> Unit,
+        crossinline onClickListener: (String, MuzikType) -> Unit,
         crossinline onItemAnimated: (View) -> Unit
     ) {
         // Ses modelinin görselini ata

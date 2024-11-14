@@ -5,7 +5,7 @@
     android:id="@+id/layoutFragmentOyunHafiza"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OyunHafizaFragment">
+    tools:context=".ui.fragment.OyunHafizaFragment">
 
     <ImageView
         android:id="@+id/imageViewOyunHafizaHint"

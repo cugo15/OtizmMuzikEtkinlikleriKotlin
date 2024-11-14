@@ -1,11 +1,12 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.aecg.oyunvemuzikae.MenuType
+import com.aecg.oyunvemuzikae.domain.MenuType
 import com.aecg.oyunvemuzikae.databinding.MenuItemBinding
+import com.aecg.oyunvemuzikae.data.model.MenuModel
 
 class MenuAdapter(
     private val menuList: ArrayList<MenuModel>, // MenuModel nesnelerinin bulunduğu liste

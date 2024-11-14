@@ -1,6 +1,7 @@
-package com.aecg.oyunvemuzikae.Sesler
+package com.aecg.oyunvemuzikae.data.model
 
 import android.os.Parcelable
+import com.aecg.oyunvemuzikae.domain.SesType
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 

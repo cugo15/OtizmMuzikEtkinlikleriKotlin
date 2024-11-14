@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.ui.fragment
 
 import android.media.MediaPlayer
 import android.net.Uri
@@ -8,9 +8,12 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.R
+import com.aecg.oyunvemuzikae.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentMuzikBinding
+import com.aecg.oyunvemuzikae.ui.adapter.MuzikAdapter
+import com.aecg.oyunvemuzikae.data.model.MuzikModel
+import com.aecg.oyunvemuzikae.domain.MuzikType
 
 class MuzikFragment : BaseFragment<FragmentMuzikBinding>(FragmentMuzikBinding::inflate) {
 

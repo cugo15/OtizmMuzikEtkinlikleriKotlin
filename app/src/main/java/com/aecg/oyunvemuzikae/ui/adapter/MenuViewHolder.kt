@@ -1,8 +1,9 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.ui.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.aecg.oyunvemuzikae.MenuType
+import com.aecg.oyunvemuzikae.domain.MenuType
+import com.aecg.oyunvemuzikae.data.model.MenuModel
 import com.aecg.oyunvemuzikae.databinding.MenuItemBinding
 import com.bumptech.glide.Glide
 
@@ -11,7 +12,7 @@ class MenuViewHolder(val binding: MenuItemBinding) : RecyclerView.ViewHolder(bin
     // Bind fonksiyonu, bir SesModel nesnesini alır ve gerekli verileri UI bileşenlerine atar
     inline fun bind(
         menuModel: MenuModel,
-        crossinline onClickListener: (String,MenuType) -> Unit,
+        crossinline onClickListener: (String, MenuType) -> Unit,
         crossinline onItemAnimated: (View) -> Unit
     ) {
         // Ses modelinin görselini ata

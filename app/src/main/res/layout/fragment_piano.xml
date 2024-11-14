@@ -11,7 +11,7 @@
     android:paddingTop="8dp"
     android:paddingEnd="8dp"
     android:paddingBottom="8dp"
-    tools:context=".ui.PianoFragment"
+    tools:context=".ui.fragment.PianoFragment"
     >
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnFixedDo"

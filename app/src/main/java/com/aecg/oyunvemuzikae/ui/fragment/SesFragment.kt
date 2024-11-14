@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.ui.fragment
 
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -8,11 +8,11 @@ import android.view.animation.AnimationUtils
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
-import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.R
-import com.aecg.oyunvemuzikae.Sesler.SesAdapter
-import com.aecg.oyunvemuzikae.Sesler.SesType
-import com.aecg.oyunvemuzikae.Sesler.SesModel
+import com.aecg.oyunvemuzikae.ui.adapter.SesAdapter
+import com.aecg.oyunvemuzikae.domain.SesType
+import com.aecg.oyunvemuzikae.data.model.SesModel
+import com.aecg.oyunvemuzikae.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentSesBinding
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.utils.scrollInDirection

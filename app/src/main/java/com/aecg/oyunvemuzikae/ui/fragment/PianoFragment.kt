@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.ui.fragment
 
 import android.media.SoundPool
 import android.os.Bundle
@@ -10,8 +10,8 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
-import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.R
+import com.aecg.oyunvemuzikae.base.BaseFragment
 
 import com.aecg.oyunvemuzikae.databinding.FragmentPianoBinding
 

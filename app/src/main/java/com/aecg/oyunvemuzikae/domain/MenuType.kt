@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae
+package com.aecg.oyunvemuzikae.domain
 
 enum class MenuType (val displayName: String) {
     SES("Sesler"),

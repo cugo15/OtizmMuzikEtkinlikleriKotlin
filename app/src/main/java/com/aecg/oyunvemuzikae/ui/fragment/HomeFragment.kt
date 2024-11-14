@@ -1,11 +1,11 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.ui.fragment
 
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.aecg.oyunvemuzikae.BaseFragment
-import com.aecg.oyunvemuzikae.MyApplication
+import com.aecg.oyunvemuzikae.app.MyApplication
+import com.aecg.oyunvemuzikae.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {

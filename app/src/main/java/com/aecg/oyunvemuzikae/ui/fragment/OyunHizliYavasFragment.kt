@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.ui.fragment
 
 import android.content.res.ColorStateList
 import android.media.MediaPlayer
@@ -9,9 +9,9 @@ import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.R
-import com.aecg.oyunvemuzikae.Sesler.SesModel
+import com.aecg.oyunvemuzikae.data.model.SesModel
+import com.aecg.oyunvemuzikae.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunHizliYavasBinding
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.delay
@@ -33,8 +33,7 @@ class OyunHizliYavasFragment : BaseFragment<FragmentOyunHizliYavasBinding>(Fragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setSoruText(randomQuestionFast)
-        sesList = OyunHizliYavasFragmentArgs
-            .fromBundle(requireArguments())
+        sesList = OyunHizliYavasFragmentArgs.fromBundle(requireArguments())
             .hizliYavasList
             .toCollection(ArrayList())
 
@@ -110,7 +109,8 @@ class OyunHizliYavasFragment : BaseFragment<FragmentOyunHizliYavasBinding>(Fragm
     }
 
     private fun navigateToSelf() {
-        val action = OyunHizliYavasFragmentDirections.actionOyunHizliYavasFragmentSelf(sesList.toTypedArray())
+        val action =
+            OyunHizliYavasFragmentDirections.actionOyunHizliYavasFragmentSelf(sesList.toTypedArray())
         findNavController().navigate(action)
     }
 

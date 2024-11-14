@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.aecg.oyunvemuzikae.ui.HomeFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/pianoFragment"
-        android:name="com.aecg.oyunvemuzikae.ui.PianoFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.fragment.PianoFragment"
         android:label="fragment_piano"
         tools:layout="@layout/fragment_piano" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/sesFragment"
-        android:name="com.aecg.oyunvemuzikae.ui.SesFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.fragment.SesFragment"
         android:label="fragment_ses"
         tools:layout="@layout/fragment_ses" >
         <argument
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.aecg.oyunvemuzikae.ui.MenuFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.fragment.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/oyunHizliYavasFragment"
-        android:name="com.aecg.oyunvemuzikae.ui.OyunHizliYavasFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.fragment.OyunHizliYavasFragment"
         android:label="fragment_oyun_hizli_yavas"
         tools:layout="@layout/fragment_oyun_hizli_yavas" >
         <argument
@@ -78,14 +78,14 @@
     </fragment>
     <fragment
         android:id="@+id/oyunResimdenSestenBulFragment"
-        android:name="com.aecg.oyunvemuzikae.ui.OyunResimdenSestenBulFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.fragment.OyunResimdenSestenBulFragment"
         android:label="fragment_oyun_resimden_sesten_bul"
         tools:layout="@layout/fragment_oyun_resimden_sesten_bul" >
         <argument android:name="resimdenSestenBulList"
             app:argType="com.aecg.oyunvemuzikae.Sesler.SesModel[]" />
         <argument
             android:name="gameType"
-            app:argType="com.aecg.oyunvemuzikae.ui.GameType" />
+            app:argType="com.aecg.oyunvemuzikae.domain.GameType" />
         <action
             android:id="@+id/oyunResimdenSestenBulFragment_self"
             app:destination="@id/oyunResimdenSestenBulFragment"
@@ -94,7 +94,7 @@
     </fragment>
     <fragment
         android:id="@+id/muzikFragment"
-        android:name="com.aecg.oyunvemuzikae.ui.MuzikFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.fragment.MuzikFragment"
         android:label="fragment_muzik"
         tools:layout="@layout/fragment_muzik" >
         <argument
@@ -106,7 +106,7 @@
     </fragment>
     <fragment
         android:id="@+id/webViewDialogFragment"
-        android:name="com.aecg.oyunvemuzikae.ui.WebViewDialogFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.fragment.WebViewDialogFragment"
         android:label="YouTube Video">
         <argument
             android:name="videoId"
@@ -114,7 +114,7 @@
     </fragment>
     <fragment
         android:id="@+id/oyunHafizaFragment"
-        android:name="com.aecg.oyunvemuzikae.OyunHafizaFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.fragment.OyunHafizaFragment"
         android:label="fragment_oyun_hafiza"
         tools:layout="@layout/fragment_oyun_hafiza" >
         <argument android:name="enstrumanList"

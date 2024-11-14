@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae
+package com.aecg.oyunvemuzikae.ui.fragment
 
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -7,8 +7,12 @@ import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.aecg.oyunvemuzikae.Sesler.SesModel
+import com.aecg.oyunvemuzikae.OyunHafizaFragmentArgs
+import com.aecg.oyunvemuzikae.OyunHafizaFragmentDirections
+import com.aecg.oyunvemuzikae.R
+import com.aecg.oyunvemuzikae.data.model.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunHafizaBinding
+import com.aecg.oyunvemuzikae.base.BaseFragment
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.utils.loadResourceImageWithGlide
 import com.aecg.oyunvemuzikae.utils.setForegroundDrawable
@@ -141,7 +145,11 @@ class OyunHafizaFragment : BaseFragment<FragmentOyunHafizaBinding>(FragmentOyunH
         // Eğer imgPairs'teki tüm öğeler pasif ise
         if (imgPairs.all { !it.first.isEnabled }) {
             // Navigasyonu gerçekleştirecek yönlendirme işlemi
-            OyunHafizaFragmentDirections.actionOyunHafizaFragmentSelf(enstrumanList.toTypedArray(), difficulty, lvl)
+            OyunHafizaFragmentDirections.actionOyunHafizaFragmentSelf(
+                enstrumanList.toTypedArray(),
+                difficulty,
+                lvl
+            )
                 .also { findNavController().navigate(it) }
         }
     }

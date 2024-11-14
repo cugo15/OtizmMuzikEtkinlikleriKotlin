@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae
+package com.aecg.oyunvemuzikae.ui.custom
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.domain
 
 enum class MuzikType() {
     VIDEO,

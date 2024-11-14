@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_menu_muzikler"
-    tools:context=".ui.MuzikFragment">
+    tools:context=".ui.fragment.MuzikFragment">
 
     <ImageView
         android:id="@+id/btnHomeMuzikler"

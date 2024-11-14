@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae.Sesler
+package com.aecg.oyunvemuzikae.domain
 
 sealed class SesType(val displayName: String) {
 

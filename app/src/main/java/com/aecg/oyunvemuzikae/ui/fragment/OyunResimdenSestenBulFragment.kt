@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.ui.fragment
 
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -7,12 +7,13 @@ import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.aecg.oyunvemuzikae.BaseFragment
-import com.aecg.oyunvemuzikae.MyApplication
+import com.aecg.oyunvemuzikae.app.MyApplication
 import com.aecg.oyunvemuzikae.R
-import com.aecg.oyunvemuzikae.Sesler.SesModel
-import com.aecg.oyunvemuzikae.Sesler.SesType
+import com.aecg.oyunvemuzikae.data.model.SesModel
+import com.aecg.oyunvemuzikae.domain.SesType
+import com.aecg.oyunvemuzikae.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunResimdenSestenBulBinding
+import com.aecg.oyunvemuzikae.domain.GameType
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.utils.setForegroundDrawable
 import com.bumptech.glide.Glide
@@ -210,7 +211,7 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
     }
 
     private fun handleSoundCompletion() {
-        if (gameType==GameType.ENSTRUMANTIPI){
+        if (gameType== GameType.ENSTRUMANTIPI){
             when (currentIndex) {
                 1 -> navigateToSelf()
             }
@@ -239,8 +240,10 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
         if (possibleCorrectInstruments.isEmpty()) {
             possibleCorrectInstruments = myApplication.enstrumanList
         }
-        OyunResimdenSestenBulFragmentDirections
-            .oyunResimdenSestenBulFragmentSelf(possibleCorrectInstruments.toTypedArray(), gameType)
+        OyunResimdenSestenBulFragmentDirections.oyunResimdenSestenBulFragmentSelf(
+            possibleCorrectInstruments.toTypedArray(),
+            gameType
+        )
             .also { action -> findNavController().navigate(action) }
     }
 

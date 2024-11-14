@@ -1,14 +1,16 @@
-package com.aecg.oyunvemuzikae.ui
+package com.aecg.oyunvemuzikae.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aecg.oyunvemuzikae.databinding.MenuItemBinding
+import com.aecg.oyunvemuzikae.data.model.MuzikModel
+import com.aecg.oyunvemuzikae.domain.MuzikType
 
 class MuzikAdapter(
     private val muzikList: ArrayList<MuzikModel>, // SesModel nesnelerinin bulunduğu liste
-    private val onItemClick: (String,MuzikType) -> Unit, // Tıklama olayı için callback
+    private val onItemClick: (String, MuzikType) -> Unit, // Tıklama olayı için callback
     private val onItemAnimate: (View) -> Unit // Animasyon tetiklemek için callback
 ) : RecyclerView.Adapter<MuzikViewHolder>() {
 

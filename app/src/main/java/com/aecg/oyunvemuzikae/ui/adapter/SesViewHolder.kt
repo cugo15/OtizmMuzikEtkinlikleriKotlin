@@ -1,8 +1,10 @@
-package com.aecg.oyunvemuzikae.Sesler
+package com.aecg.oyunvemuzikae.ui.adapter
 
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.aecg.oyunvemuzikae.domain.SesType
+import com.aecg.oyunvemuzikae.data.model.SesModel
 import com.aecg.oyunvemuzikae.databinding.SesItemBinding
 import com.bumptech.glide.Glide
 
@@ -12,7 +14,7 @@ class SesViewHolder(val binding: SesItemBinding) : RecyclerView.ViewHolder(bindi
     inline fun bind(
         sesModel: SesModel,
         crossinline onClickListener: (CardView, Int) -> Unit,
-        crossinline onItemStyled: (CardView,ImageView,SesType) -> Unit
+        crossinline onItemStyled: (CardView, ImageView, SesType) -> Unit
     ) {
         onItemStyled(binding.cardSes,binding.imgSes,sesModel.type)
         // Ses modelinin görselini ata
