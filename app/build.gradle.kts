@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs")
     id ("kotlin-parcelize")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -48,30 +50,30 @@ dependencies {
 
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
+    implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.activity:activity-ktx:1.9.3")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 
     // Fragment KTX: Kotlin ile daha kolay fragment kullanımı
-    implementation("androidx.fragment:fragment-ktx:1.8.4")
+    implementation("androidx.fragment:fragment-ktx:1.8.5")
 
     // Fragment Testing: Fragment testleri için destek
-    debugImplementation("androidx.fragment:fragment-testing:1.8.4")
+    debugImplementation("androidx.fragment:fragment-testing:1.8.5")
 
     // Navigation Fragment: Navigasyon için fragment desteği
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.3")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
 
     // Navigation UI: Navigasyon arayüzü bileşenleri
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
 
     // Dynamic Features: Dinamik özellik desteği
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.8.3")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.8.4")
 
     // Navigation Testing: Navigasyon testleri için
-    androidTestImplementation("androidx.navigation:navigation-testing:2.8.3")
+    androidTestImplementation("androidx.navigation:navigation-testing:2.8.4")
 
     //Görsel Yükleme: Glide kütüphanesi
     implementation("com.github.bumptech.glide:glide:4.16.0")
@@ -79,5 +81,11 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 
+
+}
+kapt {
+    correctErrorTypes = true
 }
