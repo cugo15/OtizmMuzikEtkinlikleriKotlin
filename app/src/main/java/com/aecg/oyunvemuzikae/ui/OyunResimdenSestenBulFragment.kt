@@ -11,6 +11,7 @@ import com.aecg.oyunvemuzikae.BaseFragment
 import com.aecg.oyunvemuzikae.MyApplication
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.Sesler.SesModel
+import com.aecg.oyunvemuzikae.Sesler.SesType
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunResimdenSestenBulBinding
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.utils.setForegroundDrawable
@@ -20,18 +21,16 @@ import kotlinx.coroutines.launch
 
 class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBulBinding>(FragmentOyunResimdenSestenBulBinding::inflate) {
 
-    private lateinit var enstrumanList: ArrayList<SesModel>
-    private lateinit var enstrumanFullList: ArrayList<SesModel>
-    
-    private lateinit var gameType: String
+    private lateinit var possibleCorrectInstruments: ArrayList<SesModel>
+    private lateinit var possibleWrongInstruments: ArrayList<SesModel>
+    private lateinit var gameType: GameType
 
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var soundListSestenBul: ArrayList<Int>
 
     private val wrongSoundResId = R.raw.sound_yanlis_cevap
-
     private var wrongMediaPlayer: MediaPlayer? = null
-
+    private lateinit var correctInstrument : SesModel
     private var currentIndex = 0
 
     private val myApplication: MyApplication by lazy {
@@ -46,47 +45,99 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
         )
     }
     private val correctImageView: ImageView by lazy { imageViews.random() }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isAnswerButtonsEnabled(false)
+        val args = OyunResimdenSestenBulFragmentArgs.fromBundle(requireArguments())
+        gameType = args.gameType
+        possibleCorrectInstruments = args.resimdenSestenBulList.toCollection(ArrayList())
+        possibleWrongInstruments = getPossibleWrongInstruments()
 
-        initializeGameData()
-
-        // Doğru enstrümanı rastgele seç ve listeden çıkar
-        val correctInstrument = enstrumanList.random().also { enstrumanList.remove(it) }
-        binding.txtOyunResimdenSestenBulHeader.text = correctInstrument.sesName
-
+        correctInstrument = possibleCorrectInstruments.random().also { possibleCorrectInstruments.remove(it) }
+        soundListSestenBul = createSoundList(correctInstrument, gameType)
+        binding.txtOyunResimdenSestenBulHeader.text = getGameHeaderText(gameType, correctInstrument)
         setInstrumentImages(correctImageView,correctInstrument.imageResourceId,selectWrongInstruments(correctInstrument))
-        setupGameLayout(gameType, correctInstrument)
+        binding.layoutOyunResimdenSestenBul.loadLayoutBackgroundWithGlide(requireContext(),setupGameBackground(gameType))
+        playSound()
+
         setCardViewClickListener(binding.cardViewOyunResimdenSestenBulAnswer1,binding.imgOyunResimdenSestenBulAnswer1)
         setCardViewClickListener(binding.cardViewOyunResimdenSestenBulAnswer2, binding.imgOyunResimdenSestenBulAnswer2)
         setCardViewClickListener(binding.cardViewOyunResimdenSestenBulAnswer3, binding.imgOyunResimdenSestenBulAnswer3)
         binding.btnOyunResimdenSestenBulReplay.setOnClickListener { listenSoundAgain() }
     }
 
-    private fun initializeGameData() {
-        val args = OyunResimdenSestenBulFragmentArgs.fromBundle(requireArguments())
-        gameType = args.resimdenSestenBulType
-        enstrumanFullList = if (gameType == "Resimden Bul") {//Resimden bul ise
+    private fun getPossibleWrongInstruments(): ArrayList<SesModel> {
+        return if (gameType == GameType.RESIMDENBUL) {
+            // Resimden Bul oyunu için listeyi döndürüyoruz
             myApplication.oyunResimdenBulList.toCollection(ArrayList())
-        } else {//Sesten Bul Oyunu ise
+        } else {
+            // Diğer oyun türleri için enstrüman listesini döndürüyoruz
             myApplication.enstrumanList.toCollection(ArrayList())
         }
-        enstrumanList = args.resimdenSestenBulList.toCollection(ArrayList())
     }
 
-    private fun createSoundList(correctInstrument: SesModel, isResimdenBul: Boolean) {
-        soundListSestenBul = if (isResimdenBul) {
-            arrayListOf(correctInstrument.sesResourceId, R.raw.sound_oyun_resimdenbul_soru, R.raw.sound_cevap_dogru)
-        } else {
-            arrayListOf(R.raw.sound_oyun_sestenbul_soru, correctInstrument.sesResourceId, R.raw.sound_cevap_dogru)
+    private fun getGameHeaderText(gameType: GameType, correctInstrument: SesModel): String {
+        return when (gameType) {
+            GameType.ENSTRUMANTIPI -> {
+                (correctInstrument.type as? SesType.ENSTRUMAN)?.displayGameHeader?.let {
+                    "Aşağıdaki enstrümanlardan hangisi $it çalgıdır?"
+                } ?: "Geçersiz enstrüman türü"
+            }
+            GameType.SESTENBUL -> {
+                "Acaba bu ses hangi enstrümana ait?"
+            }
+            GameType.RESIMDENBUL -> {
+                "Acaba ${correctInstrument.sesName} hangisi?"
+            }
+            else -> {
+                "Geçersiz oyun tipi"
+            }
+        }
+    }
+
+    private fun createSoundList(correctInstrument: SesModel, gameType: GameType): ArrayList<Int> {
+        return when (gameType) {
+            GameType.RESIMDENBUL -> arrayListOf(
+                correctInstrument.sesResourceId,
+                R.raw.sound_oyun_resimdenbul_soru,
+                R.raw.sound_cevap_dogru
+            )
+            GameType.SESTENBUL -> arrayListOf(
+                R.raw.sound_oyun_sestenbul_soru,
+                correctInstrument.sesResourceId,
+                R.raw.sound_cevap_dogru
+            )
+            else -> when (correctInstrument.type) {
+                SesType.ENSTRUMAN.UFLEMELI -> arrayListOf(
+                    R.raw.sound_hayvan_name_at,// Yeni ses dosyası gelecek
+                    R.raw.sound_cevap_dogru
+                )
+                SesType.ENSTRUMAN.ORFF -> arrayListOf(
+                    R.raw.sound_arac_name_ambulans,// Yeni ses dosyası gelecek
+                    R.raw.sound_cevap_dogru
+                )
+                SesType.ENSTRUMAN.VURMALI -> arrayListOf(
+                    R.raw.sound_arac_name_ucak,// Yeni ses dosyası gelecek
+                    R.raw.sound_cevap_dogru
+                )
+                else -> arrayListOf(
+                    R.raw.sound_hayvan_name_kaz,// Yeni ses dosyası gelecek
+                    R.raw.sound_cevap_dogru
+                )
+            }
         }
     }
 
     private fun selectWrongInstruments(correctInstrument: SesModel): Pair<Int, Int> {
-        enstrumanFullList.remove(correctInstrument)
-        val shuffledList = enstrumanFullList.map { it.imageResourceId }.shuffled()
-        return shuffledList.take(2).let { Pair(it[0], it[1]) } // Yanlış enstrümanları çift olarak döndür
+        possibleWrongInstruments.remove(correctInstrument)
+        // Eğer oyun türü ENSTRUMANTIPI ise, aynı türdeki enstrümanları çıkarıyoruz
+        if (gameType == GameType.ENSTRUMANTIPI) {
+            possibleWrongInstruments.removeIf { it.type == correctInstrument.type }
+        }
+        // Yanlış enstrümanları karıştırıyoruz ve ilk iki tanesini alıyoruz
+        val shuffledList = possibleWrongInstruments.map { it.imageResourceId }.shuffled()
+        return shuffledList.take(2).let { Pair(it[0], it[1]) }
     }
 
     private fun setCardViewClickListener(cardView: CardView, imageView: ImageView) {
@@ -98,7 +149,7 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
     private fun handleAnswerSelection(selectedAnswer: ImageView, cardView: CardView) {
         cardView.setForegroundDrawable(if (selectedAnswer == correctImageView) {
             R.drawable.border_card_green.also {
-                increaseIndexAndPlayNextSound()
+                increaseIndexAndplayNextSound()
                 isAnswerButtonsEnabled(false)
             }
         } else {
@@ -132,41 +183,47 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
         binding.cardViewOyunResimdenSestenBulAnswer3.isEnabled = isEnabled
     }
 
-    private fun playNextSound() {
+    private fun playSound() {
         // Check if the current index is within the bounds of sound resources
         if (currentIndex < soundListSestenBul.size) {
             releaseAndCreateMediaPlayer()
-            if (currentIndex == 1) {
-                if(gameType == "Resimden Bul"){
-                    lifecycleScope.launch {
-                        delay(1000)
-                        isAnswerButtonsEnabled(true)
-                    }
-                }else{
-                    lifecycleScope.launch {
-                        delay(2000)
-                        isAnswerButtonsEnabled(true)
-                    }
-                }
+
+            // Use when statement for better clarity
+            when (currentIndex) {
+                0 -> handleSoundStartForType(GameType.ENSTRUMANTIPI, 1000)
+                1 -> handleSoundStartForType(gameType, if (gameType == GameType.RESIMDENBUL) 1000 else 2000)
             }
-                mediaPlayer?.start()
 
-
+            mediaPlayer?.start()
             mediaPlayer?.setOnCompletionListener {
                 handleSoundCompletion()
             }
         }
     }
-
-    private fun handleSoundCompletion() {
-        when (currentIndex) {
-            2 -> navigateToSelf()
-            0 -> increaseIndexAndPlayNextSound()
+    private fun handleSoundStartForType(type: GameType, delayTime: Long) {
+        if (gameType == type) {
+            lifecycleScope.launch {
+                delay(delayTime)
+                isAnswerButtonsEnabled(true)
+            }
         }
     }
-    private fun increaseIndexAndPlayNextSound() {
+
+    private fun handleSoundCompletion() {
+        if (gameType==GameType.ENSTRUMANTIPI){
+            when (currentIndex) {
+                1 -> navigateToSelf()
+            }
+        }else{
+            when (currentIndex) {
+                2 -> navigateToSelf()
+                0 -> increaseIndexAndplayNextSound()
+            }
+        }
+    }
+    private fun increaseIndexAndplayNextSound() {
         currentIndex++
-        playNextSound()
+        playSound()
     }
     private fun releaseAndCreateMediaPlayer() {
         mediaPlayer?.release()
@@ -174,34 +231,33 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
 
         mediaPlayer?.setOnCompletionListener {
             // Ses tamamlandığında yapılacak işlemler
-            increaseIndexAndPlayNextSound()
+            increaseIndexAndplayNextSound()
         }
     }
 
     private fun navigateToSelf() {
-        if (enstrumanList.isEmpty()) {
-            enstrumanList = myApplication.enstrumanList
+        if (possibleCorrectInstruments.isEmpty()) {
+            possibleCorrectInstruments = myApplication.enstrumanList
         }
         OyunResimdenSestenBulFragmentDirections
-            .oyunResimdenSestenBulFragmentSelf(enstrumanList.toTypedArray(), gameType)
+            .oyunResimdenSestenBulFragmentSelf(possibleCorrectInstruments.toTypedArray(), gameType)
             .also { action -> findNavController().navigate(action) }
     }
 
     private fun listenSoundAgain() {
         isAnswerButtonsEnabled(false)
-        currentIndex = if (gameType == "Resimden Bul") 0 else if(gameType == "Sesten Bul") 1 else 1
-        playNextSound()
+        currentIndex = if (gameType == GameType.RESIMDENBUL) 0 else if(gameType == GameType.SESTENBUL) 1 else 1
+        playSound()
     }
-    private fun setupGameLayout(gameType: String, correctInstrument: SesModel) {
-        val (background, isFromImage) = when (gameType) {
-            "Resimden Bul" -> R.drawable.bg_oyun_resimdenbul to true
-            "Sesten Bul" -> R.drawable.bg_oyun_sestenbul to false
-            else -> return
+    private fun setupGameBackground(gameType: GameType): Int {
+        return when (gameType) {
+            GameType.RESIMDENBUL -> R.drawable.bg_oyun_resimdenbul
+            GameType.SESTENBUL -> R.drawable.bg_oyun_sestenbul
+            GameType.ENSTRUMANTIPI -> R.drawable.bg_oyun_resimdenbul // Arka plan değişecek
+            else -> return 0 // Geçersiz gameType, 0 döner (geçersiz kaynak)
         }
-        binding.layoutOyunResimdenSestenBul.loadLayoutBackgroundWithGlide(requireContext(), background)
-        createSoundList(correctInstrument, isFromImage)
-        playNextSound()
     }
+
     private fun playWrongSound() {
         // Yanlış ses dosyasını ayarlayın
         wrongMediaPlayer = MediaPlayer.create(requireContext(), wrongSoundResId) // Yanlış ses dosyasını belirtin
