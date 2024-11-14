@@ -72,10 +72,11 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>(FragmentMenuBinding::infl
                 action?.let { findNavController().navigate(it) }
             }else if(type == MenuType.OYUN){
                 val action = when (name) {
-                    "Hızlı Yavaş" -> MenuFragmentDirections.menuFragmentToOyunHizliYavasFragment(myApplication.oyunHizliYavasList.toTypedArray())
-                    "Resimden Bul" -> MenuFragmentDirections.menuFragmentToOyunResimdenSestenBulFragment(myApplication.oyunResimdenBulList.toTypedArray(),"Resimden Bul")
-                    "Sesten Bul" -> MenuFragmentDirections.menuFragmentToOyunResimdenSestenBulFragment(myApplication.enstrumanList.toTypedArray(),"Sesten Bul")
-                    "Hafıza Oyunu" -> MenuFragmentDirections.menuFragmentToSelf(myApplication.oyunMemoryMenuList.toTypedArray())
+                    GameType.HIZLIYAVAS.displayName -> MenuFragmentDirections.menuFragmentToOyunHizliYavasFragment(myApplication.oyunHizliYavasList.toTypedArray())
+                    GameType.RESIMDENBUL.displayName -> MenuFragmentDirections.menuFragmentToOyunResimdenSestenBulFragment(myApplication.oyunResimdenBulList.toTypedArray(),GameType.RESIMDENBUL)
+                    GameType.SESTENBUL.displayName -> MenuFragmentDirections.menuFragmentToOyunResimdenSestenBulFragment(myApplication.enstrumanList.toTypedArray(),GameType.SESTENBUL)
+                    GameType.ENSTRUMANTIPI.displayName -> MenuFragmentDirections.menuFragmentToOyunResimdenSestenBulFragment(myApplication.enstrumanList.toTypedArray(),GameType.ENSTRUMANTIPI)
+                    GameType.HAFIZA.displayName -> MenuFragmentDirections.menuFragmentToSelf(myApplication.oyunMemoryMenuList.toTypedArray())
                     else -> null // Geçersiz bir isim durumunda
                 }
                 action?.let { findNavController().navigate(it) }
