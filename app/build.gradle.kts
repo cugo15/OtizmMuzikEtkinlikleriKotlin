@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.aecg.oyunvemuzikae"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         vectorDrawables {
@@ -17,7 +17,7 @@ android {
         }
         applicationId = "com.aecg.oyunvemuzikae"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 2
         versionName = "2.0"
 
