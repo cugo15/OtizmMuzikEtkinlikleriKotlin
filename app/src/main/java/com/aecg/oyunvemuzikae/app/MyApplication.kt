@@ -302,9 +302,7 @@ class MyApplication:Application() {
 
     val oyunMenuList = arrayListOf(
         MenuModel(GameType.HIZLIYAVAS.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_hizliyavas),
-        MenuModel(GameType.RESIMDENBUL.displayName, MenuType.OYUN,
-            R.drawable.ic_oyunmenu_resimdenbul
-        ),
+        MenuModel(GameType.RESIMDENBUL.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_resimdenbul),
         MenuModel(GameType.SESTENBUL.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_sestenbul),
         MenuModel(GameType.ENSTRUMANTIPI.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_hafiza),
         MenuModel(GameType.HAFIZA.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_hafiza),
@@ -320,12 +318,8 @@ class MyApplication:Application() {
         )
 
     val muzikMenuList = arrayListOf(
-        MuzikModel("Merhaba Şarkısı", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_merhabasarkisi}",
-            R.drawable.ic_muzik_merhabalar
-        ),
-        MuzikModel("Üç Boyutlu Cisimler", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_ucboyutlucisimler}",
-            R.drawable.ic_muzik_ucboyutlu
-        ),
+        MuzikModel("Merhaba Şarkısı", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_merhabasarkisi}", R.drawable.ic_muzik_merhabalar),
+        MuzikModel("Üç Boyutlu Cisimler", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_ucboyutlucisimler}", R.drawable.ic_muzik_ucboyutlu),
         MuzikModel("Geri Sayma", MuzikType.VIDEO,"bZtDgNI2QWY", R.drawable.ic_muzik_gerisayma),
         MuzikModel("Merhaba Kareoke", MuzikType.VIDEO,"MU8o4SA-DB4", R.drawable.ic_muzik_kareoke),
         MuzikModel("Alkış Oyunu", MuzikType.VIDEO,"soqD2OJ9Nb8", R.drawable.ic_muzikler_alkis_oyunu),
