@@ -4,7 +4,9 @@ import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.data.model.SesModel
 import com.aecg.oyunvemuzikae.domain.SesType
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class SesDataSource @Inject constructor() {
 
     fun getDogaList(): List<SesModel> {

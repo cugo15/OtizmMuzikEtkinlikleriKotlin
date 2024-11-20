@@ -5,7 +5,9 @@ import com.aecg.oyunvemuzikae.data.model.MenuModel
 import com.aecg.oyunvemuzikae.domain.GameType
 import com.aecg.oyunvemuzikae.domain.MenuType
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class MenuDataSource @Inject constructor() {
 
     fun getSesMenuList(): Array<MenuModel> {

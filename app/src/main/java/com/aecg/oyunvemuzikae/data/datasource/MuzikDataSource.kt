@@ -4,7 +4,9 @@ import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.data.model.MuzikModel
 import com.aecg.oyunvemuzikae.domain.MuzikType
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class MuzikDataSource @Inject constructor() {
 
     fun getMuzikList(): Array<MuzikModel> {
