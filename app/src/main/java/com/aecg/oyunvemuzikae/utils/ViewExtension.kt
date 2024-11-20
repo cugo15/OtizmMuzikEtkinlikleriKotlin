@@ -1,8 +1,11 @@
 package com.aecg.oyunvemuzikae.utils
 
-import androidx.cardview.widget.CardView
+import android.view.View
 import androidx.core.content.ContextCompat
 
-fun CardView.setForegroundDrawable(drawableId: Int) {
+fun View.setForegroundDrawable(drawableId: Int) {
     this.foreground = ContextCompat.getDrawable(context, drawableId)
 }
+
+
+
