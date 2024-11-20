@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class MuzikDataSource @Inject constructor() {
 
-    fun getMuzikList(): List<MuzikModel> {
-        return arrayListOf(
+    fun getMuzikList(): Array<MuzikModel> {
+        return arrayOf(
             MuzikModel("Merhaba Şarkısı", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_merhabasarkisi}", R.drawable.ic_muzik_merhabalar),
             MuzikModel("Üç Boyutlu Cisimler", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_ucboyutlucisimler}", R.drawable.ic_muzik_ucboyutlu),
             MuzikModel("Geri Sayma", MuzikType.VIDEO,"bZtDgNI2QWY", R.drawable.ic_muzik_gerisayma),
