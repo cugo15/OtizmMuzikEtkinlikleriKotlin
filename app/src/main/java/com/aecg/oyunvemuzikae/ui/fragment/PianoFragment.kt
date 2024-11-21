@@ -1,6 +1,6 @@
 package com.aecg.oyunvemuzikae.ui.fragment
 
-import android.media.SoundPool
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
@@ -9,30 +9,31 @@ import android.widget.RelativeLayout
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.base.BaseFragment
-
 import com.aecg.oyunvemuzikae.databinding.FragmentPianoBinding
+import com.aecg.oyunvemuzikae.ui.viewmodel.PianoViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::inflate) {
 
-    private lateinit var soundPool: SoundPool
-    private val soundMap = mutableMapOf<View, Int>()
+    private val pianoViewModel: PianoViewModel by viewModels()
     private lateinit var whiteKeys: List<Button>
     private lateinit var blackKeys: List<Button>
+    private lateinit var allKeys: List<Button>
     private lateinit var firstVisibleItem: Button
     private var c: Int = 0
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         whiteKeys = getWhiteKeys()
         blackKeys = getBlackKeys()
+        allKeys = whiteKeys + blackKeys
         firstVisibleItem = binding.btnC4
+        triggerSoundForKey()
 
-        initializeSoundPool()
-        loadSounds()
-        setupListeners()
         binding.scrollViewKeyboard.post { attachKeyToSeekBar(firstVisibleItem) }
 
         binding.seekBarOctave.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
@@ -43,191 +44,61 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
         })
 
-        binding.btnHome.setOnClickListener {
-            findNavController().navigate(R.id.pianoFragment_to_homeFragment)
-        }
+        binding.btnHome.setOnClickListener { findNavController().navigate(R.id.pianoFragment_to_homeFragment) }
+        binding.btnIncreaseKeySize.setOnClickListener { adjustKeyboardSize(true) }
+        binding.btnDecreaseKeySize.setOnClickListener { adjustKeyboardSize(false) }
+        binding.btnFixedDo.setOnClickListener { handleNotationButtonClick(binding.btnC2.text.toString()) }
+        binding.btnpitchNotation.setOnClickListener { handlePitchNotationButtonClick(binding.btnC2.text.toString()) }
 
-        binding.btnIncreaseKeySize.setOnClickListener {
-            adjustKeyboardSize(true)
-        }
-        binding.btnDecreaseKeySize.setOnClickListener {
-            adjustKeyboardSize(false)
-        }
-
-        binding.btnFixedDo.setOnClickListener {
-            when (binding.btnC2.text) {
-                "" -> fixedDo() // Eğer metin boşsa
-                "Do2" -> clearNotation()   // Eğer metin "Do2" ise
-                "C2" -> fixedDo() // Eğer metin "C2" ise
-            }
-        }
-        binding.btnpitchNotation.setOnClickListener {
-            when (binding.btnC2.text) {
-                "" -> pitchNotation()   // Eğer metin boşsa
-                "C2" -> clearNotation()  // Eğer metin "C2" ise
-                "Do2" -> pitchNotation() // Eğer metin "Do2" ise
-            }
-        }
         binding.btnColor.setOnClickListener {
             c++
             when {
                 c % 2 == 0 -> whiteKeyboard()  // Beyaz yap
-                else -> colorfulKeyboard()      // Renkli yap
+                else -> updateKeyboardColors(pianoViewModel.getPianoColors())     // Renkli yap
             }
         }
     }
 
-    private fun initializeSoundPool() {
-        soundPool = SoundPool.Builder()
-            .setMaxStreams(10) // Aynı anda çalabilecek maksimum ses sayısı
-            .build()
-    }
-    private fun loadSounds() {
-        // Ses dosyalarının kaynakları
-        val soundResources = mapOf(
-            binding.btnC2 to R.raw.sound_piano_c2,
-            binding.btnDiyezC2 to R.raw.sound_piano_c2diyez,
-            binding.btnD2 to R.raw.sound_piano_d2,
-            binding.btnDiyezD2 to R.raw.sound_piano_d2diyez,
-            binding.btnE2 to R.raw.sound_piano_e2,
-            binding.btnF2 to R.raw.sound_piano_f2,
-            binding.btnDiyezF2 to R.raw.sound_piano_f2diyez,
-            binding.btnG2 to R.raw.sound_piano_g2,
-            binding.btnDiyezG2 to R.raw.sound_piano_g2diyez,
-            binding.btnA2 to R.raw.sound_piano_a2,
-            binding.btnDiyezA2 to R.raw.sound_piano_a2diyez,
-            binding.btnB2 to R.raw.sound_piano_b2,
-            binding.btnC3 to R.raw.sound_piano_c3,
-            binding.btnDiyezC3 to R.raw.sound_piano_c3diyez,
-            binding.btnD3 to R.raw.sound_piano_d3,
-            binding.btnDiyezD3 to R.raw.sound_piano_d3diyez,
-            binding.btnE3 to R.raw.sound_piano_e3,
-            binding.btnF3 to R.raw.sound_piano_f3,
-            binding.btnDiyezF3 to R.raw.sound_piano_f3diyez,
-            binding.btnG3 to R.raw.sound_piano_g3,
-            binding.btnDiyezG3 to R.raw.sound_piano_g3diyez,
-            binding.btnA3 to R.raw.sound_piano_a3,
-            binding.btnDiyezA3 to R.raw.sound_piano_a3diyez,
-            binding.btnB3 to R.raw.sound_piano_b3,
-            binding.btnC4 to R.raw.sound_piano_c4,
-            binding.btnDiyezC4 to R.raw.sound_piano_c4diyez,
-            binding.btnD4 to R.raw.sound_piano_d4,
-            binding.btnDiyezD4 to R.raw.sound_piano_d4diyez,
-            binding.btnE4 to R.raw.sound_piano_e4,
-            binding.btnF4 to R.raw.sound_piano_f4,
-            binding.btnDiyezF4 to R.raw.sound_piano_f4diyez,
-            binding.btnG4 to R.raw.sound_piano_g4,
-            binding.btnDiyezG4 to R.raw.sound_piano_g4diyez,
-            binding.btnA4 to R.raw.sound_piano_a4,
-            binding.btnDiyezA4 to R.raw.sound_piano_a4diyez,
-            binding.btnB4 to R.raw.sound_piano_b4,
-            binding.btnC5 to R.raw.sound_piano_c5,
-            binding.btnDiyezC5 to R.raw.sound_piano_c5diyez,
-            binding.btnD5 to R.raw.sound_piano_d5,
-            binding.btnDiyezD5 to R.raw.sound_piano_d5diyez,
-            binding.btnE5 to R.raw.sound_piano_e5,
-            binding.btnF5 to R.raw.sound_piano_f5,
-            binding.btnDiyezF5 to R.raw.sound_piano_f5diyez,
-            binding.btnG5 to R.raw.sound_piano_g5,
-            binding.btnDiyezG5 to R.raw.sound_piano_g5diyez,
-            binding.btnA5 to R.raw.sound_piano_a5,
-            binding.btnDiyezA5 to R.raw.sound_piano_a5diyez,
-            binding.btnB5 to R.raw.sound_piano_b5,
-            binding.btnC6 to R.raw.sound_piano_c6,
-            binding.btnDiyezC6 to R.raw.sound_piano_c6diyez,
-            binding.btnD6 to R.raw.sound_piano_d6,
-            binding.btnDiyezD6 to R.raw.sound_piano_d6diyez,
-            binding.btnE6 to R.raw.sound_piano_e6,
-            binding.btnF6 to R.raw.sound_piano_f6,
-            binding.btnDiyezF6 to R.raw.sound_piano_f6diyez,
-            binding.btnG6 to R.raw.sound_piano_g6,
-            binding.btnDiyezG6 to R.raw.sound_piano_g6diyez,
-            binding.btnA6 to R.raw.sound_piano_a6,
-            binding.btnDiyezA6 to R.raw.sound_piano_a6diyez,
-            binding.btnB6 to R.raw.sound_piano_b6,
-            binding.btnC7 to R.raw.sound_piano_c7
-        )
-        // Sesleri yükleme işlemi
-        soundResources.forEach { (view, resId) ->
-            soundMap[view] = soundPool.load(requireContext(), resId, 1)
-        }
-    }
 
-    private fun setupListeners() {
-        binding.btnHome.setOnClickListener {
-            findNavController().navigate(R.id.pianoFragment_to_homeFragment)
-        }
-
-        soundMap.keys.forEach { button ->
-            button.setOnTouchListener { _, event ->
+    @SuppressLint("ClickableViewAccessibility")
+    private fun triggerSoundForKey() {
+        allKeys.forEach {
+            it.setOnTouchListener { _, event ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
-                    playSound(button)
+                    pianoViewModel.playSound(it)
                 }
                 false
             }
         }
     }
 
-    private fun playSound(view: View) {
-        // soundMap'den 'view' ile eşleşen ses ID'sini alır
-        soundMap[view]?.let { soundId ->
-            // Eğer 'soundId' mevcutsa, ses çalınır
-            soundPool.play(
-                soundId,  // Çalmak istediğiniz ses kaynağının kimliği
-                1f,       // Ses seviyesi (1.0 maksimum)
-                1f,       // Ses seviyesi (1.0 maksimum)
-                0,        // Sesin tekrar sayısı (0, sesi yalnızca bir kez çalar)
-                0,        // Sesin başlangıç zamanı (0, sesi hemen başlatır)
-                1f        // Sesin hızını belirler (1.0 normal hız)
-            )
-        } // 'let' bloğu, soundId null değilse çalışır
-    }
-
-    private fun fixedDo() {
-        val notalar = listOf(
-            "Do2", "Re2", "Mi2", "Fa2", "Sol2", "La2", "Si2",
-            "Do3", "Re3", "Mi3", "Fa3", "Sol3", "La3", "Si3",
-            "Do4", "Re4", "Mi4", "Fa4", "Sol4", "La4", "Si4",
-            "Do5", "Re5", "Mi5", "Fa5", "Sol5", "La5", "Si5",
-            "Do6", "Re6", "Mi6", "Fa6", "Sol6", "La6", "Si6",
-            "Do7"
-        )
+    private fun updateButtonTexts(notations: Array<String>) {
         whiteKeys.forEachIndexed { index, button ->
-            button.text = notalar[index]
+                button.text = notations[index]
         }
     }
-    //Pitch Notaları göster
-    private fun pitchNotation() {
-        val notalar = listOf(
-            "C2", "D2", "E2", "F2", "G2", "A2", "B2",
-            "C3", "D3", "E3", "F3", "G3", "A3", "B3",
-            "C4", "D4", "E4", "F4", "G4", "A4", "B4",
-            "C5", "D5", "E5", "F5", "G5", "A5", "B5",
-            "C6", "D6", "E6", "F6", "G6", "A6", "B6",
-            "C7"
-        )
-        whiteKeys.forEachIndexed { index, button ->
-                button.text = notalar[index]
+    private fun handleNotationButtonClick(buttonText: String) {
+        when (buttonText) {
+            "" -> fixedDo()  // Eğer metin boşsa, fixedDo() çağrılır
+            "Do2" -> clearNotation()  // Eğer metin "Do2" ise, notaları temizle
+            "C2" -> fixedDo()  // Eğer metin "C2" ise, fixedDo() çağrılır
         }
     }
-    // Notaları temizle
-    private fun clearNotation() {
-        whiteKeys.forEach { it.text = "" }
+    private fun handlePitchNotationButtonClick(buttonText: String) {
+        when (buttonText) {
+            "" -> pitchNotation()  // Eğer metin boşsa, pitchNotation() çağrılır
+            "C2" -> clearNotation()  // Eğer metin "C2" ise, notaları temizle
+            "Do2" -> pitchNotation()  // Eğer metin "Do2" ise, pitchNotation() çağrılır
+        }
     }
-    // Klavyeyi renklendir
-    private fun colorfulKeyboard() {
-        val renkler = listOf(
-            R.drawable.pressed_and_normal_selector_kirmizi,
-            R.drawable.pressed_and_normal_selector_yesil,
-            R.drawable.pressed_and_normal_selector_mor,
-            R.drawable.piano_key_pressed_sari,
-            R.drawable.pressed_and_normal_selector_mavi,
-            R.drawable.pressed_and_normal_selector_pembe,
-            R.drawable.pressed_and_normal_selector_gri
-        )
+    private fun fixedDo() = updateButtonTexts(pianoViewModel.getDoNotation())
+    private fun pitchNotation() = updateButtonTexts(pianoViewModel.getPitchNotation())
+    private fun clearNotation() = updateButtonTexts(Array(whiteKeys.size) { "" })
 
+
+    private fun updateKeyboardColors(colors: Array<Int>) {
         whiteKeys.forEachIndexed { index, button ->
-            val drawable = ContextCompat.getDrawable(requireContext(), renkler[index % renkler.size])
+            val drawable = ContextCompat.getDrawable(requireContext(), colors[index % colors.size])
             drawable?.let {
                 button.background = it
             }
@@ -322,6 +193,7 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
             binding.btnC7    // C7 butonu
         )
     }
+
     // Tüm tuşların boyutunu artıran fonksiyon
     private fun adjustKeyboardSize(
         increase: Boolean,
@@ -398,6 +270,5 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
     }
     override fun onDestroyView() {
         super.onDestroyView()
-        soundPool.release()
     }
 }
