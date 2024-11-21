@@ -23,15 +23,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         binding.btnHomeSesler.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.homeFragmentToMenuFragment(homeViewModel.sesMenuList))
+            findNavController().navigate(HomeFragmentDirections.homeFragmentToMenuFragment(homeViewModel.getSesMenuList()))
         }
 
         binding.btnHomeOyunlar.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.homeFragmentToMenuFragment(homeViewModel.oyunMenuList))
+            findNavController().navigate(HomeFragmentDirections.homeFragmentToMenuFragment(homeViewModel.getOyunMenuList()))
         }
 
         binding.btnHomeMuzikler.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.homeFragmentToMuzikFragment(homeViewModel.muzikMenuList))
+            findNavController().navigate(HomeFragmentDirections.homeFragmentToMuzikFragment(homeViewModel.getMuzikMenuList()))
         }
 
     }

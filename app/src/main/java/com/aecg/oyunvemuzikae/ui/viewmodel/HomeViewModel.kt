@@ -9,12 +9,16 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    menuRepository: MenuRepository
-) : ViewModel() {
+class HomeViewModel @Inject constructor(menuRepository: MenuRepository) : ViewModel() {
 
-    val sesMenuList: Array<MenuModel> by lazy { menuRepository.getSesMenuList() }
-    val oyunMenuList: Array<MenuModel> by lazy { menuRepository.getOyunMenuList() }
-    val muzikMenuList: Array<MuzikModel> by lazy { menuRepository.getMuzikMenuList() }
+    // Menü listelerini doğrudan saklıyoruz
+    private val sesMenuList: Array<MenuModel> = menuRepository.getSesMenuList()
+    private val oyunMenuList: Array<MenuModel> = menuRepository.getOyunMenuList()
+    private val muzikMenuList: Array<MuzikModel> = menuRepository.getMuzikMenuList()
 
+    // Getter metodları ile verilere erişim sağlıyoruz
+    fun getSesMenuList(): Array<MenuModel> = sesMenuList
+    fun getOyunMenuList(): Array<MenuModel> = oyunMenuList
+    fun getMuzikMenuList(): Array<MuzikModel> = muzikMenuList
 }
+
