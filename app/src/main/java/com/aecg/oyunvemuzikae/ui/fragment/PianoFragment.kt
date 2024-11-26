@@ -1,13 +1,12 @@
 package com.aecg.oyunvemuzikae.ui.fragment
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
-import android.widget.SeekBar
-import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,49 +14,43 @@ import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentPianoBinding
 import com.aecg.oyunvemuzikae.ui.viewmodel.PianoViewModel
+import com.aecg.oyunvemuzikae.utils.setOnCustomSeekBarChangeListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::inflate) {
 
     private val pianoViewModel: PianoViewModel by viewModels()
-    private lateinit var whiteKeys: List<Button>
-    private lateinit var blackKeys: List<Button>
-    private lateinit var allKeys: List<Button>
-    private lateinit var firstVisibleItem: Button
-    private var c: Int = 0
+    private lateinit var whiteKeys: Array<Button>
+    private lateinit var blackKeys: Array<Button>
+    private lateinit var allKeys: Array<Button>
+
+    private val fixedDo by lazy { pianoViewModel.getDoNotation() }
+    private val pitchNotation by lazy { pianoViewModel.getPitchNotation() }
+    private val clearNotation by lazy { pianoViewModel.getClearNotation() }
+
+    private lateinit var firsVisibleKey: Button
+    private var isKeyboardColorful: Boolean = false
+    private var keyColor: Drawable? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        pianoViewModel.loadSounds()
         whiteKeys = getWhiteKeys()
         blackKeys = getBlackKeys()
         allKeys = whiteKeys + blackKeys
-        firstVisibleItem = binding.btnC4
+        firsVisibleKey = binding.btnC4
         triggerSoundForKey()
-
-        binding.scrollViewKeyboard.post { attachKeyToSeekBar(firstVisibleItem) }
-
-        binding.seekBarOctave.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
-                linkSeekBarToKeyboard(i)
-            }
-            override fun onStartTrackingTouch(seekBar: SeekBar) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar) {}
-        })
-
-        binding.btnHome.setOnClickListener { findNavController().navigate(R.id.pianoFragment_to_homeFragment) }
+        binding.scrollViewKeyboard.post { attachKeyToSeekBar(firsVisibleKey) }
+        binding.seekBarOctave.setOnCustomSeekBarChangeListener { progress, _ -> linkSeekBarToKeyboard(progress) }
         binding.btnIncreaseKeySize.setOnClickListener { adjustKeyboardSize(true) }
         binding.btnDecreaseKeySize.setOnClickListener { adjustKeyboardSize(false) }
-        binding.btnFixedDo.setOnClickListener { handleNotationButtonClick(binding.btnC2.text.toString()) }
-        binding.btnpitchNotation.setOnClickListener { handlePitchNotationButtonClick(binding.btnC2.text.toString()) }
-
-        binding.btnColor.setOnClickListener {
-            c++
-            when {
-                c % 2 == 0 -> whiteKeyboard()  // Beyaz yap
-                else -> updateKeyboardColors(pianoViewModel.getPianoColors())     // Renkli yap
-            }
-        }
+        binding.btnFixedDo.setOnClickListener {updateButtonTexts(handleNotationButtonClick(binding.btnC2.text.toString(),true))}
+        binding.btnpitchNotation.setOnClickListener {updateButtonTexts(handleNotationButtonClick(binding.btnC2.text.toString(),false))}
+        binding.btnHome.setOnClickListener { findNavController().navigate(R.id.pianoFragment_to_homeFragment) }
+        binding.btnColor.setOnClickListener { updateKeyboardColors() }
     }
+
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -77,45 +70,31 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
                 button.text = notations[index]
         }
     }
-    private fun handleNotationButtonClick(buttonText: String) {
-        when (buttonText) {
-            "" -> fixedDo()  // Eğer metin boşsa, fixedDo() çağrılır
-            "Do2" -> clearNotation()  // Eğer metin "Do2" ise, notaları temizle
-            "C2" -> fixedDo()  // Eğer metin "C2" ise, fixedDo() çağrılır
-        }
-    }
-    private fun handlePitchNotationButtonClick(buttonText: String) {
-        when (buttonText) {
-            "" -> pitchNotation()  // Eğer metin boşsa, pitchNotation() çağrılır
-            "C2" -> clearNotation()  // Eğer metin "C2" ise, notaları temizle
-            "Do2" -> pitchNotation()  // Eğer metin "Do2" ise, pitchNotation() çağrılır
-        }
-    }
-    private fun fixedDo() = updateButtonTexts(pianoViewModel.getDoNotation())
-    private fun pitchNotation() = updateButtonTexts(pianoViewModel.getPitchNotation())
-    private fun clearNotation() = updateButtonTexts(Array(whiteKeys.size) { "" })
 
+    private fun handleNotationButtonClick(buttonText: String, isFixedDo: Boolean):Array<String> {
+        val notationAction = when (buttonText) {
+            "Do2" -> if (isFixedDo) { clearNotation } else { pitchNotation }
+            "C2" -> if (isFixedDo) { fixedDo } else { clearNotation }
+            else -> if (isFixedDo) { fixedDo } else { pitchNotation }
+        }
+        return notationAction
+    }
 
-    private fun updateKeyboardColors(colors: Array<Int>) {
+    private fun updateKeyboardColors() {
+        if (isKeyboardColorful) {
+            keyColor = ContextCompat.getDrawable(requireContext(), R.drawable.pressed_and_normal_selector)
+        }
         whiteKeys.forEachIndexed { index, button ->
-            val drawable = ContextCompat.getDrawable(requireContext(), colors[index % colors.size])
-            drawable?.let {
-                button.background = it
+            if (!isKeyboardColorful){
+                keyColor = ContextCompat.getDrawable(requireContext(), pianoViewModel.getColorForKey(index))
             }
+            button.background = keyColor
         }
-    }
-    // Klavyeyi beyazlat
-    private fun whiteKeyboard() {
-        val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.pressed_and_normal_selector)
-        whiteKeys.forEach { button ->
-            drawable?.let {
-                button.background = it
-            }
-        }
+        isKeyboardColorful = !isKeyboardColorful
     }
 
-    private fun getBlackKeys(): List<Button> {
-        return listOf(
+    private fun getBlackKeys(): Array<Button> {
+        return arrayOf(
             binding.btnDiyezC2, // C#2
             binding.btnDiyezD2, // D#2
             binding.btnDiyezF2, // F#2
@@ -147,9 +126,8 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
             binding.btnDiyezA6, // A#6
         )
     }
-
-    private fun getWhiteKeys(): List<Button> {
-        return listOf(
+    private fun getWhiteKeys(): Array<Button> {
+        return arrayOf(
             binding.btnC2,   // C2 butonu
             binding.btnD2,   // D2 butonu
             binding.btnE2,   // E2 butonu
@@ -210,7 +188,7 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
     }
     // Tuşların boyutunu ayarlayan yardımcı fonksiyon
     private fun adjustKeysSize(
-        keys: List<View>,
+        keys: Array<Button>,
         increase: Boolean,
         maxWidth: Int,
         minWidth: Int,
@@ -246,19 +224,16 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
 
             // Beyaz tuşlar için ekstra işlem
             if (keyType == "Beyaz") {
-                binding.scrollViewKeyboard.post { attachKeyToSeekBar(firstVisibleItem) }
+                binding.scrollViewKeyboard.post { attachKeyToSeekBar(firsVisibleKey) }
             }
         }
     }
     // SeekBar ile klavyeyi bağlayan fonksiyon
     private fun linkSeekBarToKeyboard(i: Int) {
         if (i in whiteKeys.indices) {
-            attachKeyToSeekBar(whiteKeys[i]) // İlgili tuşu SeekBar ile bağla
-            firstVisibleItem = whiteKeys[i]
-        } else if (i == 36) { // Özel bir durum için
-            attachKeyToSeekBar(binding.btnC7) // C7 tuşunu bağla
+            attachKeyToSeekBar(whiteKeys[i])
+            firsVisibleKey = whiteKeys[i]
         }
-
     }
     // Buton'u SeekBar ile bağlamak için fonksiyon
     private fun attachKeyToSeekBar(button: Button) {
@@ -268,7 +243,5 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
             binding.scrollViewKeyboard.smoothScrollTo(x, y) // ScrollView'u yumuşak bir şekilde kaydır
         }
     }
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
+
 }

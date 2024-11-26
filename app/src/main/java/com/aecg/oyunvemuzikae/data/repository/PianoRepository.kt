@@ -7,6 +7,9 @@ interface PianoRepository {
     fun getBlackPianoSounds(): Array<Int>
     fun getDoNotation(): Array<String>
     fun getPitchNotation(): Array<String>
-    fun playSound(button: Button)
+    fun getClearNotation(): Array<String>
     fun getPianoKeyboardColors(): Array<Int>
+    suspend fun loadSounds()
+    fun release()
+    fun playSound(button: Button)
 }
