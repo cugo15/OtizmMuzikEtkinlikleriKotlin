@@ -134,7 +134,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnE2"
-                    android:tag="white_3"
+                    android:tag="white_2"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnD2"
@@ -148,7 +148,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnF2"
-                    android:tag="white_4"
+                    android:tag="white_3"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnE2"
@@ -162,7 +162,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnG2"
-                    android:tag="white_5"
+                    android:tag="white_4"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnF2"
@@ -176,7 +176,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnA2"
-                    android:tag="white_6"
+                    android:tag="white_5"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnG2"
@@ -190,7 +190,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnB2"
-                    android:tag="white_7"
+                    android:tag="white_6"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnA2"
@@ -204,7 +204,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnC3"
-                    android:tag="white_8"
+                    android:tag="white_7"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnB2"
@@ -218,7 +218,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnD3"
-                    android:tag="white_9"
+                    android:tag="white_8"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnC3"
@@ -232,7 +232,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnE3"
-                    android:tag="white_10"
+                    android:tag="white_9"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnD3"
@@ -246,7 +246,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnF3"
-                    android:tag="white_11"
+                    android:tag="white_10"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnE3"
@@ -260,7 +260,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnG3"
-                    android:tag="white_12"
+                    android:tag="white_11"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnF3"
@@ -274,7 +274,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnA3"
-                    android:tag="white_13"
+                    android:tag="white_12"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnG3"
@@ -288,7 +288,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnB3"
-                    android:tag="white_14"
+                    android:tag="white_13"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnA3"
@@ -302,7 +302,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnC4"
-                    android:tag="white_15"
+                    android:tag="white_14"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnB3"
@@ -316,7 +316,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnD4"
-                    android:tag="white_16"
+                    android:tag="white_15"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_width="54dp"
                     android:layout_marginStart="2dp"
@@ -331,7 +331,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnE4"
-                    android:tag="white_17"
+                    android:tag="white_16"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnD4"
@@ -345,7 +345,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnF4"
-                    android:tag="white_18"
+                    android:tag="white_17"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnE4"
@@ -359,7 +359,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnG4"
-                    android:tag="white_19"
+                    android:tag="white_18"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnF4"
@@ -373,7 +373,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnA4"
-                    android:tag="white_20"
+                    android:tag="white_19"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnG4"
@@ -387,7 +387,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnB4"
-                    android:tag="white_21"
+                    android:tag="white_20"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnA4"
@@ -401,7 +401,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnC5"
-                    android:tag="white_22"
+                    android:tag="white_21"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnB4"
@@ -415,7 +415,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnD5"
-                    android:tag="white_23"
+                    android:tag="white_22"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnC5"
@@ -429,7 +429,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnE5"
-                    android:tag="white_24"
+                    android:tag="white_23"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnD5"
@@ -443,7 +443,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnF5"
-                    android:tag="white_25"
+                    android:tag="white_24"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnE5"
@@ -457,7 +457,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnG5"
-                    android:tag="white_26"
+                    android:tag="white_25"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnF5"
@@ -471,7 +471,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnA5"
-                    android:tag="white_27"
+                    android:tag="white_26"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnG5"
@@ -485,7 +485,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnB5"
-                    android:tag="white_28"
+                    android:tag="white_27"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnA5"
@@ -499,7 +499,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnC6"
-                    android:tag="white_29"
+                    android:tag="white_28"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnB5"
@@ -513,7 +513,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnD6"
-                    android:tag="white_30"
+                    android:tag="white_29"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnC6"
@@ -527,7 +527,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnE6"
-                    android:tag="white_31"
+                    android:tag="white_30"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnD6"
@@ -541,7 +541,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnF6"
-                    android:tag="white_32"
+                    android:tag="white_31"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnE6"
@@ -555,7 +555,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnG6"
-                    android:tag="white_33"
+                    android:tag="white_32"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnF6"
@@ -569,7 +569,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnA6"
-                    android:tag="white_34"
+                    android:tag="white_33"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnG6"
@@ -583,7 +583,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnB6"
-                    android:tag="white_35"
+                    android:tag="white_34"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnA6"
@@ -597,7 +597,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnC7"
-                    android:tag="white_36"
+                    android:tag="white_35"
                     style="@style/common_key_style_for_rest_of_the_piano_keys"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/btnB6"
@@ -611,151 +611,151 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezC2"
-                    android:tag="black_1"
+                    android:tag="black_0"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnC2" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezD2"
-                    android:tag="black_2"
+                    android:tag="black_1"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnD2" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezF2"
-                    android:tag="black_3"
+                    android:tag="black_2"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnF2" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezG2"
-                    android:tag="black_4"
+                    android:tag="black_3"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnG2" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezA2"
-                    android:tag="black_5"
+                    android:tag="black_4"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnA2" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezC3"
-                    android:tag="black_6"
+                    android:tag="black_5"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnC3" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezD3"
-                    android:tag="black_7"
+                    android:tag="black_6"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnD3" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezF3"
-                    android:tag="black_8"
+                    android:tag="black_7"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnF3" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezG3"
-                    android:tag="black_9"
+                    android:tag="black_8"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnG3" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezA3"
-                    android:tag="black_10"
+                    android:tag="black_9"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnA3" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezC4"
-                    android:tag="black_11"
+                    android:tag="black_10"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnC4" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezD4"
-                    android:tag="black_12"
+                    android:tag="black_11"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnD4" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezF4"
-                    android:tag="black_13"
+                    android:tag="black_12"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnF4" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezG4"
-                    android:tag="black_14"
+                    android:tag="black_13"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnG4" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezA4"
-                    android:tag="black_15"
+                    android:tag="black_14"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnA4" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezC5"
-                    android:tag="black_16"
+                    android:tag="black_15"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnC5" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezD5"
-                    android:tag="black_17"
+                    android:tag="black_16"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnD5" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezF5"
-                    android:tag="black_18"
+                    android:tag="black_17"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnF5" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezG5"
-                    android:tag="black_19"
+                    android:tag="black_18"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnG5" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezA5"
-                    android:tag="black_20"
+                    android:tag="black_19"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnA5" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezC6"
-                    android:tag="black_21"
+                    android:tag="black_20"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnC6" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezD6"
-                    android:tag="black_22"
+                    android:tag="black_21"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnD6" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezF6"
-                    android:tag="black_23"
+                    android:tag="black_22"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnF6" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezG6"
-                    android:tag="black_24"
+                    android:tag="black_23"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnG6" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnDiyezA6"
-                    android:tag="black_25"
+                    android:tag="black_24"
                     style="@style/black_piano_key_style"
                     android:layout_toEndOf="@id/btnA6" />
 
