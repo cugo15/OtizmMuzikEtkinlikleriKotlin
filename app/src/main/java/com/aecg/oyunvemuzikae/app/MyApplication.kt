@@ -290,24 +290,6 @@ class MyApplication:Application() {
         SesModel("On", SesType.SAYI, R.raw.sound_sayi_on, R.drawable.ic_sayi_on),
         )
 
-    val sesMenuList = arrayListOf(
-        MenuModel("Enstrüman", MenuType.SES, R.drawable.ic_sesmenu_enstruman),
-        MenuModel("Doğa", MenuType.SES, R.drawable.ic_sesmenu_doga),
-        MenuModel("İnsan", MenuType.SES, R.drawable.ic_sesmenu_insan),
-        MenuModel("Araçlar", MenuType.SES, R.drawable.ic_sesmenu_araclar),
-        MenuModel("Hayvan", MenuType.SES, R.drawable.ic_sesmenu_hayvan),
-        MenuModel("Sayılar", MenuType.SES, R.drawable.ic_sesmenu_sayilar),
-        MenuModel("Şekiller", MenuType.SES, R.drawable.ic_sesmenu_sekiller),
-    )
-
-    val oyunMenuList = arrayListOf(
-        MenuModel(GameType.HIZLIYAVAS.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_hizliyavas),
-        MenuModel(GameType.RESIMDENBUL.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_resimdenbul),
-        MenuModel(GameType.SESTENBUL.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_sestenbul),
-        MenuModel(GameType.ENSTRUMANTIPI.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_hafiza),
-        MenuModel(GameType.HAFIZA.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_hafiza),
-    )
-
     val oyunMemoryMenuList = arrayListOf(
         MenuModel("Seviye 1", MenuType.MEMORYLEVEL, R.drawable.ic_menu_oyun_hafiza_lvl1),
         MenuModel("Seviye 2", MenuType.MEMORYLEVEL, R.drawable.ic_menu_oyun_hafiza_lvl2),
@@ -315,14 +297,6 @@ class MyApplication:Application() {
         MenuModel("Seviye 4", MenuType.MEMORYLEVEL, R.drawable.ic_menu_oyun_hafiza_lvl4),
         MenuModel("Seviye 5", MenuType.MEMORYLEVEL, R.drawable.ic_menu_oyun_hafiza_lvl5),
 
-        )
-
-    val muzikMenuList = arrayListOf(
-        MuzikModel("Merhaba Şarkısı", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_merhabasarkisi}", R.drawable.ic_muzik_merhabalar),
-        MuzikModel("Üç Boyutlu Cisimler", MuzikType.MUZIK,"android.resource://com.aecg.oyunvemuzikae/raw/${R.raw.sound_muzik_ucboyutlucisimler}", R.drawable.ic_muzik_ucboyutlu),
-        MuzikModel("Geri Sayma", MuzikType.VIDEO,"bZtDgNI2QWY", R.drawable.ic_muzik_gerisayma),
-        MuzikModel("Merhaba Kareoke", MuzikType.VIDEO,"MU8o4SA-DB4", R.drawable.ic_muzik_kareoke),
-        MuzikModel("Alkış Oyunu", MuzikType.VIDEO,"soqD2OJ9Nb8", R.drawable.ic_muzikler_alkis_oyunu),
         )
 
     val oyunHizliYavasList = arrayListOf(
