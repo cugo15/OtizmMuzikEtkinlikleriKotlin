@@ -100,6 +100,10 @@ class PianoDataSource@Inject constructor() {
         )
     }
 
+    fun getClearNotation(): Array<String> {
+        return Array(getDoNotation().size) { "" }
+    }
+
     fun getPianoKeyboardColors(): Array<Int> {
         return arrayOf(
             R.drawable.pressed_and_normal_selector_kirmizi,
