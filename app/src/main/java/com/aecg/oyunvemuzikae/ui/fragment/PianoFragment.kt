@@ -1,12 +1,13 @@
 package com.aecg.oyunvemuzikae.ui.fragment
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
-import android.widget.RelativeLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -24,14 +25,9 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
     private lateinit var whiteKeys: Array<Button>
     private lateinit var blackKeys: Array<Button>
     private lateinit var allKeys: Array<Button>
-
-    private val fixedDo by lazy { pianoViewModel.getDoNotation() }
-    private val pitchNotation by lazy { pianoViewModel.getPitchNotation() }
-    private val clearNotation by lazy { pianoViewModel.getClearNotation() }
-
     private lateinit var firsVisibleKey: Button
     private var isKeyboardColorful: Boolean = false
-    private var keyColor: Drawable? = null
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,14 +37,30 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
         allKeys = whiteKeys + blackKeys
         firsVisibleKey = binding.btnC4
         triggerSoundForKey()
-        binding.scrollViewKeyboard.post { attachKeyToSeekBar(firsVisibleKey) }
-        binding.seekBarOctave.setOnCustomSeekBarChangeListener { progress, _ -> linkSeekBarToKeyboard(progress) }
-        binding.btnIncreaseKeySize.setOnClickListener { adjustKeyboardSize(true) }
-        binding.btnDecreaseKeySize.setOnClickListener { adjustKeyboardSize(false) }
-        binding.btnFixedDo.setOnClickListener {updateButtonTexts(handleNotationButtonClick(binding.btnC2.text.toString(),true))}
-        binding.btnpitchNotation.setOnClickListener {updateButtonTexts(handleNotationButtonClick(binding.btnC2.text.toString(),false))}
-        binding.btnHome.setOnClickListener { findNavController().navigate(R.id.pianoFragment_to_homeFragment) }
-        binding.btnColor.setOnClickListener { updateKeyboardColors() }
+
+        with(binding) {
+            scrollViewKeyboard.post { attachKeyToSeekBar(firsVisibleKey) }
+
+            seekBarOctave.setOnCustomSeekBarChangeListener { progress, _ -> linkSeekBarToKeyboard(progress) }
+
+            btnIncreaseKeySize.setOnClickListener { adjustKeyboardSize(true) }
+            btnDecreaseKeySize.setOnClickListener { adjustKeyboardSize(false) }
+
+            btnFixedDo.setOnClickListener {
+                updateButtonTexts(pianoViewModel.getNotationAction(btnC2.text.toString(), true))
+            }
+
+            btnpitchNotation.setOnClickListener {
+                updateButtonTexts(pianoViewModel.getNotationAction(btnC2.text.toString(), false))
+            }
+
+            btnHome.setOnClickListener {
+                findNavController().navigate(R.id.pianoFragment_to_homeFragment)
+            }
+
+            btnColor.setOnClickListener { updateKeyboardColors() }
+        }
+
     }
 
 
@@ -58,7 +70,8 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
         allKeys.forEach {
             it.setOnTouchListener { _, event ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
-                    pianoViewModel.playSound(it)
+                    val buttonTag = it.tag
+                    pianoViewModel.playSound(buttonTag.toString())
                 }
                 false
             }
@@ -71,27 +84,27 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
         }
     }
 
-    private fun handleNotationButtonClick(buttonText: String, isFixedDo: Boolean):Array<String> {
-        val notationAction = when (buttonText) {
-            "Do2" -> if (isFixedDo) { clearNotation } else { pitchNotation }
-            "C2" -> if (isFixedDo) { fixedDo } else { clearNotation }
-            else -> if (isFixedDo) { fixedDo } else { pitchNotation }
-        }
-        return notationAction
-    }
-
     private fun updateKeyboardColors() {
-        if (isKeyboardColorful) {
-            keyColor = ContextCompat.getDrawable(requireContext(), R.drawable.pressed_and_normal_selector)
-        }
+        val (keyColor, textColor) = if (isKeyboardColorful) {
+            Pair(ContextCompat.getDrawable(requireContext(), R.drawable.pressed_and_normal_selector), null)
+        } else {Pair(null, Color.WHITE) }
+
         whiteKeys.forEachIndexed { index, button ->
-            if (!isKeyboardColorful){
-                keyColor = ContextCompat.getDrawable(requireContext(), pianoViewModel.getColorForKey(index))
-            }
             button.background = keyColor
+                ?: ContextCompat.getDrawable(requireContext(), pianoViewModel.getColorForKey(index))
+
+            // Yazı rengini ayarla (sorunu çözmek için log ekledik)
+            val resolvedTextColor = textColor ?: run {
+                val colorRes = pianoViewModel.getColorForTxt(index)
+                ContextCompat.getColor(requireContext(), colorRes)
+            }
+
+            button.setTextColor(resolvedTextColor)
         }
         isKeyboardColorful = !isKeyboardColorful
     }
+
+
 
     private fun getBlackKeys(): Array<Button> {
         return arrayOf(
@@ -175,59 +188,31 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
     // Tüm tuşların boyutunu artıran fonksiyon
     private fun adjustKeyboardSize(
         increase: Boolean,
-        whiteIncrement: Int = 9,
-        blackIncrement: Int = 6,
-        maxWhiteWidth: Int = 270,
-        minWhiteWidth: Int = 90,
-        maxBlackWidth: Int = 180,
-        minBlackWidth: Int = 60
     ) {
-        // Tuşları düzenle
-        adjustKeysSize(whiteKeys, increase, maxWhiteWidth, minWhiteWidth, whiteIncrement, "Beyaz")
-        adjustKeysSize(blackKeys, increase, maxBlackWidth, minBlackWidth, blackIncrement, "Siyah")
+        adjustKeysSize(whiteKeys, increase, 9)
+        adjustKeysSize(blackKeys, increase, 6)
+        binding.scrollViewKeyboard.post { attachKeyToSeekBar(firsVisibleKey) }
     }
     // Tuşların boyutunu ayarlayan yardımcı fonksiyon
     private fun adjustKeysSize(
         keys: Array<Button>,
         increase: Boolean,
-        maxWidth: Int,
-        minWidth: Int,
         increment: Int,
-        keyType: String
     ) {
-        keys.forEach { key ->
-            val newWidth = calculateNewWidth(key.width, increase, maxWidth, minWidth, increment)
-            updateButtonWidth(key, newWidth, keyType)
-        }
-    }
-    // Yeni genişliği hesaplamak için yardımcı fonksiyon
-    private fun calculateNewWidth(
-        currentWidth: Int,
-        increase: Boolean,
-        maxButtonWidth: Int,
-        minButtonWidth: Int,
-        increment: Int
-    ): Int {
-        return when {
-            increase && (currentWidth < maxButtonWidth || currentWidth == 0) -> currentWidth + increment
-            !increase && currentWidth > minButtonWidth -> currentWidth - increment
-            else -> currentWidth
-        }
-    }
-    // Tuş genişliğini güncelleyen yardımcı fonksiyon
-    private fun updateButtonWidth(button: View, newWidth: Int, keyType: String) {
-        if (newWidth != button.width) {
-            println("$keyType tuş mevcut genişlik: ${button.width}")
-            button.layoutParams = (button.layoutParams as RelativeLayout.LayoutParams).apply {
-                width = newWidth // Yeni genişliği ayarla
+        val currentWidth= keys.first().width
+            keys.forEach { key ->
+                val newWidth = pianoViewModel.calculateButtonWidth(increase,currentWidth,increment)
+                updateButtonWidth(key, newWidth)
             }
 
-            // Beyaz tuşlar için ekstra işlem
-            if (keyType == "Beyaz") {
-                binding.scrollViewKeyboard.post { attachKeyToSeekBar(firsVisibleKey) }
-            }
-        }
     }
+
+    // Tuş genişliğini güncelleyen yardımcı fonksiyon
+    private fun updateButtonWidth(button: Button, newWidth: Int) {
+        button.layoutParams = (button.layoutParams as ConstraintLayout.LayoutParams).apply { width = newWidth
+        Log.d("ButtonWidth", "Button width updated to: $newWidth")}
+    }
+
     // SeekBar ile klavyeyi bağlayan fonksiyon
     private fun linkSeekBarToKeyboard(i: Int) {
         if (i in whiteKeys.indices) {
