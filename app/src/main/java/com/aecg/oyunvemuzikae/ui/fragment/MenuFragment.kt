@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aecg.oyunvemuzikae.domain.MenuType
@@ -14,11 +15,14 @@ import com.aecg.oyunvemuzikae.databinding.FragmentMenuBinding
 import com.aecg.oyunvemuzikae.domain.GameType
 import com.aecg.oyunvemuzikae.ui.adapter.MenuAdapter
 import com.aecg.oyunvemuzikae.data.model.MenuModel
+import com.aecg.oyunvemuzikae.ui.viewmodel.MenuViewModel
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.utils.scrollInDirection
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MenuFragment : BaseFragment<FragmentMenuBinding>(FragmentMenuBinding::inflate) {
-
+    private val menuViewModel: MenuViewModel by viewModels()
     private lateinit var animationZoom: Animation
     private lateinit var menuList: ArrayList<MenuModel>
 
