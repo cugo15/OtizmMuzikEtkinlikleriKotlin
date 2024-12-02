@@ -19,29 +19,31 @@
         <!-- Customize your theme here. -->
     </style>
 
-        <style name="first_key_style_for_pink_key">
-            <item name="android:layout_width">57dp</item>
-            <item name="android:layout_height">match_parent</item>
-            <item name="android:background">@drawable/pressed_and_normal_selector</item>
-            <item name="android:stateListAnimator">@null</item>
-            <item name="android:layout_weight">1</item>
-
-
-        </style>
-
-    <style name="common_key_style_for_rest_of_the_piano_keys">
-        <item name="android:layout_width">57dp</item>
+    <style name="white_piano_key_style">
+        <item name="android:layout_width">60dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@drawable/pressed_and_normal_selector</item>
         <item name="android:stateListAnimator">@null</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:layout_marginStart">2dp</item>
+        <!-- Txt attr -->
+        <item name="android:text">""</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">bottom|center</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@color/black</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">2</item>
+
     </style>
 
     <style name="black_piano_key_style">
-        <item name="android:layout_width">38dp</item>
+        <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">200dp</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:background">@drawable/black_piano_key_selector</item>
-        <item name="android:layout_marginLeft">-14dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
     </style>
 
 
