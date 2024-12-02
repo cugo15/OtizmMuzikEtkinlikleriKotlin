@@ -199,7 +199,6 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
         }
     }
 
-
     // Tuş genişliğini güncelleyen yardımcı fonksiyon
     private fun updateButtonWidth(button: Button, newWidth: Int) {
         button.layoutParams = (button.layoutParams as ConstraintLayout.LayoutParams).apply { width = newWidth
