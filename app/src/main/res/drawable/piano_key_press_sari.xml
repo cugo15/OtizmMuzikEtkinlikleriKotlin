@@ -9,7 +9,7 @@
     <item android:top="10dp">
         <shape android:shape="rectangle">
             <corners android:radius="5dp"/>
-            <solid android:color="@color/yellowpiano"/>
+            <solid android:color="@color/pianoYellowTxt"/>
         </shape>
     </item>
 </layer-list>
