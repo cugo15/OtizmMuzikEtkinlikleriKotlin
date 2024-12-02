@@ -15,6 +15,7 @@ import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentPianoBinding
 import com.aecg.oyunvemuzikae.ui.viewmodel.PianoViewModel
+import com.aecg.oyunvemuzikae.utils.PianoConfig
 import com.aecg.oyunvemuzikae.utils.setOnCustomSeekBarChangeListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +28,6 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
     private lateinit var allKeys: Array<Button>
     private lateinit var firsVisibleKey: Button
     private var isKeyboardColorful: Boolean = false
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,24 +46,13 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
             btnIncreaseKeySize.setOnClickListener { adjustKeyboardSize(true) }
             btnDecreaseKeySize.setOnClickListener { adjustKeyboardSize(false) }
 
-            btnFixedDo.setOnClickListener {
-                updateButtonTexts(pianoViewModel.getNotationAction(btnC2.text.toString(), true))
-            }
-
-            btnpitchNotation.setOnClickListener {
-                updateButtonTexts(pianoViewModel.getNotationAction(btnC2.text.toString(), false))
-            }
-
-            btnHome.setOnClickListener {
-                findNavController().navigate(R.id.pianoFragment_to_homeFragment)
-            }
-
+            btnFixedDo.setOnClickListener {updateButtonTexts(pianoViewModel.getNotationAction(btnC2.text.toString(), true)) }
+            btnpitchNotation.setOnClickListener {updateButtonTexts(pianoViewModel.getNotationAction(btnC2.text.toString(), false)) }
             btnColor.setOnClickListener { updateKeyboardColors() }
+
+            btnHome.setOnClickListener {findNavController().navigate(R.id.pianoFragment_to_homeFragment) }
         }
-
     }
-
-
 
     @SuppressLint("ClickableViewAccessibility")
     private fun triggerSoundForKey() {
@@ -83,7 +72,6 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
                 button.text = notations[index]
         }
     }
-
     private fun updateKeyboardColors() {
         val (keyColor, textColor) = if (isKeyboardColorful) {
             Pair(ContextCompat.getDrawable(requireContext(), R.drawable.pressed_and_normal_selector), null)
@@ -93,7 +81,6 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
             button.background = keyColor
                 ?: ContextCompat.getDrawable(requireContext(), pianoViewModel.getColorForKey(index))
 
-            // Yazı rengini ayarla (sorunu çözmek için log ekledik)
             val resolvedTextColor = textColor ?: run {
                 val colorRes = pianoViewModel.getColorForTxt(index)
                 ContextCompat.getColor(requireContext(), colorRes)
@@ -103,8 +90,6 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
         }
         isKeyboardColorful = !isKeyboardColorful
     }
-
-
 
     private fun getBlackKeys(): Array<Button> {
         return arrayOf(
@@ -189,8 +174,8 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
     private fun adjustKeyboardSize(
         increase: Boolean,
     ) {
-        adjustKeysSize(whiteKeys, increase, 9)
-        adjustKeysSize(blackKeys, increase, 6)
+        adjustKeysSize(whiteKeys, increase, PianoConfig.PHONE_INCREMENT_W)
+        adjustKeysSize(blackKeys, increase, PianoConfig.PHONE_INCREMENT_B)
         binding.scrollViewKeyboard.post { attachKeyToSeekBar(firsVisibleKey) }
     }
     // Tuşların boyutunu ayarlayan yardımcı fonksiyon
@@ -199,20 +184,27 @@ class PianoFragment : BaseFragment<FragmentPianoBinding>(FragmentPianoBinding::i
         increase: Boolean,
         increment: Int,
     ) {
-        val currentWidth= keys.first().width
-            keys.forEach { key ->
-                val newWidth = pianoViewModel.calculateButtonWidth(increase,currentWidth,increment)
-                updateButtonWidth(key, newWidth)
+        val currentWidth = keys.first().width
+        keys.forEach { key ->
+            // Koşula göre minimum ve maksimum değerleri belirle
+            val (minWidth, maxWidth) = if (key.tag.toString().startsWith("w")) {
+                PianoConfig.PHONE_MIN_WIDTH_W to PianoConfig.PHONE_MAX_WIDTH_W
+            } else {
+                PianoConfig.PHONE_MIN_WIDTH_B to PianoConfig.PHONE_MAX_WIDTH_B
             }
-
+            val newWidth = pianoViewModel
+                .calculateButtonWidth(increase, currentWidth, increment)
+                .coerceIn(minWidth, maxWidth)
+            updateButtonWidth(key, newWidth)
+        }
     }
+
 
     // Tuş genişliğini güncelleyen yardımcı fonksiyon
     private fun updateButtonWidth(button: Button, newWidth: Int) {
         button.layoutParams = (button.layoutParams as ConstraintLayout.LayoutParams).apply { width = newWidth
         Log.d("ButtonWidth", "Button width updated to: $newWidth")}
     }
-
     // SeekBar ile klavyeyi bağlayan fonksiyon
     private fun linkSeekBarToKeyboard(i: Int) {
         if (i in whiteKeys.indices) {
