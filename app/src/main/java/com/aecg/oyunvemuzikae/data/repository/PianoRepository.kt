@@ -1,15 +1,18 @@
 package com.aecg.oyunvemuzikae.data.repository
 
-import android.widget.Button
-
 interface PianoRepository {
-    fun getWhitePianoSounds(): Array<Int>
-    fun getBlackPianoSounds(): Array<Int>
-    fun getDoNotation(): Array<String>
-    fun getPitchNotation(): Array<String>
-    fun getClearNotation(): Array<String>
-    fun getPianoKeyboardColors(): Array<Int>
+    val whitePianoSounds: Array<Int>
+    val blackPianoSounds: Array<Int>
+    val doNotation: Array<String>
+    val pitchNotation: Array<String>
+    val clearNotation: Array<String>
+    val pianoKeyboardColors: Array<Int>
+    val pianoKeyboardTxtColors: Array<Int>
+    fun calculateButtonWidth(increase: Boolean, currentWidth: Int, increment: Int): Int
     suspend fun loadSounds()
+    fun getNotationAction(buttonText: String, isFixedDo: Boolean): Array<String>
+    fun getColorForKey(index: Int): Int
+    fun getColorForTxt(index: Int): Int
     fun release()
-    fun playSound(button: Button)
+    fun playSound(tag: String)
 }
