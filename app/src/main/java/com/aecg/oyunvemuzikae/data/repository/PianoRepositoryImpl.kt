@@ -50,27 +50,9 @@ class PianoRepositoryImpl @Inject constructor(
     override fun getColorForKey(index: Int): Int = pianoKeyboardColors[index % pianoKeyboardColors.size]
 
     override fun getColorForTxt(index: Int): Int {
-        if (index in 0..6){
-            return pianoKeyboardTxtColors[0]
-        }
-        else if (index in 7..13){
-            return pianoKeyboardTxtColors[1]
-        }
-        else if (index in 14..20){
-            return pianoKeyboardTxtColors[2]
-        }
-        else if (index in 21..27){
-            return pianoKeyboardTxtColors[3]
-        }
-        else if (index in 28..34){
-            return pianoKeyboardTxtColors[4]
-        }
-        else{
-            return pianoKeyboardTxtColors[5]
-        }
+        val colorGroupIndex = index / 7
+        return pianoKeyboardTxtColors.getOrElse(colorGroupIndex) { pianoKeyboardTxtColors.last() }
     }
-
-
 
     override fun playSound(tag: String) {
             val soundId = soundMap[tag]
