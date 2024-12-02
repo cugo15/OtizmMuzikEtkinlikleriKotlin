@@ -11,7 +11,15 @@
     <color name="blue">#2196F3</color>
     <color name="mor">#D58860CF</color>
     <color name="red">#F44336</color>
-    <color name="yellow">#FFEB3B</color>
+
+    <color name="pianoYellowTxt">#FFEB3B</color>
+    <color name="pianoOrangeTxt">#FF5722</color>
+    <color name="pianoBlueTxt">#3F51B5</color>
+    <color name="pianoPurpleTxt">#673AB7</color>
+    <color name="pianolBlueTxt">#009688</color>
+    <color name="pianoPinkTxt">#E91E63</color>
+    <color name="pianoBrownTxt">#d7c6b4</color>
+
     <color name="pinkpiano">#E731ED</color>
     <color name="yellowpiano">#FBFF00</color>
     <color name="purplepiano">#8859DD</color>
