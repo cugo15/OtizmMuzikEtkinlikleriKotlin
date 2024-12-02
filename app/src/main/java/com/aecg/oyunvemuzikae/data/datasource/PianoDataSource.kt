@@ -106,13 +106,23 @@ class PianoDataSource@Inject constructor() {
 
     fun getPianoKeyboardColors(): Array<Int> {
         return arrayOf(
-            R.drawable.pressed_and_normal_selector_kirmizi,
+            R.drawable.pressed_and_normal_selector_turuncu,
             R.drawable.pressed_and_normal_selector_yesil,
             R.drawable.pressed_and_normal_selector_mor,
             R.drawable.piano_key_pressed_sari,
             R.drawable.pressed_and_normal_selector_mavi,
             R.drawable.pressed_and_normal_selector_pembe,
-            R.drawable.pressed_and_normal_selector_gri
+            R.drawable.pressed_and_normal_selector_kahve
+        )
+    }
+    fun getPianoKeyboardTxt(): Array<Int> {
+        return arrayOf(
+            R.color.pianoYellowTxt,
+            R.color.pianoOrangeTxt,
+            R.color.pianoBlueTxt,
+            R.color.pianoPurpleTxt,
+            R.color.pianolBlueTxt,
+            R.color.pinkpiano,
         )
     }
 
