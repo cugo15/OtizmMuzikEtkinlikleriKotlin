@@ -546,7 +546,7 @@ class SesDataSource @Inject constructor() {
                 R.drawable.ic_enstruman_ukulele
             ),
             SesModel("Piyano", SesType.ENSTRUMAN.TELLI,
-                R.raw.sound_enstruman_piyano,
+                R.raw.sound_enstruman_name_piyano,
                 R.drawable.ic_enstruman_piyano
             ),// isim söylenmesi eksik
 
@@ -556,7 +556,7 @@ class SesDataSource @Inject constructor() {
                 R.drawable.ic_enstruman_davul
             ),
             SesModel("Trampet", SesType.ENSTRUMAN.VURMALI,
-                R.raw.sound_enstruman_trampet,
+                R.raw.sound_enstruman_name_trampet,
                 R.drawable.ic_enstruman_trampet
             ),//isim söylenmesi eksik
             SesModel("Timpani", SesType.ENSTRUMAN.VURMALI,
@@ -626,7 +626,7 @@ class SesDataSource @Inject constructor() {
                 R.drawable.ic_enstruman_ksilofon
             ),
             SesModel("Guiro", SesType.ENSTRUMAN.ORFF,
-                R.raw.sound_enstruman_guiro,
+                R.raw.sound_enstruman_name_guiro,
                 R.drawable.ic_enstruman_guiro
             ),//isim söylenmesi eksik
             SesModel("Rüzgar Çanı", SesType.ENSTRUMAN.ORFF,
