@@ -9,8 +9,8 @@ import javax.inject.Singleton
 @Singleton
 class SesDataSource @Inject constructor() {
 
-    fun getDogaList(): List<SesModel> {
-        return arrayListOf(
+    fun getDogaList(): Array<SesModel> {
+        return arrayOf(
             SesModel("Deniz", SesType.DOGA, R.raw.sound_doga_deniz, R.drawable.ic_doga_deniz),
             SesModel("Şehir", SesType.DOGA, R.raw.sound_doga_sehir, R.drawable.ic_doga_sehir),
             SesModel("Yağmur", SesType.DOGA, R.raw.sound_doga_yagmur, R.drawable.ic_doga_yagmur),
@@ -21,8 +21,8 @@ class SesDataSource @Inject constructor() {
         )
     }
 
-    fun getEnstrumanList(): List<SesModel>{
-        return arrayListOf(
+    fun getEnstrumanList(): Array<SesModel>{
+        return arrayOf(
             // UFLEMELI Türü
             SesModel("Trombon", SesType.ENSTRUMAN.UFLEMELI,
                 R.raw.sound_enstruman_trombon,
@@ -207,8 +207,8 @@ class SesDataSource @Inject constructor() {
         )
     }
     
-    fun getInsanList(): List<SesModel>{
-        return arrayListOf(
+    fun getInsanList(): Array<SesModel>{
+        return arrayOf(
         SesModel("Kız Çocuk", SesType.INSAN, R.raw.sound_insan_kiz_cocuk, R.drawable.ic_insan_kiz_cocuk),
         SesModel("Erkek Çocuk", SesType.INSAN, R.raw.sound_insan_erkek_cocuk, R.drawable.ic_insan_erkek_cocuk),
         SesModel("Kadın", SesType.INSAN, R.raw.sound_insan_kadin, R.drawable.ic_insan_kadin),
@@ -217,8 +217,8 @@ class SesDataSource @Inject constructor() {
         )
     }
     
-    fun getHayvanList(): List<SesModel>{
-        return arrayListOf(
+    fun getHayvanList(): Array<SesModel>{
+        return arrayOf(
             SesModel("İnek", SesType.HAYVAN, R.raw.sound_hayvan_inek, R.drawable.ic_hayvan_inek),
             SesModel("Kuş", SesType.HAYVAN, R.raw.sound_hayvan_kus, R.drawable.ic_hayvan_kus),
             SesModel("At", SesType.HAYVAN, R.raw.sound_hayvan_at, R.drawable.ic_hayvan_at),
@@ -232,8 +232,8 @@ class SesDataSource @Inject constructor() {
             )
     }
     
-    fun getAracList(): List<SesModel>{
-        return arrayListOf(
+    fun getAracList(): Array<SesModel>{
+        return arrayOf(
             SesModel("Tren", SesType.ARAC, R.raw.sound_arac_tren, R.drawable.ic_arac_tren),
             SesModel("Motorsiklet", SesType.ARAC, R.raw.sound_arac_motorsiklet, R.drawable.ic_arac_motorsiklet),
             SesModel("Uçak", SesType.ARAC, R.raw.sound_arac_ucak, R.drawable.ic_arac_ucak),
@@ -246,8 +246,8 @@ class SesDataSource @Inject constructor() {
             )
     }
     
-    fun getSekilList(): List<SesModel>{
-        return arrayListOf(
+    fun getSekilList(): Array<SesModel>{
+        return arrayOf(
             SesModel("Üçgen", SesType.SEKIL, R.raw.sound_sekil_ucgen, R.drawable.ic_sekil_ucgen),
             SesModel("Kare", SesType.SEKIL, R.raw.sound_sekil_kare, R.drawable.ic_sekil_kare),
             SesModel("Dikdörtgen", SesType.SEKIL,R.raw.sound_sekil_dikdortgen, R.drawable.ic_sekil_dikdortgen),
@@ -262,8 +262,8 @@ class SesDataSource @Inject constructor() {
             )
     }
     
-    fun getSayiList(): List<SesModel>{
-        return arrayListOf(
+    fun getSayiList(): Array<SesModel>{
+        return arrayOf(
             SesModel("Bir", SesType.SAYI, R.raw.sound_sayi_bir, R.drawable.ic_sayi_bir),
             SesModel("İki", SesType.SAYI, R.raw.sound_sayi_iki, R.drawable.ic_sayi_iki),
             SesModel("Üç", SesType.SAYI, R.raw.sound_sayi_uc, R.drawable.ic_sayi_uc),
@@ -277,8 +277,8 @@ class SesDataSource @Inject constructor() {
         )
     }
 
-    fun getOyunHizliYavasList(): List<SesModel>{
-        return arrayListOf(
+    fun getOyunHizliYavasList(): Array<SesModel>{
+        return arrayOf(
             // UFLEMELI Türü
             SesModel("Trombon", SesType.ENSTRUMAN.UFLEMELI,
                 R.raw.sound_enstruman_trombon,
@@ -462,8 +462,8 @@ class SesDataSource @Inject constructor() {
         )
     }
 
-    fun getOyunResimdenBulList(): List<SesModel>{
-        return arrayListOf(
+    fun getOyunResimdenBulList(): Array<SesModel>{
+        return arrayOf(
             SesModel("Trombon", SesType.ENSTRUMAN.UFLEMELI,
                 R.raw.sound_enstruman_name_trombon,
                 R.drawable.ic_enstruman_trombon
