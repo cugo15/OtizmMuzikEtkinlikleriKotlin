@@ -8,6 +8,7 @@ interface PianoRepository {
     val clearNotation: Array<String>
     val pianoKeyboardColors: Array<Int>
     val pianoKeyboardTxtColors: Array<Int>
+
     fun calculateButtonWidth(increase: Boolean, currentWidth: Int, increment: Int): Int
     suspend fun loadSounds()
     fun getNotationAction(buttonText: String, isFixedDo: Boolean): Array<String>
