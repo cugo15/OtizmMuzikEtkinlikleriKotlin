@@ -25,10 +25,8 @@ class MenuViewHolder(val binding: MenuItemBinding) : RecyclerView.ViewHolder(bin
                 height = 600
             }
         }
-
         // Ses modelinin adını TextView'a ata
         binding.txtMenu.text = menuModel.menuName
-
         // Tıklama olayının tetiklenmesi
         binding.root.setOnClickListener {
             // Tıklandığında, ses kaynağı ID'sini dışarıya ilet
