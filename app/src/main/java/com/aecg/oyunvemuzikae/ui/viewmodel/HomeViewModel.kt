@@ -12,9 +12,9 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(menuRepository: MenuRepository) : ViewModel() {
 
     // Menü listelerini doğrudan saklıyoruz
-    private val sesMenuList: Array<MenuModel> = menuRepository.getSesMenuList()
-    private val oyunMenuList: Array<MenuModel> = menuRepository.getOyunMenuList()
-    private val muzikMenuList: Array<MuzikModel> = menuRepository.getMuzikMenuList()
+    private val sesMenuList: Array<MenuModel> = menuRepository.sesMenuList
+    private val oyunMenuList: Array<MenuModel> = menuRepository.oyunMenuList
+    private val muzikMenuList: Array<MuzikModel> = menuRepository.muzikMenuList
 
     // Getter metodları ile verilere erişim sağlıyoruz
     fun getSesMenuList(): Array<MenuModel> = sesMenuList
