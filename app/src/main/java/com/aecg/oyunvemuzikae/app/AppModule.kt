@@ -2,6 +2,7 @@ package com.aecg.oyunvemuzikae.app
 
 import android.app.Application
 import android.content.Context
+import android.media.MediaPlayer
 import android.media.SoundPool
 import dagger.Module
 import dagger.Provides
@@ -24,4 +25,9 @@ object AppModule {
             .setMaxStreams(10)
             .build()
     }
+    @Provides
+    fun provideMediaPlayer(): MediaPlayer {
+        return MediaPlayer()
+    }
+
 }
