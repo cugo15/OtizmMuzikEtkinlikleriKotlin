@@ -9,7 +9,7 @@ import com.aecg.oyunvemuzikae.data.model.MuzikModel
 import com.aecg.oyunvemuzikae.domain.MuzikType
 
 class MuzikAdapter(
-    private val muzikList: ArrayList<MuzikModel>, // SesModel nesnelerinin bulunduğu liste
+    private val muzikList: Array<MuzikModel>, // SesModel nesnelerinin bulunduğu liste
     private val onItemClick: (String, MuzikType) -> Unit, // Tıklama olayı için callback
     private val onItemAnimate: (View) -> Unit // Animasyon tetiklemek için callback
 ) : RecyclerView.Adapter<MuzikViewHolder>() {
