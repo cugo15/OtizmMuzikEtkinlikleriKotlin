@@ -1,7 +1,11 @@
 package com.aecg.oyunvemuzikae.app
 
+import com.aecg.oyunvemuzikae.core.mediaplayer.MediaPlayerManager
+import com.aecg.oyunvemuzikae.core.mediaplayer.MediaPlayerManagerImpl
 import com.aecg.oyunvemuzikae.data.repository.MenuRepository
 import com.aecg.oyunvemuzikae.data.repository.MenuRepositoryImpl
+import com.aecg.oyunvemuzikae.data.repository.MuzikRepository
+import com.aecg.oyunvemuzikae.data.repository.MuzikRepositoryImpl
 import com.aecg.oyunvemuzikae.data.repository.PianoRepository
 import com.aecg.oyunvemuzikae.data.repository.PianoRepositoryImpl
 import dagger.Binds
@@ -16,4 +20,8 @@ abstract class RepositoryModule {
     abstract fun bindMenuRepository(menuRepositoryImpl: MenuRepositoryImpl): MenuRepository
     @Binds
     abstract fun bindPianoRepository(pianoRepositoryImpl: PianoRepositoryImpl): PianoRepository
+    @Binds
+    abstract fun bindMuzikRepository(muzikRepositoryImpl: MuzikRepositoryImpl): MuzikRepository
+    @Binds
+    abstract fun bindMediaPlayerManager(mediaPlayerManagerImpl: MediaPlayerManagerImpl): MediaPlayerManager
 }
