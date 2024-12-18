@@ -97,9 +97,6 @@
         android:name="com.aecg.oyunvemuzikae.ui.fragment.MuzikFragment"
         android:label="fragment_muzik"
         tools:layout="@layout/fragment_muzik" >
-        <argument
-            android:name="muzikList"
-            app:argType="com.aecg.oyunvemuzikae.data.model.MuzikModel[]" />
         <action
             android:id="@+id/action_muzikFragment_to_webViewDialogFragment"
             app:destination="@id/webViewDialogFragment" />
