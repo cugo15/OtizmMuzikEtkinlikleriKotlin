@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aecg.oyunvemuzikae.domain.MenuType
 import com.aecg.oyunvemuzikae.R
-import com.aecg.oyunvemuzikae.base.BaseFragment
+import com.aecg.oyunvemuzikae.ui.fragment.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentMenuBinding
 import com.aecg.oyunvemuzikae.ui.adapter.MenuAdapter
 import com.aecg.oyunvemuzikae.data.model.MenuModel
