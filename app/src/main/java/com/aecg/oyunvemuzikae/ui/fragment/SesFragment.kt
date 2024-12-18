@@ -12,7 +12,7 @@ import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.ui.adapter.SesAdapter
 import com.aecg.oyunvemuzikae.domain.SesType
 import com.aecg.oyunvemuzikae.data.model.SesModel
-import com.aecg.oyunvemuzikae.base.BaseFragment
+import com.aecg.oyunvemuzikae.ui.fragment.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentSesBinding
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.utils.scrollInDirection
