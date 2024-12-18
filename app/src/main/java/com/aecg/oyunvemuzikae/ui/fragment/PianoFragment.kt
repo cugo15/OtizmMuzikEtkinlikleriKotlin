@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.aecg.oyunvemuzikae.R
-import com.aecg.oyunvemuzikae.base.BaseFragment
+import com.aecg.oyunvemuzikae.ui.fragment.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentPianoBinding
 import com.aecg.oyunvemuzikae.ui.viewmodel.PianoViewModel
 import com.aecg.oyunvemuzikae.utils.PianoConfig
