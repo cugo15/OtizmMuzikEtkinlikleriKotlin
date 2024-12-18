@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.data.model.SesModel
-import com.aecg.oyunvemuzikae.base.BaseFragment
+import com.aecg.oyunvemuzikae.ui.fragment.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunHizliYavasBinding
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.delay
