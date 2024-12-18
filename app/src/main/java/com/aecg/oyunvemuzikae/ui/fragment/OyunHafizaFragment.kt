@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.data.model.SesModel
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunHafizaBinding
-import com.aecg.oyunvemuzikae.base.BaseFragment
+import com.aecg.oyunvemuzikae.ui.fragment.base.BaseFragment
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.utils.loadResourceImageWithGlide
 import com.aecg.oyunvemuzikae.utils.setForegroundDrawable
