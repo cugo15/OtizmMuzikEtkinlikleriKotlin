@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae.base
+package com.aecg.oyunvemuzikae.ui.fragment.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
