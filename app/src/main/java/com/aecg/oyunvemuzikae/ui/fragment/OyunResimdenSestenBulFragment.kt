@@ -11,7 +11,7 @@ import com.aecg.oyunvemuzikae.app.MyApplication
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.data.model.SesModel
 import com.aecg.oyunvemuzikae.domain.SesType
-import com.aecg.oyunvemuzikae.base.BaseFragment
+import com.aecg.oyunvemuzikae.ui.fragment.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentOyunResimdenSestenBulBinding
 import com.aecg.oyunvemuzikae.domain.GameType
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
