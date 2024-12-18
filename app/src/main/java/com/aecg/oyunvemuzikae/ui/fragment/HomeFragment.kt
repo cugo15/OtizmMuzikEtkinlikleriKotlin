@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.aecg.oyunvemuzikae.base.BaseFragment
+import com.aecg.oyunvemuzikae.ui.fragment.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentHomeBinding
 import com.aecg.oyunvemuzikae.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         binding.btnHomeMuzikler.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.homeFragmentToMuzikFragment(homeViewModel.getMuzikMenuList()))
+            findNavController().navigate(HomeFragmentDirections.homeFragmentToMuzikFragment())
         }
 
     }
