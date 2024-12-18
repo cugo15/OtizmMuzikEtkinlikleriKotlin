@@ -2,6 +2,8 @@ package com.aecg.oyunvemuzikae.app
 
 import com.aecg.oyunvemuzikae.core.mediaplayer.MediaPlayerManager
 import com.aecg.oyunvemuzikae.core.mediaplayer.MediaPlayerManagerImpl
+import com.aecg.oyunvemuzikae.core.mediaplayer.WebViewManager
+import com.aecg.oyunvemuzikae.core.mediaplayer.WebViewManagerImpl
 import com.aecg.oyunvemuzikae.data.repository.MenuRepository
 import com.aecg.oyunvemuzikae.data.repository.MenuRepositoryImpl
 import com.aecg.oyunvemuzikae.data.repository.MuzikRepository
@@ -24,4 +26,6 @@ abstract class RepositoryModule {
     abstract fun bindMuzikRepository(muzikRepositoryImpl: MuzikRepositoryImpl): MuzikRepository
     @Binds
     abstract fun bindMediaPlayerManager(mediaPlayerManagerImpl: MediaPlayerManagerImpl): MediaPlayerManager
+    @Binds
+    abstract fun bindWebViewManager(webViewManagerImpl: WebViewManagerImpl): WebViewManager
 }

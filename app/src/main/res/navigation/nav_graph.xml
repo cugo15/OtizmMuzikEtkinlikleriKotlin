@@ -103,7 +103,7 @@
     </fragment>
     <fragment
         android:id="@+id/webViewDialogFragment"
-        android:name="com.aecg.oyunvemuzikae.ui.fragment.WebViewDialogFragment"
+        android:name="com.aecg.oyunvemuzikae.ui.fragment.MuzikVideoFragment"
         android:label="YouTube Video">
         <argument
             android:name="videoId"
