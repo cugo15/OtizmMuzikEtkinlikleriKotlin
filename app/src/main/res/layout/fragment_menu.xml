@@ -29,7 +29,7 @@
         android:shadowColor="@color/black"
         android:shadowDx="1"
         android:shadowDy="1"
-        android:shadowRadius="30"
+        android:shadowRadius="2"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         android:textStyle="bold"
