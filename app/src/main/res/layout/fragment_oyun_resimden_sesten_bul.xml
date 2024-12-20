@@ -2,15 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutOyunResimdenSestenBul"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layoutOyunResimdenSestenBul"
     tools:context=".ui.fragment.OyunResimdenSestenBulFragment">
 
     <TextView
         android:id="@+id/txtOyunResimdenSestenBulHeader"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/mogra"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
@@ -19,21 +20,21 @@
         android:shadowDy="1"
         android:shadowRadius="10"
         android:text="Acaba bağlama hangisi ?"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toEndOf="@+id/btnOyunResimdenSestenBulReplay"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/btnOyunResimdenSestenBulHome"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnOyunResimdenSestenBulReplay"
         app:srcCompat="@drawable/ic_home" />
 
     <ImageView
@@ -55,7 +56,7 @@
         app:layout_constraintEnd_toStartOf="@+id/cardViewOyunResimdenSestenBulAnswer2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtOyunResimdenSestenBulHeader">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imgOyunResimdenSestenBulAnswer1"
@@ -108,10 +109,17 @@
         android:id="@+id/btnOyunResimdenSestenBulReplay"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:src="@drawable/ic_hint"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_replay"
         app:layout_constraintBottom_toBottomOf="@+id/btnOyunResimdenSestenBulBack"
-        app:layout_constraintEnd_toStartOf="@+id/txtOyunResimdenSestenBulHeader"
         app:layout_constraintStart_toEndOf="@+id/btnOyunResimdenSestenBulBack"
         app:layout_constraintTop_toTopOf="@+id/btnOyunResimdenSestenBulBack" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="133dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
