@@ -30,6 +30,6 @@ class MuzikViewModel @Inject constructor(
     // ViewModel temizlendiğinde mediaPlayer'ı serbest bırak
     override fun onCleared() {
         super.onCleared()
-        muzikMediaPlayerManager.release() // MediaPlayerManager'ı serbest bırak
+        muzikMediaPlayerManager.reset()
     }
 }
