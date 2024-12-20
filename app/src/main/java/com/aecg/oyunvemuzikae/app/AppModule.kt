@@ -25,6 +25,7 @@ object AppModule {
             .setMaxStreams(10)
             .build()
     }
+    @Singleton
     @Provides
     fun provideMediaPlayer(): MediaPlayer {
         return MediaPlayer()
