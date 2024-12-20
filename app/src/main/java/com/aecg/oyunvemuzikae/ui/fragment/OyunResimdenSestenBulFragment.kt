@@ -110,19 +110,19 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
             )
             else -> when (correctInstrument.type) {
                 SesType.ENSTRUMAN.UFLEMELI -> arrayListOf(
-                    R.raw.sound_hayvan_name_at,// Yeni ses dosyası gelecek
+                    R.raw.sound_oyun_enstrumantipi_uflemeli,// Yeni ses dosyası gelecek
                     R.raw.sound_cevap_dogru
                 )
                 SesType.ENSTRUMAN.ORFF -> arrayListOf(
-                    R.raw.sound_arac_name_ambulans,// Yeni ses dosyası gelecek
+                    R.raw.sound_oyun_enstrumantipi_orff,// Yeni ses dosyası gelecek
                     R.raw.sound_cevap_dogru
                 )
                 SesType.ENSTRUMAN.VURMALI -> arrayListOf(
-                    R.raw.sound_arac_name_ucak,// Yeni ses dosyası gelecek
+                    R.raw.sound_oyun_enstrumantipi_vurmali,// Yeni ses dosyası gelecek
                     R.raw.sound_cevap_dogru
                 )
                 else -> arrayListOf(
-                    R.raw.sound_hayvan_name_kaz,// Yeni ses dosyası gelecek
+                    R.raw.sound_oyun_enstrumantipi_telli,// Yeni ses dosyası gelecek
                     R.raw.sound_cevap_dogru
                 )
             }
@@ -228,9 +228,7 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
     private fun releaseAndCreateMediaPlayer() {
         mediaPlayer?.release()
         mediaPlayer = MediaPlayer.create(requireContext(), soundListSestenBul[currentIndex])
-
         mediaPlayer?.setOnCompletionListener {
-            // Ses tamamlandığında yapılacak işlemler
             increaseIndexAndplayNextSound()
         }
     }
@@ -251,11 +249,12 @@ class OyunResimdenSestenBulFragment : BaseFragment<FragmentOyunResimdenSestenBul
         currentIndex = if (gameType == GameType.RESIMDENBUL) 0 else if(gameType == GameType.SESTENBUL) 1 else 1
         playSound()
     }
+
     private fun setupGameBackground(gameType: GameType): Int {
         return when (gameType) {
             GameType.RESIMDENBUL -> R.drawable.bg_oyun_resimdenbul
             GameType.SESTENBUL -> R.drawable.bg_oyun_sestenbul
-            GameType.ENSTRUMANTIPI -> R.drawable.bg_oyun_resimdenbul // Arka plan değişecek
+            GameType.ENSTRUMANTIPI -> R.drawable.bg_oyun_enstrumantipi // Arka plan değişecek
             else -> return 0 // Geçersiz gameType, 0 döner (geçersiz kaynak)
         }
     }
