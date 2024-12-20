@@ -1,48 +1,56 @@
 package com.aecg.oyunvemuzikae.ui.fragment
 
-import android.media.MediaPlayer
+import SesType
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import com.aecg.oyunvemuzikae.R
+import com.aecg.oyunvemuzikae.core.mediaplayer.MuzikMediaPlayerManager
+import com.aecg.oyunvemuzikae.core.mediaplayer.SesMediaPlayerManager
 import com.aecg.oyunvemuzikae.ui.adapter.SesAdapter
-import com.aecg.oyunvemuzikae.domain.SesType
 import com.aecg.oyunvemuzikae.data.model.SesModel
 import com.aecg.oyunvemuzikae.ui.fragment.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentSesBinding
+import com.aecg.oyunvemuzikae.ui.viewmodel.SesViewModel
 import com.aecg.oyunvemuzikae.utils.loadLayoutBackgroundWithGlide
 import com.aecg.oyunvemuzikae.utils.scrollInDirection
 import com.aecg.oyunvemuzikae.utils.setForegroundDrawable
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SesFragment : BaseFragment<FragmentSesBinding>(FragmentSesBinding::inflate) {
-    private lateinit var mediaPlayer: MediaPlayer
+    private val sesViewModel: SesViewModel by viewModels()
     private lateinit var sesList: ArrayList<SesModel>
     private lateinit var animationzoom: Animation
+    @Inject
+    lateinit var mediaPlayerManager: SesMediaPlayerManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         animationzoom = AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_inshort)
         sesList = SesFragmentArgs.fromBundle(requireArguments()).sesList.toList() as ArrayList<SesModel>
         val category = sesList.first().type
         initializeCategory(category)
         setupRecyclerView(sesList)
 
-        binding.btnScrollLeftSes.setOnClickListener {binding.rvSes.scrollInDirection(-1)}
-        binding.BtnScrollRightSes.setOnClickListener {binding.rvSes.scrollInDirection(1)}
-        binding.btnUflemeli.setOnClickListener { smoothScrollToLeft((findPositionForType(SesType.ENSTRUMAN.UFLEMELI))) }
-        binding.btnTelli.setOnClickListener { smoothScrollToLeft((findPositionForType(SesType.ENSTRUMAN.TELLI))) }
-        binding.btnVurmali.setOnClickListener { smoothScrollToLeft((findPositionForType(SesType.ENSTRUMAN.VURMALI))) }
-        binding.btnOrff.setOnClickListener { smoothScrollToLeft((findPositionForType(SesType.ENSTRUMAN.ORFF))) }
+        with(binding){
+            btnScrollLeftSes.setOnClickListener {binding.rvSes.scrollInDirection(-1)}
+            BtnScrollRightSes.setOnClickListener {binding.rvSes.scrollInDirection(1)}
+            btnUflemeli.setOnClickListener { smoothScrollToLeft((sesViewModel.findPositionForType(SesType.ENSTRUMAN.UFLEMELI,sesList))) }
+            btnTelli.setOnClickListener { smoothScrollToLeft((sesViewModel.findPositionForType(SesType.ENSTRUMAN.TELLI,sesList))) }
+            btnVurmali.setOnClickListener { smoothScrollToLeft((sesViewModel.findPositionForType(SesType.ENSTRUMAN.VURMALI,sesList))) }
+            btnOrff.setOnClickListener { smoothScrollToLeft((sesViewModel.findPositionForType(SesType.ENSTRUMAN.ORFF,sesList))) }
+        }
+        lifecycle.addObserver(mediaPlayerManager)
 
     }
-    private fun findPositionForType(sesType: SesType): Int {
-        return sesList.indexOfFirst { it.type == sesType }.takeIf { it != -1 } ?: 0
-    }
+
 
     private fun smoothScrollToLeft(position: Int) {
         (binding.rvSes.layoutManager as? LinearLayoutManager)?.apply {
@@ -57,69 +65,32 @@ class SesFragment : BaseFragment<FragmentSesBinding>(FragmentSesBinding::inflate
     private fun setupRecyclerView(sesList: ArrayList<SesModel>) {
         binding.rvSes.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = SesAdapter(sesList, { view, soundId ->
-                playSoundById(soundId)
-                view.startAnimation(animationzoom)
-            }) { cView, iView, sesType ->
-                applyStyle(cView, iView, sesType)
-            }
+            adapter = SesAdapter(
+                sesList = sesList,
+                onItemClick = {view, soundId ->
+                    sesViewModel.playSoundById(soundId)
+                    view.startAnimation(animationzoom)
+                },
+                onItemStyle = { cView, iView, sesType ->
+                    applyStyle(cView, iView, sesType)
+                }
+                )
         }
     }
 
     private fun applyStyle(cview: CardView, iview: View, sesType: SesType) {
-        // SesType'a göre drawable ve padding değerlerini belirle
-        val (drawableResId, padding) = when (sesType) {
-            SesType.ENSTRUMAN.UFLEMELI -> R.drawable.underline_card_instrument_orange to 24
-            SesType.ENSTRUMAN.TELLI -> R.drawable.underline_card_instrument_blue to 24
-            SesType.ENSTRUMAN.VURMALI -> R.drawable.underline_card_instrument_green to 24
-            SesType.ENSTRUMAN.ORFF -> R.drawable.underline_card_instrument_purple to 24
-            else -> R.drawable.cardview_hafiza to 0
-        }
-        // Stil uygulaması
+        val (drawableResId,padding) = sesViewModel.getStyleForType(sesType)
         cview.setForegroundDrawable(drawableResId)
         iview.setPadding(padding, padding, padding, padding)
     }
 
-    private fun playSoundById(id: Int) {
-        // Önce var olan MediaPlayer nesnesini serbest bırak
-        if (::mediaPlayer.isInitialized) {
-            mediaPlayer.release()
-        }
-        mediaPlayer = MediaPlayer.create(requireContext(), id)
-        mediaPlayer.start()
-
-        // Ses bitince MediaPlayer'ı serbest bırak
-        mediaPlayer.setOnCompletionListener {
-            mediaPlayer.release()
-        }
-    }
-
     private fun initializeCategory(category: SesType) {
-        // Başlık metnini güncelle
         binding.textViewSesHeader.text = category.displayName
-        // Arka planı güncelle
         setBackground(category)
-        // Butonların görünürlüğünü ayarla
         toggleButtonsVisibility(category)
     }
 
-    private fun setBackground(category: SesType) {
-        // Arka planı Glide ile yükle
-        binding.layoutSes.loadLayoutBackgroundWithGlide(requireContext(), getBackgroundResourceForCategory(category))
-    }
-
-    private fun getBackgroundResourceForCategory(category: SesType): Int {
-        return when (category) {
-            SesType.ENSTRUMAN.UFLEMELI -> R.drawable.bg_enstrumanlar
-            SesType.HAYVAN -> R.drawable.bg_hayvanlar
-            SesType.INSAN -> R.drawable.bg_insanlar
-            SesType.DOGA -> R.drawable.bg_doga
-            SesType.ARAC -> R.drawable.bg_araclar
-            SesType.SAYI -> R.drawable.bg_sayilar
-            SesType.SEKIL -> R.drawable.bg_sekiller
-            else -> R.drawable.bg_enstrumanlar // Default arka plan
-        }
-    }
+    private fun setBackground(category: SesType) = binding.layoutSes.loadLayoutBackgroundWithGlide(requireContext(), sesViewModel.getBackgroundResourceForCategory(category))
 
     private fun toggleButtonsVisibility(category: SesType) {
         // Kategoriye göre butonları göster veya gizle
@@ -139,10 +110,7 @@ class SesFragment : BaseFragment<FragmentSesBinding>(FragmentSesBinding::inflate
 
     override fun onDestroyView() {
         super.onDestroyView()
-        if (::mediaPlayer.isInitialized) {
-            mediaPlayer.release()
-        }
-        sesList.clear()
+        lifecycle.removeObserver(mediaPlayerManager)
     }
 
 }
