@@ -1,9 +1,9 @@
 package com.aecg.oyunvemuzikae.ui.adapter
 
+import SesType
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.aecg.oyunvemuzikae.domain.SesType
 import com.aecg.oyunvemuzikae.data.model.SesModel
 import com.aecg.oyunvemuzikae.databinding.SesItemBinding
 import com.bumptech.glide.Glide
