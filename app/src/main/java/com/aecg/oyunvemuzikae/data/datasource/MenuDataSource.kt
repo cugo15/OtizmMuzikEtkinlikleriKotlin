@@ -28,7 +28,7 @@ class MenuDataSource @Inject constructor() {
             MenuModel(GameType.HIZLIYAVAS.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_hizliyavas),
             MenuModel(GameType.RESIMDENBUL.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_resimdenbul),
             MenuModel(GameType.SESTENBUL.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_sestenbul),
-            MenuModel(GameType.ENSTRUMANTIPI.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_hafiza),
+            MenuModel(GameType.ENSTRUMANTIPI.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_enstrumantipi),
             MenuModel(GameType.HAFIZA.displayName, MenuType.OYUN, R.drawable.ic_oyunmenu_hafiza),
         )
     }
