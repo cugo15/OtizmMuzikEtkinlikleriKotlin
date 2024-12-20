@@ -26,15 +26,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_oyunmenu_hafiza" />
+            android:scaleType="fitCenter" />
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/txtMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         android:fontFamily="@font/mogra"
         android:paddingStart="2dp"
         android:paddingEnd="2dp"
@@ -43,7 +41,7 @@
         android:shadowDy="1"
         android:shadowRadius="20"
         android:singleLine="false"
-        android:text="Deniz"
+        tools:text="Deniz"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25sp"
