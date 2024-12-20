@@ -2,7 +2,6 @@ package com.aecg.oyunvemuzikae.data.datasource
 
 import com.aecg.oyunvemuzikae.R
 import com.aecg.oyunvemuzikae.data.model.SesModel
-import com.aecg.oyunvemuzikae.domain.SesType
 import javax.inject.Inject
 import javax.inject.Singleton
 
