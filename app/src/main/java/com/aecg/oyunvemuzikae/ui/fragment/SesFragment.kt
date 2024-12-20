@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import com.aecg.oyunvemuzikae.R
-import com.aecg.oyunvemuzikae.core.mediaplayer.MuzikMediaPlayerManager
 import com.aecg.oyunvemuzikae.core.mediaplayer.SesMediaPlayerManager
 import com.aecg.oyunvemuzikae.ui.adapter.SesAdapter
 import com.aecg.oyunvemuzikae.data.model.SesModel
