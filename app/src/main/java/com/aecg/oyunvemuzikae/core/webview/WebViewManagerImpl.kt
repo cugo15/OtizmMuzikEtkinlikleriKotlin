@@ -1,11 +1,11 @@
-package com.aecg.oyunvemuzikae.core.mediaplayer
+package com.aecg.oyunvemuzikae.core.webview
 
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import javax.inject.Inject
 
-class WebViewManagerImpl @Inject constructor():WebViewManager {
+class WebViewManagerImpl @Inject constructor(): WebViewManager {
     override fun setupWebView(webView: WebView) {
         webView.apply {
             settings.javaScriptEnabled = true

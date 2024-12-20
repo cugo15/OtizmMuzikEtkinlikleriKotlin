@@ -1,4 +1,4 @@
-package com.aecg.oyunvemuzikae.core.mediaplayer
+package com.aecg.oyunvemuzikae.core.webview
 
 import android.webkit.WebView
 
