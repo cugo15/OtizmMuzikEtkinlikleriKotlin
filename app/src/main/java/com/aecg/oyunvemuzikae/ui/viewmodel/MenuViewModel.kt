@@ -8,7 +8,6 @@ import com.aecg.oyunvemuzikae.data.repository.MenuRepository
 import com.aecg.oyunvemuzikae.domain.GameType
 import com.aecg.oyunvemuzikae.domain.MemoryType
 import com.aecg.oyunvemuzikae.domain.MenuType
-import com.aecg.oyunvemuzikae.domain.SesType
 import com.aecg.oyunvemuzikae.ui.fragment.MenuFragmentDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

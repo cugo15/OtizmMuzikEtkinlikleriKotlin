@@ -5,7 +5,6 @@ import com.aecg.oyunvemuzikae.data.model.MenuModel
 import com.aecg.oyunvemuzikae.domain.GameType
 import com.aecg.oyunvemuzikae.domain.MemoryType
 import com.aecg.oyunvemuzikae.domain.MenuType
-import com.aecg.oyunvemuzikae.domain.SesType
 import javax.inject.Inject
 import javax.inject.Singleton
 
