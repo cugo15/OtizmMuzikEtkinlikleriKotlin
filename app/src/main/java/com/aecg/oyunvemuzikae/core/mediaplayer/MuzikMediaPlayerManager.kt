@@ -25,4 +25,5 @@ class MuzikMediaPlayerManager @Inject constructor(private val context: Context,
             e.printStackTrace() // Hata yönetimi
         }
     }
+
 }
