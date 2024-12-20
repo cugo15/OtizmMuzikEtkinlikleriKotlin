@@ -8,24 +8,29 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aecg.oyunvemuzikae.R
+import com.aecg.oyunvemuzikae.core.mediaplayer.MuzikMediaPlayerManager
 import com.aecg.oyunvemuzikae.ui.fragment.base.BaseFragment
 import com.aecg.oyunvemuzikae.databinding.FragmentMuzikBinding
 import com.aecg.oyunvemuzikae.ui.adapter.MuzikAdapter
 import com.aecg.oyunvemuzikae.data.model.MuzikModel
 import com.aecg.oyunvemuzikae.ui.viewmodel.MuzikViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MuzikFragment : BaseFragment<FragmentMuzikBinding>(FragmentMuzikBinding::inflate) {
 
     private val muzikViewModel: MuzikViewModel by viewModels()
     private lateinit var animationZoom: Animation
+    @Inject
+    lateinit var muzikMediaPlayerManager: MuzikMediaPlayerManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         animationZoom = AnimationUtils.loadAnimation(requireContext(), R.anim.zoom_inshort)
         val muzikList = muzikViewModel.muzikList
         setupRecyclerView(muzikList)
+        lifecycle.addObserver(muzikMediaPlayerManager)
     }
 
     private fun setupRecyclerView(muzikList: Array<MuzikModel>) {
@@ -45,5 +50,10 @@ class MuzikFragment : BaseFragment<FragmentMuzikBinding>(FragmentMuzikBinding::i
     private fun openVideo(videoId: String) {
         val action = MuzikFragmentDirections.actionMuzikFragmentToWebViewDialogFragment(videoId)
         findNavController().navigate(action)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        lifecycle.removeObserver(muzikMediaPlayerManager)
     }
 }
