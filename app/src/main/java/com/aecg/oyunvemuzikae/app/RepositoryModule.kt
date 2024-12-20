@@ -2,8 +2,8 @@ package com.aecg.oyunvemuzikae.app
 
 import com.aecg.oyunvemuzikae.core.mediaplayer.MediaPlayerManager
 import com.aecg.oyunvemuzikae.core.mediaplayer.MediaPlayerManagerImpl
-import com.aecg.oyunvemuzikae.core.mediaplayer.WebViewManager
-import com.aecg.oyunvemuzikae.core.mediaplayer.WebViewManagerImpl
+import com.aecg.oyunvemuzikae.core.webview.WebViewManager
+import com.aecg.oyunvemuzikae.core.webview.WebViewManagerImpl
 import com.aecg.oyunvemuzikae.data.repository.MenuRepository
 import com.aecg.oyunvemuzikae.data.repository.MenuRepositoryImpl
 import com.aecg.oyunvemuzikae.data.repository.MuzikRepository
