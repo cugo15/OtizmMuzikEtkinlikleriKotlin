@@ -24,6 +24,7 @@
         android:id="@+id/textViewSesHeader"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/mogra"
         android:paddingStart="2dp"
         android:paddingEnd="2dp"
@@ -31,14 +32,14 @@
         android:shadowDx="2"
         android:shadowDy="2"
         android:shadowRadius="2"
-        tools:text="DOĞA SESLERİ"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnBackSes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="DOĞA SESLERİ" />
 
     <ImageView
         android:id="@+id/btnHomeSes"
