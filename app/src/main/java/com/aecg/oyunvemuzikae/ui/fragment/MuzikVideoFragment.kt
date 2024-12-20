@@ -2,7 +2,7 @@ package com.aecg.oyunvemuzikae.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import com.aecg.oyunvemuzikae.core.mediaplayer.WebViewManager
+import com.aecg.oyunvemuzikae.core.webview.WebViewManager
 import com.aecg.oyunvemuzikae.databinding.FragmentMuzikVideoBinding
 import com.aecg.oyunvemuzikae.ui.fragment.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
